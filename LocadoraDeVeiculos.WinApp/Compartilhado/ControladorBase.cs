@@ -2,7 +2,7 @@
 {
     public abstract class ControladorBase
     {
-        public abstract string ToolTipHome { get; }
+        public virtual string ToolTipHome { get { return "Voltar a tela inicial"; } }
 
         public virtual string ToolTipInserir { get { return "Inserir indisponível"; } }
 
@@ -29,7 +29,7 @@
         public virtual bool InserirHabilitado { get { return false; } }
         public virtual bool EditarHabilitado { get { return false; } }
         public virtual bool ExcluirHabilitado { get { return false; } }
-        public virtual bool HomeHabilitado { get { return false; } }
+        public virtual bool HomeHabilitado { get { return true; } }
         public virtual bool FiltrarHabilitado { get { return false; } }
         public virtual bool AdicionarItensHabilitado { get { return false; } }
         public virtual bool RemoverItensHabilitado { get { return false; } }

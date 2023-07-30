@@ -1,9 +1,8 @@
-﻿
-namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
+﻿namespace LocadoraDeVeiculos.WinApp.ModuloConfigPreco
 {
-    public partial class TabelaAluguelControl : UserControl
+    public partial class TabelaConfigPrecoControl : UserControl
     {
-        public TabelaAluguelControl()
+        public TabelaConfigPrecoControl()
         {
             InitializeComponent();
 

@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="ModuloAutomovel\TelaAutomovelForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -30,7 +34,7 @@
     <Compile Update="ModuloConfigPreco\TelaConfigPrecoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ModuloConfigPreco\UserControl1.cs">
+    <Compile Update="ModuloConfigPreco\TabelaConfigPrecoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ModuloCupomEParceiro\TelaParceiroForm.cs">
@@ -59,7 +63,7 @@
     <Compile Update="ModuloTaxaEServico\TelaTaxaEServicoForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ModuloTaxaEServico\UserControl1.cs">
+    <Compile Update="ModuloTaxaEServico\TabelaTaxaEServicoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
