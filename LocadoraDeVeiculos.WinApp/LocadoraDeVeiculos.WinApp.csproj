@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="ModuloAutomovel\TelaAutomovelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloAutomovel\TabelaAutomovelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloCliente\TelaClienteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloCliente\TabelaClienteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloCondutor\TelaCondutorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloCondutor\TabelaCondutorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloConfigPreco\TelaConfigPrecoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloConfigPreco\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloCupomEParceiro\TelaParceiroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloCupomEParceiro\TelaCupomForm.cs" />
+    <Compile Update="ModuloCupomEParceiro\TabelaCupomEParceiroControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloFuncionario\TelaFuncionarioForm.cs" />
+    <Compile Update="ModuloFuncionario\TabelaFuncionarioControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloGrupoAutomovel\TabelaGrupoAutomovelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloGrupoAutomovel\TelaGrupoAutomovelForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloPlanoCobranca\TelaPlanoCobrancaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloPlanoCobranca\TabelaPlanoCobrancaForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="ModuloTaxaEServico\TelaTaxaEServicoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ModuloTaxaEServico\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>
