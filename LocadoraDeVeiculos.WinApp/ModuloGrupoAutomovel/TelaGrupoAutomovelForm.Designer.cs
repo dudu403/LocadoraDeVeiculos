@@ -1,5 +1,5 @@
 ﻿namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
-{ 
+{
     partial class TelaGrupoAutomovelForm
     {
         /// <summary>
@@ -28,12 +28,106 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            btnCancelar = new Button();
+            btnGravar = new Button();
+            txtId = new TextBox();
+            label1 = new Label();
+            txtDisciplina = new TextBox();
+            label2 = new Label();
+            SuspendLayout();
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCancelar.ImageAlign = ContentAlignment.BottomRight;
+            btnCancelar.Location = new Point(432, 113);
+            btnCancelar.Margin = new Padding(4);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(108, 45);
+            btnCancelar.TabIndex = 84;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.TextImageRelation = TextImageRelation.TextAboveImage;
+            btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnGravar
+            // 
+            btnGravar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnGravar.DialogResult = DialogResult.OK;
+            btnGravar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnGravar.ImageAlign = ContentAlignment.BottomRight;
+            btnGravar.Location = new Point(310, 113);
+            btnGravar.Margin = new Padding(4);
+            btnGravar.Name = "btnGravar";
+            btnGravar.Size = new Size(105, 45);
+            btnGravar.TabIndex = 83;
+            btnGravar.Text = "Gravar";
+            btnGravar.TextImageRelation = TextImageRelation.TextAboveImage;
+            btnGravar.UseVisualStyleBackColor = true;
+            // 
+            // txtId
+            // 
+            txtId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtId.Location = new Point(102, 21);
+            txtId.Name = "txtId";
+            txtId.ReadOnly = true;
+            txtId.Size = new Size(190, 29);
+            txtId.TabIndex = 82;
+            txtId.Text = "0";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(70, 21);
+            label1.Name = "label1";
+            label1.Size = new Size(26, 21);
+            label1.TabIndex = 81;
+            label1.Text = "Id:";
+            // 
+            // txtDisciplina
+            // 
+            txtDisciplina.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDisciplina.Location = new Point(102, 59);
+            txtDisciplina.Name = "txtDisciplina";
+            txtDisciplina.Size = new Size(438, 29);
+            txtDisciplina.TabIndex = 80;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(16, 59);
+            label2.Name = "label2";
+            label2.Size = new Size(80, 21);
+            label2.TabIndex = 79;
+            label2.Text = "Disciplina:";
+            // 
+            // TelaGrupoAutomovelForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(573, 189);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnGravar);
+            Controls.Add(txtId);
+            Controls.Add(label1);
+            Controls.Add(txtDisciplina);
+            Controls.Add(label2);
+            Name = "TelaGrupoAutomovelForm";
+            Text = "Form1";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Button btnCancelar;
+        private Button btnGravar;
+        private TextBox txtId;
+        private Label label1;
+        private TextBox txtDisciplina;
+        private Label label2;
     }
 }
