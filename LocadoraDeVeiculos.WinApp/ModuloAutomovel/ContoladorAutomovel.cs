@@ -2,12 +2,12 @@
 {
     public class ContoladorAutomovel : ControladorBase
     {
-        public override UserControl ObterListagem()
+        public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolboxAutomovel();
         }
 
-        public override string ObterTipoCadastro()
+        public override UserControl ObterListagem()
         {
             throw new NotImplementedException();
         }

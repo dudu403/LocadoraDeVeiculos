@@ -2,12 +2,12 @@
 {
     public class ControladorAluguel : ControladorBase
     {
-        public override UserControl ObterListagem()
+        public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolboxAluguel();
         }
 
-        public override string ObterTipoCadastro()
+        public override UserControl ObterListagem()
         {
             throw new NotImplementedException();
         }

@@ -11,5 +11,10 @@
             form.MaximizeBox = false;
             form.MinimizeBox = false;
         }
+
+        private static void Form_FormClosing(object? sender, FormClosingEventArgs e)
+        {
+            TelaPrincipalForm.Tela.AtualizarRodape();
+        }
     }
 }

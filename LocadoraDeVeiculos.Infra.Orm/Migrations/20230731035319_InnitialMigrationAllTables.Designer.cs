@@ -318,7 +318,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<DateTime>("dataAdimissao")
+                    b.Property<DateTime>("dataAdmissao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("nome")
