@@ -30,8 +30,6 @@ namespace LocadoraDeVeiculos.WinApp
         private Dictionary<string, ControladorBase> controladores { get; set; }
         public static TelaPrincipalForm Tela { get; private set; }
 
-        private Dictionary<string, ControladorBase> controladores;
-
         private ControladorBase controlador;
 
         public TelaPrincipalForm()
