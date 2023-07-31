@@ -1,5 +1,4 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
-using TestesDaDonaMariana.Dominio.ModuloAutomovel;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
 {

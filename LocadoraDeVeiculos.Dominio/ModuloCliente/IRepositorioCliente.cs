@@ -1,6 +1,6 @@
 ﻿namespace LocadoraDeVeiculos.Dominio.ModuloCliente
 {
-    public interface IRepositorioCliente
+    public interface IRepositorioCliente : IRepositorio<Cliente>
     {
     }
 }

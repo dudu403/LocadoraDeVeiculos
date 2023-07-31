@@ -1,6 +1,6 @@
 ﻿namespace LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro
 {
-    public interface IRepositorioCupom
+    public interface IRepositorioCupom : IRepositorio<Cupom>
     {
     }
 }
