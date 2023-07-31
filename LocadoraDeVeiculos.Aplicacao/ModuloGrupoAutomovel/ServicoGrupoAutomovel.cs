@@ -1,0 +1,144 @@
+﻿using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
+
+namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
+{
+    public class ServicoGrupoAutomovel
+    {
+        private IRepositorioGrupoAutomovel repositorioGrupoAutomovel;
+        private IValidadorGrupoAutomovel validadorGrupoAutomovel;
+
+        public ServicoGrupoAutomovel(IRepositorioGrupoAutomovel repositorioGrupoAutomovel, IValidadorGrupoAutomovel validadorGrupoAutomovel)
+        {
+            this.repositorioGrupoAutomovel = repositorioGrupoAutomovel;
+            this.validadorGrupoAutomovel = validadorGrupoAutomovel;
+        }
+
+        public Result Inserir(GrupoAutomovel grupoAutomovel)
+        {
+            Log.Debug("Tentando inserir um grupo de automovel...{@d}", grupoAutomovel);
+
+            List<string> erros = ValidarGrupoAutomovel(grupoAutomovel);
+
+            if (erros.Count() > 0)
+                return Result.Fail(erros); //cenário 2
+
+            try
+            {
+                repositorioGrupoAutomovel.Inserir(grupoAutomovel);
+
+                Log.Debug("Grupo de automovel {GrupoAutomovelId} inserido com sucesso", grupoAutomovel.id);
+
+                return Result.Ok(); //cenário 1
+            }
+            catch (Exception exc)
+            {
+                string msgErro = "Falha ao tentar inserir um grupo de automovel.";
+
+                Log.Error(exc, msgErro + "{@d}", grupoAutomovel);
+
+                return Result.Fail(msgErro); //cenário 3
+            }
+        }
+        
+        public Result Editar(GrupoAutomovel grupoAutomovel)
+        {
+            Log.Debug("Tentando editar um grupo de automovel...{@d}", grupoAutomovel);
+
+            List<string> erros = ValidarGrupoAutomovel(grupoAutomovel);
+
+            if (erros.Count() > 0)
+                return Result.Fail(erros);
+
+            try
+            {
+                repositorioGrupoAutomovel.Editar(grupoAutomovel);
+
+                Log.Debug("Grupo de automovel {GrupoAutomovelId} editado com sucesso", grupoAutomovel.id);
+
+                return Result.Ok();
+            }
+            catch (Exception exc)
+            {
+                string msgErro = "Falha ao tentar editar um grupo de automovel.";
+
+                Log.Error(exc, msgErro + "{@d}", grupoAutomovel);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result Excluir(GrupoAutomovel grupoAutomovel)
+        {
+            Log.Debug("Tentando excluir um grupo de automovel...{@d}", grupoAutomovel);
+
+            try
+            {
+                bool grupoAutomovelExiste = repositorioGrupoAutomovel.Existe(grupoAutomovel);
+
+                if (grupoAutomovelExiste == false)
+                {
+                    Log.Warning("Grupo de automovel {GrupoAutomovelId} não encontradp para excluir", grupoAutomovel.id);
+
+                    return Result.Fail("Grupo de automovel não encontrado");
+                }
+
+                repositorioGrupoAutomovel.Excluir(grupoAutomovel);
+
+                Log.Debug("Grupo de automovel {GrupoAutomovelId} excluído com sucesso", grupoAutomovel.id);
+
+                return Result.Ok();
+            }
+            catch (SqlException ex)
+            {
+                List<string> erros = new List<string>();
+              
+                string msgErro;
+
+                if (ex.Message.Contains("FK_TBAutomovel_TBGrupoAutomovel"))
+                    msgErro = "Esta grupo de automovel está relacionado a um automovel e não pode ser excluído";
+                else
+                    msgErro = "Falha ao tentar excluir um grupo de automovel";
+
+                erros.Add(msgErro);
+
+                Log.Error(ex, msgErro + " {GrupoAutomovelId}", grupoAutomovel.id);
+
+                return Result.Fail(erros);
+            }
+        }
+
+        private List<string> ValidarGrupoAutomovel(GrupoAutomovel grupoAutomovel)
+        {
+            var resultadoValidacao = validadorGrupoAutomovel.Validate(grupoAutomovel);
+
+            List<string> erros = new List<string>();
+
+            if (resultadoValidacao != null)
+                erros.AddRange(resultadoValidacao.Errors.Select(x => x.ErrorMessage));
+
+            if (NomeDuplicado(grupoAutomovel))
+                erros.Add($"Este nome '{grupoAutomovel.nome}' já está sendo utilizado");
+
+            foreach (string erro in erros)
+            {
+                Log.Warning(erro);
+            }
+
+            return erros;
+        }
+
+        private bool NomeDuplicado(GrupoAutomovel grupoAutomovel)
+        {
+            //GrupoAutomovel grupoAutomovelEncontrada = repositorioGrupoAutomovel.SelecionarPorNome(grupoAutomovel.Nome);
+
+            //if (grupoAutomovelEncontrada != null &&
+            //    grupoAutomovelEncontrada.Id != grupoAutomovel.Id &&
+            //    grupoAutomovelEncontrada.Nome == grupoAutomovel.Nome)
+            //{
+            //    return true;
+            //}
+
+            return false;
+        }
+    }
+}

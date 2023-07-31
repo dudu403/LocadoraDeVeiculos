@@ -1,13 +1,14 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
+﻿
+namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 {
     public class ControladorGrupoAutomovel : ControladorBase
     {
-        public override UserControl ObterListagem()
+        public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolboxGrupoAutomovel();
         }
 
-        public override string ObterTipoCadastro()
+        public override UserControl ObterListagem()
         {
             throw new NotImplementedException();
         }
