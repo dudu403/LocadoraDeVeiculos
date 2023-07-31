@@ -2,12 +2,12 @@
 {
     public class ControladorFuncionario : ControladorBase
     {
-        public override UserControl ObterListagem()
+        public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolboxFuncionario();
         }
 
-        public override string ObterTipoCadastro()
+        public override UserControl ObterListagem()
         {
             throw new NotImplementedException();
         }

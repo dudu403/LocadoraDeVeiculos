@@ -2,12 +2,12 @@
 {
     public class ControladorCupomEParceiro : ControladorBase
     {
-        public override UserControl ObterListagem()
+        public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            throw new NotImplementedException();
+            return new ConfiguracaoToolboxCupomEParceiro();
         }
 
-        public override string ObterTipoCadastro()
+        public override UserControl ObterListagem()
         {
             throw new NotImplementedException();
         }
