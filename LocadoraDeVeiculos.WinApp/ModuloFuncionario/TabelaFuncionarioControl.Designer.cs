@@ -39,7 +39,7 @@
             grid.Name = "grid";
             grid.RowHeadersVisible = false;
             grid.RowTemplate.Height = 25;
-            grid.Size = new Size(150, 150);
+            grid.Size = new Size(632, 430);
             grid.TabIndex = 2;
             // 
             // TabelaFuncionarioControl
@@ -48,6 +48,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(grid);
             Name = "TabelaFuncionarioControl";
+            Size = new Size(632, 430);
             ((System.ComponentModel.ISupportInitialize)grid).EndInit();
             ResumeLayout(false);
         }

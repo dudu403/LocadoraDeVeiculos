@@ -7,6 +7,10 @@ using LocadoraDeVeiculos.Infra.Orm.ModuloAluguel;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAutomovel;
 using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
+using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
+using LocadoraDeVeiculos.Dominio.ModuloAluguel;
+using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+using LocadoraDeVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloAluguel;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +20,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
+using LocadoraDeVeiculos.WinApp.ModuloTaxaEServico;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -23,7 +29,10 @@ namespace LocadoraDeVeiculos.WinApp
     {
         private Dictionary<string, ControladorBase> controladores { get; set; }
         public static TelaPrincipalForm Tela { get; private set; }
-        private ControladorBase controlador { get; set; }   
+
+        private Dictionary<string, ControladorBase> controladores;
+
+        private ControladorBase controlador;
 
         public TelaPrincipalForm()
         {

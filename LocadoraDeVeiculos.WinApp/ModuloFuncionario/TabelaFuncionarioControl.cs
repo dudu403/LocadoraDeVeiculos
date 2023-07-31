@@ -1,4 +1,6 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
+﻿using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+
+namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 {
     public partial class TabelaFuncionarioControl : UserControl
     {
@@ -19,7 +21,11 @@
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
+
+                 new DataGridViewTextBoxColumn { DataPropertyName = "Data Admissão", HeaderText = "Data Admissão"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "salario", HeaderText = "Salario"},
 
             };
 
@@ -31,14 +37,16 @@
             return grid.SelecionarNumero<int>();
         }
 
-        //public void AtualizarRegistros(List<var> vars)
-        //{
-        //    grid.Rows.Clear();
+        public void AtualizarRegistros(List<Funcionario> funcionarios)
+        {
+            grid.Rows.Clear();
 
-        //    foreach (var var in vars)
-        //    {
-        //        grid.Rows.Add(var.id, var.nome,...................);
-        //    }
-        //}
+            foreach (var funcionario in funcionarios)
+            {
+                grid.Rows.Add(funcionario.nome,
+                    "R$ " + funcionario.salario,
+                    funcionario.dataAdmissao);
+            }
+        }
     }
 }
