@@ -1,6 +1,6 @@
 ﻿namespace LocadoraDeVeiculos.Dominio.ModuloConfigPreco
 {
-    public interface IRepositorioConfiguracaoPreco
+    public interface IRepositorioConfiguracaoPreco : IRepositorio<ConfiguracaoPreco>
     {
     }
 }

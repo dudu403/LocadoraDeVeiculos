@@ -1,13 +1,14 @@
-﻿
-namespace LocadoraDeVeiculos.Dominio.Compartilhado
+﻿namespace LocadoraDeVeiculos.Dominio.Compartilhado
 {
     public interface IRepositorio<T> where T : EntidadeBase<T>
     {
         void Inserir(T novoRegistro);
 
-        void Editar(int id, T registro);
+        void Editar(T registro);
 
         void Excluir(T registro);
+
+        bool Existe(T registro);
 
         List<T> SelecionarTodos();
 

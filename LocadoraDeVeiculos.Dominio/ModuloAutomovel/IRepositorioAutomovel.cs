@@ -1,6 +1,6 @@
 ﻿namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
 {
-    public interface IRepositorioAutomovel
+    public interface IRepositorioAutomovel : IRepositorio<Automovel>
     {
     }
 }

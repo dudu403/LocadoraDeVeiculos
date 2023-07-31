@@ -8,15 +8,15 @@ using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloAluguel
 {
-    public class Aluguel : EntidadeBase<Automovel>
+    public class Aluguel : EntidadeBase<Aluguel>
     {
         public List<TaxaEServico> taxasSelecionadas { get; set; }  //seta no cadastro e ja vem preenchidas na devolução, não podem ser alteradas 
-        public List<TaxaEServico> taxasCadastradas { get; set; }
         public List<TaxaEServico> taxasAdicionais { get; set; }
         public DateTime dataPrevistaDevolucao { get; set; }
         public GrupoAutomovel grupoAutomovel { get; set; }
         public decimal valorTotalPrevisto { get; set; }
         public decimal nivelTanqueLitros { get; set; }
+        public List<TaxaEServico> taxas { get; set; }
         public Funcionario funcionario { get; set; }
         public decimal valorTotalFinal { get; set; }
         public DateTime dataDevolucao { get; set; }
@@ -29,7 +29,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAluguel
         public Cliente cliente { get; set; }
         public Cupom? cupom { get; set; }
 
-        public override void AtualizarInformacoes(Automovel registroAtualizado)
+        public override void AtualizarInformacoes(Aluguel registroAtualizado)
         {
             throw new NotImplementedException();
         }

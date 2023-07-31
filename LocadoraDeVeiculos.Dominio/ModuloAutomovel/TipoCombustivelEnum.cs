@@ -1,4 +1,4 @@
-﻿namespace TestesDaDonaMariana.Dominio.ModuloAutomovel
+﻿namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
 {
     public enum TipoCombustivelEnum
     {

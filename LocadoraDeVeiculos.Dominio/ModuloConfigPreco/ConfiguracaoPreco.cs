@@ -1,4 +1,6 @@
-﻿namespace LocadoraDeVeiculos.Dominio.ModuloConfigPreco
+﻿using System.Configuration.Internal;
+
+namespace LocadoraDeVeiculos.Dominio.ModuloConfigPreco
 {
     public class ConfiguracaoPreco : EntidadeBase<ConfiguracaoPreco>
     {
