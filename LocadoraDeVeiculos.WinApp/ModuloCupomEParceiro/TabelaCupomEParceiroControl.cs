@@ -17,7 +17,7 @@
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Visible = false},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"}
 
@@ -26,9 +26,9 @@
             return colunas;
         }
 
-        public int ObterIdSelecionado()
+        public Guid ObterIdSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId();
         }
 
         //public void AtualizarRegistros(List<var> vars)

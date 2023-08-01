@@ -20,7 +20,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxaEServico
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Visible = false},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
@@ -33,9 +33,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxaEServico
             return colunas;
         }
 
-        public int ObterIdSelecionado()
+        public Guid ObterIdSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId();
         }
 
         public void AtualizarRegistros(List<TaxaEServico> taxaEServicos)

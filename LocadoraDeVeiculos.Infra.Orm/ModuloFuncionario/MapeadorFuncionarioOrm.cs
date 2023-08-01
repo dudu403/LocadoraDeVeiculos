@@ -8,7 +8,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloFuncionario
         {
             builder.ToTable("TBFuncionario");
 
-            builder.Property(d => d.id).IsRequired().ValueGeneratedOnAdd();
+            builder.Property(d => d.id).IsRequired().ValueGeneratedNever();
 
             builder.Property(d => d.nome).HasColumnType("varchar(100)").IsRequired();
 

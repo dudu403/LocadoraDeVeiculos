@@ -8,7 +8,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloPlanoCobranca
         {
             builder.ToTable("TBPlanoCobranca");
 
-            builder.Property(d => d.id).IsRequired().ValueGeneratedOnAdd();
+            builder.Property(d => d.id).IsRequired().ValueGeneratedNever();
 
             builder.Property(d => d.precoDiaria).HasConversion<decimal>().IsRequired();
 

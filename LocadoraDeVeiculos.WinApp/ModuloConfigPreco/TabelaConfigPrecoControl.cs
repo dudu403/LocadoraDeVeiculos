@@ -32,9 +32,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloConfigPreco
             return colunas;
         }
 
-        public int ObterIdSelecionado()
+        public Guid ObterIdSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId();
         }
 
         public void AtualizarRegistros(ConfiguracaoPreco configPreco)

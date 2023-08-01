@@ -9,7 +9,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloConfigPreco
     {
         ConfiguracaoPreco configPreco { get; set; }
 
-        public event GravarRegistroDelegate<ConfiguracaoPreco> onGravarRegistro;
+        public event GravarRegistroDelegate onGravarRegistro;
 
         public TelaConfigPrecoForm()
         {

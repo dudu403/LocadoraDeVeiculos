@@ -9,7 +9,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloAluguel
         {
             builder.ToTable("TBAluguel");
 
-            builder.Property(d => d.id).IsRequired().ValueGeneratedOnAdd();
+            builder.Property(d => d.id).IsRequired().ValueGeneratedNever();
 
             builder.Property(d => d.dataPrevistaDevolucao).IsRequired();
 
