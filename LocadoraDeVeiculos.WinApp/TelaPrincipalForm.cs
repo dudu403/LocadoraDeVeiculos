@@ -29,8 +29,7 @@ namespace LocadoraDeVeiculos.WinApp
     {
         private Dictionary<string, ControladorBase> controladores { get; set; }
         public static TelaPrincipalForm Tela { get; private set; }
-
-        private ControladorBase controlador;
+        private ControladorBase controlador { get; set; }
 
         public TelaPrincipalForm()
         {
@@ -71,6 +70,7 @@ namespace LocadoraDeVeiculos.WinApp
                 dbContext.Database.Migrate();
             }
 
+
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
 
             ValidadorGrupoAutomovel validadorGrupoAutomovel = new ValidadorGrupoAutomovel();
@@ -78,6 +78,15 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoGrupoAutomovel servicoDisciplina = new ServicoGrupoAutomovel(repositorioGrupoAutomovel, validadorGrupoAutomovel);
 
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel());
+
+         
+            IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioEmOrm(dbContext);
+
+            ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
+
+            ServicoFuncionario servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, validadorFuncionario);
+
+            controladores.Add("ControladorFuncionario", new ControladorFuncionario());
         }
 
         private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e)
