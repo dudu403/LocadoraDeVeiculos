@@ -1,13 +1,18 @@
+using LocadoraDeVeiculos.Aplicacao.ModuloConfigPreco;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloAluguel;
 using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
+using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
+using LocadoraDeVeiculos.Infra.Json.ModuloConfigPreco;
 using LocadoraDeVeiculos.Infra.Orm.Compartilhado;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAluguel;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAutomovel;
+using LocadoraDeVeiculos.Infra.Orm.ModuloConfigPreco;
 using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinApp.ModuloAluguel;
+using LocadoraDeVeiculos.WinApp.ModuloConfigPreco;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -43,7 +48,7 @@ namespace LocadoraDeVeiculos.WinApp
         }
 
         private void ConfigurarControladores()
-        {
+        {          
             var configuracao = new ConfigurationBuilder()
               .SetBasePath(Directory.GetCurrentDirectory())
               .AddJsonFile("appsettings.json")
@@ -71,6 +76,14 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoGrupoAutomovel servicoGrupoAutomovel = new(repositorioGrupoAutomovel, validadorGrupoAutomovel);
 
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
+
+            IRepositorioConfiguracaoPreco repositorioConfiguracaoPreco = new RepositorioConfigPrecoEmJson(carregarDados: true);
+
+            ValidadorConfiguracaoPreco validadorConfiguracaoPreco = new();
+
+            ServicoConfiguracaoPreco servicoConfiguracaoPreco = new(repositorioConfiguracaoPreco, validadorConfiguracaoPreco);
+
+            controladores.Add("ControladorConfigPreco", new ControladorConfigPreco(repositorioConfiguracaoPreco, servicoConfiguracaoPreco));
         }
 
         private void funcionariosMenuItem_Click(object sender, EventArgs e)
@@ -192,7 +205,7 @@ namespace LocadoraDeVeiculos.WinApp
             btnAdicionarItens.ToolTipText = config.ToolTipAdicionarItens;
             btnRemoverItens.ToolTipText = config.ToolTipRemoverItens;
             btnFinalizarPgto.ToolTipText = config.ToolTipFinalizarPagamento;
-            btnConfigurar.ToolTipText = config.ToolTipConfigDesconto;
+            btnConfigurar.ToolTipText = config.ToolTipConfig;
             btnVisualizar.ToolTipText = config.ToolTipVisualizar;
             btnVisualizar.ToolTipText = config.ToolTipVisualizar;
             btnVisualizarGabarito.ToolTipText = config.ToolTipVisualizarGabarito;
@@ -210,7 +223,7 @@ namespace LocadoraDeVeiculos.WinApp
             btnAdicionarItens.Enabled = config.AdicionarItensHabilitado;
             btnRemoverItens.Enabled = config.RemoverItensHabilitado;
             btnFinalizarPgto.Enabled = config.FinalizarPagamentoHabilitado;
-            btnConfigurar.Enabled = config.ConfigDescontoHabilitado;
+            btnConfigurar.Enabled = config.ConfigHabilitado;
             btnVisualizar.Enabled = config.VisualizarHabilitado;
             btnVisualizarGabarito.Enabled = config.VisualizarGabaritoHabilitado;
             btnGerarPdf.Enabled = config.GerarPdfHabilitado;
@@ -226,7 +239,7 @@ namespace LocadoraDeVeiculos.WinApp
             btnAdicionarItens.Visible = config.AdicionarItensVisivel;
             btnRemoverItens.Visible = config.RemoverItensVisivel;
             btnFinalizarPgto.Visible = config.FinalizarPagamentoVisivel;
-            btnConfigurar.Visible = config.ConfigDescontoVisivel;
+            btnConfigurar.Visible = config.ConfigVisivel;
             btnVisualizar.Visible = config.VisualizarVisivel;
             btnVisualizarGabarito.Visible = config.VisualizarGabaritoVisivel;
             btnGerarPdf.Visible = config.GerarPdfVisivel;

@@ -159,7 +159,7 @@
             btnInserir.Name = "btnInserir";
             btnInserir.Padding = new Padding(6);
             btnInserir.Size = new Size(32, 32);
-            btnInserir.Text = "Inserir";
+            btnInserir.Text = "Configurar";
             btnInserir.Visible = false;
             btnInserir.Click += btnInserir_Click;
             // 

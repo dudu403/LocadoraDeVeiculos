@@ -37,7 +37,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
         public override void Editar()
         {
-            int id = tabelaGrupoAutomovel.ObterNumeroTesteSelecionado();
+            Guid id = tabelaGrupoAutomovel.ObterIdSelecionado();
 
             GrupoAutomovel grupoAutomovelSelecionado = repositorioGrupoAutomovel.SelecionarPorId(id);
 
@@ -66,7 +66,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
         public override void Excluir()
         {
-            int id = tabelaGrupoAutomovel.ObterNumeroTesteSelecionado();
+            Guid id = tabelaGrupoAutomovel.ObterIdSelecionado();
 
             GrupoAutomovel grupoAutomovelSelecionado = repositorioGrupoAutomovel.SelecionarPorId(id);
 
@@ -124,7 +124,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
             tabelaGrupoAutomovel.AtualizarRegistros(grupoAutomoveis);
 
-            mensagemRodape = string.Format("Visualizando {0} grupo de automoveis{1}", grupoAutomoveis.Count, grupoAutomoveis.Count == 1 ? "" : "s");
+            mensagemRodape = string.Format("Visualizando {0} grupo{1} de automoveis", grupoAutomoveis.Count, grupoAutomoveis.Count == 1 ? "" : "s");
 
             TelaPrincipalForm.Tela.AtualizarRodape(mensagemRodape);
         }

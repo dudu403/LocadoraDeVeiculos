@@ -8,7 +8,7 @@
 
         public virtual string ToolTipHome { get { return "Voltar a tela inicial"; } }
 
-        public virtual string ToolTipInserir { get { return "Inserir indisponível"; } }
+        public virtual string ToolTipInserir { get { return "Configurar indisponível"; } }
 
         public virtual string ToolTipEditar { get { return "Editar indisponível"; } }
 
@@ -22,7 +22,7 @@
 
         public virtual string? ToolTipFinalizarPagamento { get { return "Finalizar pagamento indisponível"; } }
 
-        public virtual string? ToolTipConfigDesconto { get { return "Configurar desconto indisponível"; } }
+        public virtual string? ToolTipConfig { get { return "Configurar indisponível"; } }
 
         public virtual string? ToolTipVisualizar { get { return "VisualizarTeste indisponível"; } }
 
@@ -42,7 +42,7 @@
         public virtual bool AdicionarItensHabilitado { get { return false; } }
         public virtual bool RemoverItensHabilitado { get { return false; } }
         public virtual bool FinalizarPagamentoHabilitado { get { return false; } }
-        public virtual bool ConfigDescontoHabilitado { get { return false; } }
+        public virtual bool ConfigHabilitado { get { return false; } }
         public virtual bool VisualizarHabilitado { get { return false; } }
         public virtual bool VisualizarGabaritoHabilitado { get { return false; } }
         public virtual bool GerarPdfHabilitado { get { return false; } }
@@ -59,7 +59,7 @@
         public virtual bool AdicionarItensVisivel { get { return false; } }
         public virtual bool RemoverItensVisivel { get { return false; } }
         public virtual bool FinalizarPagamentoVisivel { get { return false; } }
-        public virtual bool ConfigDescontoVisivel { get { return false; } }
+        public virtual bool ConfigVisivel { get { return false; } }
         public virtual bool VisualizarVisivel { get { return false; } }
         public virtual bool VisualizarGabaritoVisivel { get { return false; } }
         public virtual bool GerarPdfVisivel { get { return false; } }

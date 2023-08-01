@@ -5,18 +5,7 @@ using System.Reflection;
 namespace LocadoraDeVeiculos.Infra.Orm.Compartilhado
 {
     public class LocadoraDeVeiculosDbContext : DbContext
-    {
-        /* Para criar objetos DbContext o padrão é utilizar a classe "DbContextOptions"
-         * 
-         * O código abaixo é uma "gambeta" :-)             
-         * 
-         * private string connectionString;
-         * 
-         * public LocadoraDeVeiculosDbContext(string connectionString)
-         * {
-         *     this.connectionString = connectionString;
-         * }
-        */
+    {        
         public LocadoraDeVeiculosDbContext(DbContextOptions options) : base(options)
         {            
 
@@ -24,24 +13,6 @@ namespace LocadoraDeVeiculos.Infra.Orm.Compartilhado
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            /* Para criar objetos DbContext o padrão é utilizar a classe "DbContextOptions"
-             * 
-             * O código abaixo é uma "gambeta" :-)             
-             * 
-             * if (string.IsNullOrEmpty(connectionString))
-             * {
-             *     var configuration = new ConfigurationBuilder()
-             *        .SetBasePath(Directory.GetCurrentDirectory())
-             *        .AddJsonFile("appsettings.json")
-             *        .Build();
-             * 
-             *     connectionString = configuration.GetConnectionString("SqlServer");
-             * }            
-             * 
-             * optionsBuilder.UseSqlServer(connectionString);
-             *
-            */
-
             ILoggerFactory loggerFactory = LoggerFactory.Create((x) =>
             {
                 x.AddSerilog(Log.Logger); //instalar o pacote Serilog.Extensions.Logging

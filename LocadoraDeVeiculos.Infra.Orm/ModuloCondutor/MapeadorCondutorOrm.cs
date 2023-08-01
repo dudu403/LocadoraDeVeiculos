@@ -8,7 +8,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloCondutor
         {
             builder.ToTable("TBCondutor");
 
-            builder.Property(d => d.id).IsRequired().ValueGeneratedOnAdd();
+            builder.Property(d => d.id).IsRequired().ValueGeneratedNever();
 
             builder.Property(d => d.nome).HasColumnType("varchar(200)").IsRequired();
 

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ModuloConfigPreco\MapeadorConfigPrecoOrm.cs" />
+    <Compile Remove="ModuloConfigPreco\RepositorioConfigPrecoEmOrm.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
+  </ItemGroup>
+
+</Project>
