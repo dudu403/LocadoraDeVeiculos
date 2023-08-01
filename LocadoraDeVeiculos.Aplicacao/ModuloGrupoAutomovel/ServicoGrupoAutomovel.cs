@@ -77,7 +77,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
 
                 if (grupoAutomovelExiste == false)
                 {
-                    Log.Warning("Grupo de automovel {GrupoAutomovelId} não encontradp para excluir", grupoAutomovel.id);
+                    Log.Warning("Grupo de automovel {GrupoAutomovelId} não encontrado para excluir", grupoAutomovel.id);
 
                     return Result.Fail("Grupo de automovel não encontrado");
                 }
@@ -129,14 +129,14 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
 
         private bool NomeDuplicado(GrupoAutomovel grupoAutomovel)
         {
-            //GrupoAutomovel grupoAutomovelEncontrada = repositorioGrupoAutomovel.SelecionarPorNome(grupoAutomovel.Nome);
+            GrupoAutomovel grupoAutomovelEncontrado = repositorioGrupoAutomovel.SelecionarPorNome(grupoAutomovel.nome);
 
-            //if (grupoAutomovelEncontrada != null &&
-            //    grupoAutomovelEncontrada.Id != grupoAutomovel.Id &&
-            //    grupoAutomovelEncontrada.Nome == grupoAutomovel.Nome)
-            //{
-            //    return true;
-            //}
+            if (grupoAutomovelEncontrado != null &&
+                grupoAutomovelEncontrado.id != grupoAutomovel.id &&
+                grupoAutomovelEncontrado.nome == grupoAutomovel.nome)
+            {
+                return true;
+            }
 
             return false;
         }

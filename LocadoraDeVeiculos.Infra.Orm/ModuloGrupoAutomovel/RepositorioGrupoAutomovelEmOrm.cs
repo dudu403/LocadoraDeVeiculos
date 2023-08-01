@@ -7,6 +7,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloGrupoAutomovel
         public RepositorioGrupoAutomovelEmOrm(LocadoraDeVeiculosDbContext dbContext) : base(dbContext)
         {           
         
-        }     
+        }
+
+        public GrupoAutomovel SelecionarPorNome(string nome)
+        {
+            return registros.FirstOrDefault(x => x.nome == nome);
+        }
     }
 }

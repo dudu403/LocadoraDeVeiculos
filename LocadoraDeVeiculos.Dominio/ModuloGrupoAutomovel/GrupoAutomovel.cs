@@ -6,7 +6,12 @@
 
         public override void AtualizarInformacoes(GrupoAutomovel registroAtualizado)
         {
-            throw new NotImplementedException();
+            nome = registroAtualizado.nome;
+        }
+
+        public override string ToString()
+        {
+            return nome;
         }
     }
 }

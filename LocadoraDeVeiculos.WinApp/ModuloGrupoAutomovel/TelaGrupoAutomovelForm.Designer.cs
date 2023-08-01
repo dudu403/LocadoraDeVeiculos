@@ -32,7 +32,7 @@
             btnGravar = new Button();
             txtId = new TextBox();
             label1 = new Label();
-            txtDisciplina = new TextBox();
+            txtNome = new TextBox();
             label2 = new Label();
             SuspendLayout();
             // 
@@ -42,7 +42,7 @@
             btnCancelar.DialogResult = DialogResult.Cancel;
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnCancelar.ImageAlign = ContentAlignment.BottomRight;
-            btnCancelar.Location = new Point(432, 113);
+            btnCancelar.Location = new Point(425, 116);
             btnCancelar.Margin = new Padding(4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(108, 45);
@@ -57,7 +57,7 @@
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnGravar.ImageAlign = ContentAlignment.BottomRight;
-            btnGravar.Location = new Point(310, 113);
+            btnGravar.Location = new Point(303, 116);
             btnGravar.Margin = new Padding(4);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(105, 45);
@@ -65,11 +65,12 @@
             btnGravar.Text = "Gravar";
             btnGravar.TextImageRelation = TextImageRelation.TextAboveImage;
             btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click;
             // 
             // txtId
             // 
             txtId.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtId.Location = new Point(102, 21);
+            txtId.Location = new Point(95, 24);
             txtId.Name = "txtId";
             txtId.ReadOnly = true;
             txtId.Size = new Size(190, 29);
@@ -80,29 +81,29 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(70, 21);
+            label1.Location = new Point(63, 24);
             label1.Name = "label1";
             label1.Size = new Size(26, 21);
             label1.TabIndex = 81;
             label1.Text = "Id:";
             // 
-            // txtDisciplina
+            // txtNome
             // 
-            txtDisciplina.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDisciplina.Location = new Point(102, 59);
-            txtDisciplina.Name = "txtDisciplina";
-            txtDisciplina.Size = new Size(438, 29);
-            txtDisciplina.TabIndex = 80;
+            txtNome.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNome.Location = new Point(95, 62);
+            txtNome.Name = "txtNome";
+            txtNome.Size = new Size(438, 29);
+            txtNome.TabIndex = 80;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(16, 59);
+            label2.Location = new Point(33, 62);
             label2.Name = "label2";
-            label2.Size = new Size(80, 21);
+            label2.Size = new Size(56, 21);
             label2.TabIndex = 79;
-            label2.Text = "Disciplina:";
+            label2.Text = "Nome:";
             // 
             // TelaGrupoAutomovelForm
             // 
@@ -113,10 +114,11 @@
             Controls.Add(btnGravar);
             Controls.Add(txtId);
             Controls.Add(label1);
-            Controls.Add(txtDisciplina);
+            Controls.Add(txtNome);
             Controls.Add(label2);
             Name = "TelaGrupoAutomovelForm";
-            Text = "Form1";
+            ShowIcon = false;
+            Text = "Grupo de Automovel";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -127,7 +129,7 @@
         private Button btnGravar;
         private TextBox txtId;
         private Label label1;
-        private TextBox txtDisciplina;
+        private TextBox txtNome;
         private Label label2;
     }
 }

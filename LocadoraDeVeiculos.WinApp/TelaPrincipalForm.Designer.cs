@@ -342,63 +342,63 @@
             funcionáriosToolStripMenuItem.Name = "funcionáriosToolStripMenuItem";
             funcionáriosToolStripMenuItem.Size = new Size(203, 22);
             funcionáriosToolStripMenuItem.Text = "Funcionários";
-            funcionáriosToolStripMenuItem.Click += funcionariosToolStripMenuItem_Click;
+            funcionáriosToolStripMenuItem.Click += funcionariosMenuItem_Click;
             // 
             // grupoDeAutomóveisToolStripMenuItem
             // 
             grupoDeAutomóveisToolStripMenuItem.Name = "grupoDeAutomóveisToolStripMenuItem";
             grupoDeAutomóveisToolStripMenuItem.Size = new Size(203, 22);
             grupoDeAutomóveisToolStripMenuItem.Text = "Grupo de automóveis ";
-            grupoDeAutomóveisToolStripMenuItem.Click += grupoDeAutomoveisToolStripMenuItem_Click;
+            grupoDeAutomóveisToolStripMenuItem.Click += grupoDeAutomoveisMenuItem_Click;
             // 
             // planosDeCobrançaToolStripMenuItem
             // 
             planosDeCobrançaToolStripMenuItem.Name = "planosDeCobrançaToolStripMenuItem";
             planosDeCobrançaToolStripMenuItem.Size = new Size(203, 22);
             planosDeCobrançaToolStripMenuItem.Text = "Planos de cobrança";
-            planosDeCobrançaToolStripMenuItem.Click += planosDeCobrancaToolStripMenuItem_Click;
+            planosDeCobrançaToolStripMenuItem.Click += planosDeCobrancaMenuItem_Click;
             // 
             // automoveisToolStripMenuItem
             // 
             automoveisToolStripMenuItem.Name = "automoveisToolStripMenuItem";
             automoveisToolStripMenuItem.Size = new Size(203, 22);
             automoveisToolStripMenuItem.Text = "Automoveis";
-            automoveisToolStripMenuItem.Click += automoveisToolStripMenuItem_Click;
+            automoveisToolStripMenuItem.Click += automoveisMenuItem_Click;
             // 
             // clientesToolStripMenuItem
             // 
             clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
             clientesToolStripMenuItem.Size = new Size(203, 22);
             clientesToolStripMenuItem.Text = "Clientes";
-            clientesToolStripMenuItem.Click += clientesToolStripMenuItem_Click;
+            clientesToolStripMenuItem.Click += clientesMenuItem_Click;
             // 
             // condutoresToolStripMenuItem
             // 
             condutoresToolStripMenuItem.Name = "condutoresToolStripMenuItem";
             condutoresToolStripMenuItem.Size = new Size(203, 22);
             condutoresToolStripMenuItem.Text = "Condutores";
-            condutoresToolStripMenuItem.Click += condutoresToolStripMenuItem_Click;
+            condutoresToolStripMenuItem.Click += condutoresMenuItem_Click;
             // 
             // taxasEServiçosToolStripMenuItem
             // 
             taxasEServiçosToolStripMenuItem.Name = "taxasEServiçosToolStripMenuItem";
             taxasEServiçosToolStripMenuItem.Size = new Size(203, 22);
             taxasEServiçosToolStripMenuItem.Text = "Taxas e serviços";
-            taxasEServiçosToolStripMenuItem.Click += taxasEServiçosToolStripMenuItem_Click;
+            taxasEServiçosToolStripMenuItem.Click += taxasEServiçosMenuItem_Click;
             // 
             // cuponsEParceirosToolStripMenuItem
             // 
             cuponsEParceirosToolStripMenuItem.Name = "cuponsEParceirosToolStripMenuItem";
             cuponsEParceirosToolStripMenuItem.Size = new Size(203, 22);
             cuponsEParceirosToolStripMenuItem.Text = "Cupons e Parceiros";
-            cuponsEParceirosToolStripMenuItem.Click += cuponsEParceirosToolStripMenuItem_Click;
+            cuponsEParceirosToolStripMenuItem.Click += cuponsEParceirosMenuItem_Click;
             // 
             // configuraçãoDePreçosToolStripMenuItem
             // 
             configuraçãoDePreçosToolStripMenuItem.Name = "configuraçãoDePreçosToolStripMenuItem";
             configuraçãoDePreçosToolStripMenuItem.Size = new Size(203, 22);
             configuraçãoDePreçosToolStripMenuItem.Text = "Configuração de preços ";
-            configuraçãoDePreçosToolStripMenuItem.Click += configuracaoDePrecosToolStripMenuItem_Click;
+            configuraçãoDePreçosToolStripMenuItem.Click += configuracaoDePrecosMenuItem_Click;
             // 
             // serviçosToolStripMenuItem
             // 
@@ -412,7 +412,7 @@
             aluguéisToolStripMenuItem.Name = "aluguéisToolStripMenuItem";
             aluguéisToolStripMenuItem.Size = new Size(123, 22);
             aluguéisToolStripMenuItem.Text = "Aluguéis ";
-            aluguéisToolStripMenuItem.Click += alugueisToolStripMenuItem_Click;
+            aluguéisToolStripMenuItem.Click += alugueisMenuItem_Click;
             // 
             // TelaPrincipalForm
             // 
