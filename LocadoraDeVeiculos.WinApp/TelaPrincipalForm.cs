@@ -66,59 +66,59 @@ namespace LocadoraDeVeiculos.WinApp
 
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
 
-            ValidadorGrupoAutomovel validadorGrupoAutomovel = new ValidadorGrupoAutomovel();
+            ValidadorGrupoAutomovel validadorGrupoAutomovel = new();
 
-            ServicoGrupoAutomovel servicoDisciplina = new ServicoGrupoAutomovel(repositorioGrupoAutomovel, validadorGrupoAutomovel);
+            ServicoGrupoAutomovel servicoGrupoAutomovel = new(repositorioGrupoAutomovel, validadorGrupoAutomovel);
 
-            controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel());
+            controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
         }
 
-        private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void funcionariosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorFuncionario"]);
         }
 
-        private void grupoDeAutomoveisToolStripMenuItem_Click(object sender, EventArgs e)
+        private void grupoDeAutomoveisMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorGrupoAutomovel"]);
         }
 
-        private void planosDeCobrancaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void planosDeCobrancaMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorPlanoCobranca"]);
         }
 
-        private void automoveisToolStripMenuItem_Click(object sender, EventArgs e)
+        private void automoveisMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorAutomovel"]);
         }
 
-        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void clientesMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorCliente"]);
         }
 
-        private void condutoresToolStripMenuItem_Click(object sender, EventArgs e)
+        private void condutoresMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorCondutor"]);
         }
 
-        private void taxasEServiçosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void taxasEServiçosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorTaxaEServico"]);
         }
 
-        private void cuponsEParceirosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void cuponsEParceirosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorCupomEParceiro"]);
         }
 
-        private void configuracaoDePrecosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void configuracaoDePrecosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorConfigPreco"]);
         }
 
-        private void alugueisToolStripMenuItem_Click(object sender, EventArgs e)
+        private void alugueisMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorAluguel"]);
         }
@@ -141,7 +141,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         #region configurar tela principal
 
-        private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
+        private void ConfigurarTelaPrincipal(ControladorBase controlador)
         {
             this.controlador = controlador;
 

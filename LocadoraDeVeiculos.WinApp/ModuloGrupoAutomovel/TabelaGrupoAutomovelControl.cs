@@ -1,4 +1,6 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
+﻿using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
+
+namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 {
     public partial class TabelaGrupoAutomovelControl : UserControl
     {
@@ -31,14 +33,14 @@
             return grid.SelecionarNumero<int>();
         }
 
-        //public void AtualizarRegistros(List<var> vars)
-        //{
-        //    grid.Rows.Clear();
+        public void AtualizarRegistros(List<GrupoAutomovel> grupoAutomoveis)
+        {
+            grid.Rows.Clear();
 
-        //    foreach (var var in vars)
-        //    {
-        //        grid.Rows.Add(var.id, var.nome,...................);
-        //    }
-        //}
+            foreach (var g in grupoAutomoveis)
+            {
+                grid.Rows.Add(g.id, g.nome);
+            }
+        }
     }
 }
