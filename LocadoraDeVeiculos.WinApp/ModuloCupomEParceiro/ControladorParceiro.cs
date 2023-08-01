@@ -1,9 +1,6 @@
 ﻿using FluentResults;
 using LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro;
-using LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
-using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
-using LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 {
@@ -18,7 +15,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
         public ControladorParceiro(IRepositorioParceiro repositorioParceiro, ServicoParceiro servicoParceiro)
         {
             this.repositorioParceiro = repositorioParceiro;
-            this.repositorioParceiro = repositorioParceiro;
+            this.servicoParceiro = servicoParceiro;
         }
 
         public override void Inserir()
@@ -39,7 +36,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
         public override void Editar()
         {
-            int id = tabelaParceiro.ObterNumeroTesteSelecionado();
+            Guid id = tabelaParceiro.ObterIdSelecionado();
 
             Parceiro parceiroSelecionado = repositorioParceiro.SelecionarPorId(id);
 
@@ -68,7 +65,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
         public override void Excluir()
         {
-            int id = tabelaParceiro.ObterNumeroTesteSelecionado();
+            Guid id = tabelaParceiro.ObterIdSelecionado();
 
             Parceiro parceiroSelecionado = repositorioParceiro.SelecionarPorId(id);
 

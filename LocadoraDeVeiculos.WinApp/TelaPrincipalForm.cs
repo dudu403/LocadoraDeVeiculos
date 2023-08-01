@@ -24,6 +24,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
 
 namespace LocadoraDeVeiculos.WinApp
 {

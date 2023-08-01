@@ -124,18 +124,16 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro
             }
 
             return erros;
-
         }
 
         private bool NomeDuplicado(Parceiro parceiro)
         {
             Parceiro parceiroEncontrado = repositorioParceiro.SelecionarPorNome(parceiro.nome);
+
             if(parceiroEncontrado != null &&
                parceiroEncontrado.id != parceiro.id &&
-               parceiroEncontrado.nome != parceiro.nome)
-            {
-                return true;
-            }
+               parceiroEncontrado.nome == parceiro.nome)
+            return true; 
 
             return false;
         }

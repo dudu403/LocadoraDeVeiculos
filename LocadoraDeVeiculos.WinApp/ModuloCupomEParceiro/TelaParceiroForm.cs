@@ -18,7 +18,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
         public Parceiro ObterParceiro()
         {
-            parceiro.id = Convert.ToInt32(txtIdParceiro.Text);
             parceiro.nome = txtNomeParceiro.Text;
 
             return parceiro;
@@ -28,25 +27,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
         {
             this.parceiro = parceiro;
 
-            txtIdParceiro.Text = parceiro.id.ToString();
             txtNomeParceiro.Text = parceiro.nome;
-
         }
+
         private void btnGravarParceiro_Click(object sender, EventArgs e)
         {
             this.parceiro = ObterParceiro();
 
             Result resultado = onGravarRegistro(parceiro);
 
-            if(resultado.IsFailed)
+            if (resultado.IsFailed)
             {
-                string erro = resultado.Errors[0] .Message;
+                string erro = resultado.Errors[0].Message;
 
                 TelaPrincipalForm.Tela.AtualizarRodape(erro);
 
                 DialogResult = DialogResult.None;
             }
-
         }
     }
 }
