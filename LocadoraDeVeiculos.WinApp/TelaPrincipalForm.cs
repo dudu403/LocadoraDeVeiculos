@@ -77,14 +77,13 @@ namespace LocadoraDeVeiculos.WinApp
 
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
 
-            //IRepositorioConfiguracaoPreco repositorioConfiguracaoPreco = new RepositorioConfigPrecoEmOrm(dbContext);
             IRepositorioConfiguracaoPreco repositorioConfiguracaoPreco = new RepositorioConfigPrecoEmJson(carregarDados: true);
 
             ValidadorConfiguracaoPreco validadorConfiguracaoPreco = new();
 
             ServicoConfiguracaoPreco servicoConfiguracaoPreco = new(repositorioConfiguracaoPreco, validadorConfiguracaoPreco);
 
-            controladores.Add("ControladorConfigPreco", new ControladorConfigPreco());
+            controladores.Add("ControladorConfigPreco", new ControladorConfigPreco(repositorioConfiguracaoPreco, servicoConfiguracaoPreco));
         }
 
         private void funcionariosMenuItem_Click(object sender, EventArgs e)
@@ -206,7 +205,7 @@ namespace LocadoraDeVeiculos.WinApp
             btnAdicionarItens.ToolTipText = config.ToolTipAdicionarItens;
             btnRemoverItens.ToolTipText = config.ToolTipRemoverItens;
             btnFinalizarPgto.ToolTipText = config.ToolTipFinalizarPagamento;
-            btnConfigurar.ToolTipText = config.ToolTipConfigDesconto;
+            btnConfigurar.ToolTipText = config.ToolTipConfig;
             btnVisualizar.ToolTipText = config.ToolTipVisualizar;
             btnVisualizar.ToolTipText = config.ToolTipVisualizar;
             btnVisualizarGabarito.ToolTipText = config.ToolTipVisualizarGabarito;
@@ -224,7 +223,7 @@ namespace LocadoraDeVeiculos.WinApp
             btnAdicionarItens.Enabled = config.AdicionarItensHabilitado;
             btnRemoverItens.Enabled = config.RemoverItensHabilitado;
             btnFinalizarPgto.Enabled = config.FinalizarPagamentoHabilitado;
-            btnConfigurar.Enabled = config.ConfigDescontoHabilitado;
+            btnConfigurar.Enabled = config.ConfigHabilitado;
             btnVisualizar.Enabled = config.VisualizarHabilitado;
             btnVisualizarGabarito.Enabled = config.VisualizarGabaritoHabilitado;
             btnGerarPdf.Enabled = config.GerarPdfHabilitado;
@@ -240,7 +239,7 @@ namespace LocadoraDeVeiculos.WinApp
             btnAdicionarItens.Visible = config.AdicionarItensVisivel;
             btnRemoverItens.Visible = config.RemoverItensVisivel;
             btnFinalizarPgto.Visible = config.FinalizarPagamentoVisivel;
-            btnConfigurar.Visible = config.ConfigDescontoVisivel;
+            btnConfigurar.Visible = config.ConfigVisivel;
             btnVisualizar.Visible = config.VisualizarVisivel;
             btnVisualizarGabarito.Visible = config.VisualizarGabaritoVisivel;
             btnGerarPdf.Visible = config.GerarPdfVisivel;

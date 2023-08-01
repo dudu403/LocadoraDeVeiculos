@@ -13,7 +13,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloAluguel
             this.validadorAluguel = validadorAluguel;
         }
 
-        //public Result Inserir(Aluguel aluguel)
+        //public Result Configurar(Aluguel aluguel)
         //{
         //    Log.Debug("Tentando inserir aluguel...{@d}", aluguel);
 

@@ -7,7 +7,7 @@ namespace LocadoraDeVeiculos.Infra.Json.ModuloConfigPreco
     public class RepositorioConfigPrecoEmJson : IRepositorioConfiguracaoPreco
     {
 
-        private const string NOME_ARQUIVO = "Compartilhado//ConfigConfiguracaoPreco.json";
+        private const string NOME_ARQUIVO = "ArquivoConfiguracaoPreco.json";
 
         public ConfiguracaoPreco configuracaoPreco { get; set; }
 

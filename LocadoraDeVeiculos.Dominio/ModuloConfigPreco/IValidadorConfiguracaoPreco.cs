@@ -1,6 +1,7 @@
 ﻿namespace LocadoraDeVeiculos.Dominio.ModuloConfigPreco
 {
-    public interface IValidadorConfiguracaoPreco : IValidador<ConfiguracaoPreco>
+    public interface IValidadorConfiguracaoPreco
     {
+        public ValidationResult Validate(ConfiguracaoPreco instance);
     }
 }

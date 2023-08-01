@@ -13,9 +13,9 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloConfigPreco
             this.validadorConfiguracaoPreco = validadorConfiguracaoPreco;
         }
 
-        public Result Inserir(ConfiguracaoPreco configuracaoPreco)
+        public Result Configurar(ConfiguracaoPreco configuracaoPreco)
         {
-            Log.Debug("Tentando inserir um grupo de automovel...{@d}", configuracaoPreco);
+            Log.Debug("Tentando configurar preços...{@d}", configuracaoPreco);
 
             List<string> erros = ValidarConfiguracaoPreco(configuracaoPreco);
 
@@ -28,13 +28,13 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloConfigPreco
             {
                 repositorioConfiguracaoPreco.GravarConfiguracaoPrecoEmArquivoJson(configuracaoPreco);
 
-                Log.Debug("Grupo de automovel {ConfiguracaoPrecoId} inserido com sucesso", configuracaoPreco.id);
+                Log.Debug("Preços atualizados com sucesso");
 
                 return Result.Ok(); //cenário 1
             }
             catch (Exception exc)
             {
-                string msgErro = "Falha ao tentar inserir um grupo de automovel.";
+                string msgErro = "Falha ao tentar atualizar as configurações.";
 
                 Log.Error(exc, msgErro + "{@d}", configuracaoPreco);
 

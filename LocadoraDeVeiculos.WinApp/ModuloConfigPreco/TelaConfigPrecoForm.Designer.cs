@@ -105,6 +105,7 @@
             numPrecoGasolina.Size = new Size(94, 29);
             numPrecoGasolina.TabIndex = 73;
             numPrecoGasolina.Value = new decimal(new int[] { 400, 0, 0, 131072 });
+            numPrecoGasolina.KeyPress += numPrecos_KeyPress;
             // 
             // numPrecoAlcool
             // 
@@ -116,6 +117,7 @@
             numPrecoAlcool.Size = new Size(94, 29);
             numPrecoAlcool.TabIndex = 79;
             numPrecoAlcool.Value = new decimal(new int[] { 360, 0, 0, 131072 });
+            numPrecoAlcool.KeyPress += numPrecos_KeyPress;
             // 
             // numPrecoDisel
             // 
@@ -127,6 +129,7 @@
             numPrecoDisel.Size = new Size(94, 29);
             numPrecoDisel.TabIndex = 80;
             numPrecoDisel.Value = new decimal(new int[] { 330, 0, 0, 131072 });
+            numPrecoDisel.KeyPress += numPrecos_KeyPress;
             // 
             // numPrecoGas
             // 
@@ -138,6 +141,7 @@
             numPrecoGas.Size = new Size(94, 29);
             numPrecoGas.TabIndex = 81;
             numPrecoGas.Value = new decimal(new int[] { 200, 0, 0, 131072 });
+            numPrecoGas.KeyPress += numPrecos_KeyPress;
             // 
             // label3
             // 

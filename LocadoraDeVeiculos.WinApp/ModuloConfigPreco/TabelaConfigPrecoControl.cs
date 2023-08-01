@@ -37,14 +37,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloConfigPreco
             return grid.SelecionarNumero<int>();
         }
 
-        public void AtualizarRegistros(List<ConfiguracaoPreco> configuracaoPrecos)
+        public void AtualizarRegistros(ConfiguracaoPreco configPreco)
         {
             grid.Rows.Clear();
 
-            foreach (var c in configuracaoPrecos)
-            {
-                grid.Rows.Add(c.precoGasolina, c.precoAlcool, c.precoDisel, c.precoGas);
-            }
+            grid.Rows.Add(configPreco.precoGasolina, configPreco.precoAlcool, configPreco.precoDisel, configPreco.precoGas);
+            
         }
     }
 }

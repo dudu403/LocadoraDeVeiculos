@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Compartilhado\ArquivoConfiguracaoPreco.json" />
+    <None Remove="Compartilhado\ConfigConfiguracaoPreco.json" />
+    <None Remove="Compartilhado\ControladorDeFestasInfantis.json" />
+    <None Remove="Compartilhado\json1.json" />
+  </ItemGroup>
+
+  <ItemGroup>
   	  <PackageReference Include="FluentResults" Version="3.15.2" />
   	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
   	  	 <PrivateAssets>all</PrivateAssets>

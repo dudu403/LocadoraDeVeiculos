@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ModuloConfigPreco\MapeadorConfigPrecoOrm.cs" />
+    <Compile Remove="ModuloConfigPreco\RepositorioConfigPrecoEmOrm.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
   </ItemGroup>
 
