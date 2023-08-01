@@ -94,6 +94,7 @@
             Controls.Add(label2);
             Name = "TelaGrupoAutomovelForm";
             ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Grupo de Automovel";
             ResumeLayout(false);
             PerformLayout();

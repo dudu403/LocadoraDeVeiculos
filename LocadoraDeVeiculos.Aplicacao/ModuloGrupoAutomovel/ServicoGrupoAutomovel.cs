@@ -134,9 +134,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
             if (grupoAutomovelEncontrado != null &&
                 grupoAutomovelEncontrado.id != grupoAutomovel.id &&
                 grupoAutomovelEncontrado.nome == grupoAutomovel.nome)
-            {
-                return true;
-            }
+            return true;
 
             return false;
         }
