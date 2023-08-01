@@ -301,13 +301,13 @@
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(6, 35);
+            toolStripSeparator5.Size = new Size(6, 25);
             toolStripSeparator5.Visible = false;
             // 
             // labelTipoDoCadastro
             // 
             labelTipoDoCadastro.Name = "labelTipoDoCadastro";
-            labelTipoDoCadastro.Size = new Size(76, 32);
+            labelTipoDoCadastro.Size = new Size(76, 22);
             labelTipoDoCadastro.Text = "                       ";
             // 
             // rodape

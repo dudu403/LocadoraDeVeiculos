@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             return colunas;
         }
 
-        public int ObterNumeroTesteSelecionado()
+        public int ObterNumeroFuncionarioSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }
@@ -45,7 +45,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             {
                 grid.Rows.Add(funcionario.nome,
                     "R$ " + funcionario.salario,
-                    funcionario.dataAdmissao);
+                    funcionario.dataAdimissao);
             }
         }
     }

@@ -10,11 +10,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloFuncionario
 
             builder.Property(d => d.id).IsRequired().ValueGeneratedOnAdd();
 
-            builder.Property(d => d.nome).HasColumnType("varchar(100)").IsRequired();
+            builder.Property(d => d.nome).IsRequired().HasColumnType("varchar(100)");
 
-            builder.Property(d => d.dataAdmissao).IsRequired();
+            builder.Property(d => d.dataAdimissao).IsRequired().HasColumnType("datetime");
 
-            builder.Property(d => d.salario).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.salario).IsRequired().HasConversion<decimal>();
         }
     }
 }

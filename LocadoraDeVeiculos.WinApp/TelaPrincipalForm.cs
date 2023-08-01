@@ -79,17 +79,20 @@ namespace LocadoraDeVeiculos.WinApp
 
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel());
 
-         
+
+
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioEmOrm(dbContext);
 
-            ValidadorFuncionario validadorFuncionario = new ValidadorFuncionario();
+            ValidadorFuncionario validadorFuncionario = new();
 
-            ServicoFuncionario servicoFuncionario = new ServicoFuncionario(repositorioFuncionario, validadorFuncionario);
+            ServicoFuncionario servicoFuncionario = new(repositorioFuncionario, validadorFuncionario);
 
-            controladores.Add("ControladorFuncionario", new ControladorFuncionario());
-        }
+            controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
 
-        private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e)
+
+           }
+
+            private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorFuncionario"]);
         }
@@ -157,7 +160,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         #region configurar tela principal
 
-        private void ConfigurarTelaPrincipal(ControladorBase controladorBase)
+        private void ConfigurarTelaPrincipal(ControladorBase controlador)
         {
             this.controlador = controlador;
 
@@ -184,6 +187,7 @@ namespace LocadoraDeVeiculos.WinApp
 
                 ConfigurarVisibilidadeBotoes(configuracao);
             }
+
         }
 
         private void ConfigurarListagem(ControladorBase controladorBase)

@@ -56,7 +56,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nome = table.Column<string>(type: "varchar(100)", nullable: false),
-                    dataAdimissao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    dataAdmissao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     salario = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>

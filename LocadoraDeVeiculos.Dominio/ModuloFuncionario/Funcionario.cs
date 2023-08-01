@@ -1,13 +1,15 @@
-﻿using Microsoft.VisualBasic.Logging;
-
+﻿
 namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
 {
     public class Funcionario : EntidadeBase<Funcionario>
     {
         public string nome { get; set; }
-        public DateTime dataAdmissao { get; set; }
+        public DateTime dataAdimissao { get; set; }
         public decimal salario { get; set; }
 
+        public Funcionario() 
+        {
+        }
         public Funcionario(string nome, string salario, DateOnly dataAdmissao) 
         {
             nome = nome;
@@ -19,7 +21,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
         {
             nome = registroAtualizado.nome;
             salario = registroAtualizado.salario;
-            dataAdmissao = registroAtualizado.dataAdmissao;
+            dataAdimissao = registroAtualizado.dataAdimissao;
         }
     }
 }

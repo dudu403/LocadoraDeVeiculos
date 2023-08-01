@@ -36,10 +36,12 @@
             // 
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grid.Location = new Point(0, 0);
+            grid.MaximumSize = new Size(1184, 586);
+            grid.MinimumSize = new Size(1184, 586);
             grid.Name = "grid";
             grid.RowHeadersVisible = false;
             grid.RowTemplate.Height = 25;
-            grid.Size = new Size(632, 430);
+            grid.Size = new Size(1184, 586);
             grid.TabIndex = 2;
             // 
             // TabelaFuncionarioControl
@@ -48,7 +50,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(grid);
             Name = "TabelaFuncionarioControl";
-            Size = new Size(632, 430);
+            Size = new Size(202, 150);
             ((System.ComponentModel.ISupportInitialize)grid).EndInit();
             ResumeLayout(false);
         }
