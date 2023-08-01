@@ -28,7 +28,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
             return colunas;
         }
 
-        public int ObterNumeroTesteSelecionado()
+        public int ObterIdSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }

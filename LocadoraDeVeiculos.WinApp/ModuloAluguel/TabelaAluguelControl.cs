@@ -27,7 +27,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             return colunas;
         }
 
-        public int ObterNumeroTesteSelecionado()
+        public int ObterIdSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }

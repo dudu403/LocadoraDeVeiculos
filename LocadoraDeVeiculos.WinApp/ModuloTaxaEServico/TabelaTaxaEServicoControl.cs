@@ -33,7 +33,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxaEServico
             return colunas;
         }
 
-        public int ObterNumeroTesteSelecionado()
+        public int ObterIdSelecionado()
         {
             return grid.SelecionarNumero<int>();
         }
