@@ -36,10 +36,12 @@
             // 
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grid.Location = new Point(0, 0);
+            grid.MaximumSize = new Size(1184, 586);
+            grid.MinimumSize = new Size(1184, 586);
             grid.Name = "grid";
             grid.RowHeadersVisible = false;
             grid.RowTemplate.Height = 25;
-            grid.Size = new Size(150, 150);
+            grid.Size = new Size(1184, 586);
             grid.TabIndex = 2;
             // 
             // TabelaCupomEParceiroControl

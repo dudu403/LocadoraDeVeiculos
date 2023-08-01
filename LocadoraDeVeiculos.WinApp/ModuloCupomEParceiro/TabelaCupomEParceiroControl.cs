@@ -1,4 +1,6 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
+﻿using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
+
+namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 {
     public partial class TabelaCupomEParceiroControl : UserControl
     {
@@ -31,14 +33,14 @@
             return grid.SelecionarNumero<int>();
         }
 
-        //public void AtualizarRegistros(List<var> vars)
-        //{
-        //    grid.Rows.Clear();
+        public void AtualizarRegistros(List<Parceiro> parceiros)
+        {
+            grid.Rows.Clear();
 
-        //    foreach (var var in vars)
-        //    {
-        //        grid.Rows.Add(var.id, var.nome,...................);
-        //    }
-        //}
+            foreach (var var in parceiros)
+            {
+                grid.Rows.Add(var.id, var.nome);
+            }
+        }
     }
 }

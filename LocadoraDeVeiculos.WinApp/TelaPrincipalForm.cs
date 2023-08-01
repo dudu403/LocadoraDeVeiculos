@@ -1,13 +1,17 @@
+using LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloAluguel;
 using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
+using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Infra.Orm.Compartilhado;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAluguel;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAutomovel;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinApp.ModuloAluguel;
+using LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +27,7 @@ namespace LocadoraDeVeiculos.WinApp
     {
         private Dictionary<string, ControladorBase> controladores { get; set; }
         public static TelaPrincipalForm Tela { get; private set; }
-        private ControladorBase controlador { get; set; }   
+        private ControladorBase controlador { get; set; }
 
         public TelaPrincipalForm()
         {
@@ -66,11 +70,29 @@ namespace LocadoraDeVeiculos.WinApp
 
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
 
+            IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
+
             ValidadorGrupoAutomovel validadorGrupoAutomovel = new();
+
+            ValidadorParceiro validadorParceiro = new();
 
             ServicoGrupoAutomovel servicoGrupoAutomovel = new(repositorioGrupoAutomovel, validadorGrupoAutomovel);
 
+            ServicoParceiro servicoParceiro = new(repositorioParceiro, validadorParceiro);
+
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
+
+            controladores.Add("ControladorCupomEParceiro", new ControladorCupomEParceiro(repositorioParceiro, servicoParceiro));
+        }
+
+        private void cuponsMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
+        }
+
+        private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
         }
 
         private void funcionariosMenuItem_Click(object sender, EventArgs e)
@@ -106,11 +128,6 @@ namespace LocadoraDeVeiculos.WinApp
         private void taxasEServiçosMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorTaxaEServico"]);
-        }
-
-        private void cuponsEParceirosMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigurarTelaPrincipal(controladores["ControladorCupomEParceiro"]);
         }
 
         private void configuracaoDePrecosMenuItem_Click(object sender, EventArgs e)
