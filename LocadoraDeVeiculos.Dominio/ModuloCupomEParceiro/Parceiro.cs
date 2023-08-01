@@ -6,7 +6,13 @@
 
         public override void AtualizarInformacoes(Parceiro registroAtualizado)
         {
-            throw new NotImplementedException();
+            nome = registroAtualizado.nome;
         }
+
+        public override string ToString()
+        {
+            return nome;
+        }
+
     }
 }

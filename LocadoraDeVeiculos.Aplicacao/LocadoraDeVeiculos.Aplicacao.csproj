@@ -19,6 +19,7 @@
     <Folder Include="ModuloCliente\" />
     <Folder Include="ModuloCondutor\" />
     <Folder Include="ModuloCupomEParceiro\" />
+    <Folder Include="ModuloConfigPreco\" />
     <Folder Include="ModuloFuncionario\" />
     <Folder Include="ModuloPlanoCobranca\" />
     <Folder Include="ModuloTaxaEServico\" />

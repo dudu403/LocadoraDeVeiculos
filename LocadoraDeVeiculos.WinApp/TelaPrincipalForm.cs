@@ -1,18 +1,21 @@
+using LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Aplicacao.ModuloConfigPreco;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloAluguel;
 using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
-using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
+using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Infra.Json.ModuloConfigPreco;
 using LocadoraDeVeiculos.Infra.Orm.Compartilhado;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAluguel;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAutomovel;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Infra.Orm.ModuloConfigPreco;
 using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
 using LocadoraDeVeiculos.WinApp.ModuloAluguel;
 using LocadoraDeVeiculos.WinApp.ModuloConfigPreco;
+using LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,7 +31,7 @@ namespace LocadoraDeVeiculos.WinApp
     {
         private Dictionary<string, ControladorBase> controladores { get; set; }
         public static TelaPrincipalForm Tela { get; private set; }
-        private ControladorBase controlador { get; set; }   
+        private ControladorBase controlador { get; set; }
 
         public TelaPrincipalForm()
         {
@@ -84,6 +87,24 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoConfiguracaoPreco servicoConfiguracaoPreco = new(repositorioConfiguracaoPreco, validadorConfiguracaoPreco);
 
             controladores.Add("ControladorConfigPreco", new ControladorConfigPreco(repositorioConfiguracaoPreco, servicoConfiguracaoPreco));
+
+            IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
+
+            ValidadorParceiro validadorParceiro = new();
+
+            ServicoParceiro servicoParceiro = new(repositorioParceiro, validadorParceiro);
+
+            controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
+        }
+
+        private void cuponsMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
+        }
+
+        private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
         }
 
         private void funcionariosMenuItem_Click(object sender, EventArgs e)
