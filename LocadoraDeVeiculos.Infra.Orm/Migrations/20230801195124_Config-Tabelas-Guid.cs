@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 {
     /// <inheritdoc />
-    public partial class InnitialMigrationAllTables : Migration
+    public partial class ConfigTabelasGuid : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,8 +15,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBCliente",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     edereco = table.Column<string>(type: "varchar(500)", nullable: false),
                     estado = table.Column<string>(type: "varchar(200)", nullable: false),
                     cidade = table.Column<string>(type: "varchar(200)", nullable: false),
@@ -34,29 +33,12 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TBConfiguracaoPreco",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    precoGasolina = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    precoDisel = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    precoAlcool = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    precoGas = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TBConfiguracaoPreco", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TBFuncionario",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     nome = table.Column<string>(type: "varchar(100)", nullable: false),
-                    dataAdimissao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    dataAdmissao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     salario = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -68,8 +50,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBGrupoAutomovel",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     nome = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>
@@ -81,8 +62,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBParceiro",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     nome = table.Column<string>(type: "varchar(200)", nullable: false)
                 },
                 constraints: table =>
@@ -94,10 +74,9 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBCondutor",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     validadeCnh = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    clienteid = table.Column<int>(type: "int", nullable: false),
+                    clienteid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     telefone = table.Column<string>(type: "varchar(20)", nullable: false),
                     nome = table.Column<string>(type: "varchar(200)", nullable: false),
                     email = table.Column<string>(type: "varchar(200)", nullable: false),
@@ -118,11 +97,10 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBAutomovel",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     tipoCombustivel = table.Column<int>(type: "int", nullable: false),
                     capacidadeTanqueLitros = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    grupoAutomovelid = table.Column<int>(type: "int", nullable: false),
+                    grupoAutomovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     kilometragem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     modelo = table.Column<string>(type: "varchar(100)", nullable: false),
                     marca = table.Column<string>(type: "varchar(100)", nullable: false),
@@ -142,9 +120,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBPlanoCobranca",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    grupoAutomovelid = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    grupoAutomovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     tipoPlano = table.Column<int>(type: "int", nullable: false),
                     precoDiaria = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     precoPorKm = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
@@ -165,9 +142,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBCupom",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    parceiroid = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    parceiroid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     validade = table.Column<DateTime>(type: "datetime2", nullable: false),
                     valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     nome = table.Column<string>(type: "varchar(200)", nullable: false)
@@ -186,23 +162,22 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBAluguel",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     dataPrevistaDevolucao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    grupoAutomovelid = table.Column<int>(type: "int", nullable: false),
+                    grupoAutomovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     valorTotalPrevisto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     nivelTanqueLitros = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    funcionarioid = table.Column<int>(type: "int", nullable: false),
+                    funcionarioid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     valorTotalFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     dataDevolucao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     dataLocacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     kmPercorrido = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    automovelid = table.Column<int>(type: "int", nullable: false),
+                    automovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     kmInicial = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    condutorid = table.Column<int>(type: "int", nullable: false),
+                    condutorid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     kmFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    clienteid = table.Column<int>(type: "int", nullable: false),
-                    cupomid = table.Column<int>(type: "int", nullable: true)
+                    clienteid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    cupomid = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -243,13 +218,12 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBTaxaEServico",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     nome = table.Column<string>(type: "varchar(200)", nullable: false),
                     preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     tipoDoCusto = table.Column<int>(type: "int", nullable: false),
-                    Aluguelid1 = table.Column<int>(type: "int", nullable: true),
-                    Aluguelid2 = table.Column<int>(type: "int", nullable: true)
+                    Aluguelid1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Aluguelid2 = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -270,8 +244,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBAluguel_TBTaxaEServico",
                 columns: table => new
                 {
-                    Aluguelid = table.Column<int>(type: "int", nullable: false),
-                    taxasid = table.Column<int>(type: "int", nullable: false)
+                    Aluguelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    taxasid = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -361,9 +335,6 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
         {
             migrationBuilder.DropTable(
                 name: "TBAluguel_TBTaxaEServico");
-
-            migrationBuilder.DropTable(
-                name: "TBConfiguracaoPreco");
 
             migrationBuilder.DropTable(
                 name: "TBPlanoCobranca");
