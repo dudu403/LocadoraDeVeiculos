@@ -1,6 +1,6 @@
 ﻿namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 {
-    partial class TabelaCupomEParceiroControl
+    partial class TabelaParceiroControl
     {
         /// <summary> 
         /// Required designer variable.

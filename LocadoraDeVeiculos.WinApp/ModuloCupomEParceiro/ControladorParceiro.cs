@@ -7,15 +7,15 @@ using LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 {
-    public class ControladorCupomEParceiro : ControladorBase
+    public class ControladorParceiro : ControladorBase
     {
-        private TabelaCupomEParceiroControl tabelaParceiro;
+        private TabelaParceiroControl tabelaParceiro;
 
         private IRepositorioParceiro repositorioParceiro;
 
         private ServicoParceiro servicoParceiro;
 
-        public ControladorCupomEParceiro(IRepositorioParceiro repositorioParceiro, ServicoParceiro servicoParceiro)
+        public ControladorParceiro(IRepositorioParceiro repositorioParceiro, ServicoParceiro servicoParceiro)
         {
             this.repositorioParceiro = repositorioParceiro;
             this.repositorioParceiro = repositorioParceiro;
@@ -114,7 +114,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
         public override UserControl ObterListagem()
         {
             if(tabelaParceiro == null)
-                tabelaParceiro = new TabelaCupomEParceiroControl();
+                tabelaParceiro = new TabelaParceiroControl();
 
             CarregarParceiros();
 

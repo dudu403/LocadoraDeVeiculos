@@ -2,9 +2,9 @@
 
 namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 {
-    public partial class TabelaCupomEParceiroControl : UserControl
+    public partial class TabelaParceiroControl : UserControl
     {
-        public TabelaCupomEParceiroControl()
+        public TabelaParceiroControl()
         {
             InitializeComponent();
 

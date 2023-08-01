@@ -70,19 +70,19 @@ namespace LocadoraDeVeiculos.WinApp
 
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
 
-            IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
-
             ValidadorGrupoAutomovel validadorGrupoAutomovel = new();
-
-            ValidadorParceiro validadorParceiro = new();
 
             ServicoGrupoAutomovel servicoGrupoAutomovel = new(repositorioGrupoAutomovel, validadorGrupoAutomovel);
 
-            ServicoParceiro servicoParceiro = new(repositorioParceiro, validadorParceiro);
-
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
 
-            controladores.Add("ControladorCupomEParceiro", new ControladorCupomEParceiro(repositorioParceiro, servicoParceiro));
+            IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
+
+            ValidadorParceiro validadorParceiro = new();
+
+            ServicoParceiro servicoParceiro = new(repositorioParceiro, validadorParceiro);
+
+            controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
         }
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)

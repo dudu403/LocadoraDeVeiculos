@@ -27,8 +27,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro
                 repositorioParceiro.Inserir(parceiro);
 
                 Log.Debug("Parceiro {ParceiroId} inserido com sucesso.", parceiro.id);
-                return Result.Ok();
 
+                return Result.Ok();
             }
             catch (Exception exc)
             {

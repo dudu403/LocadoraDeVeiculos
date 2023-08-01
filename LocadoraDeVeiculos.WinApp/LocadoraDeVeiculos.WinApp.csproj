@@ -55,7 +55,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ModuloCupomEParceiro\TelaCupomForm.cs" />
-    <Compile Update="ModuloCupomEParceiro\TabelaCupomEParceiroControl.cs">
+    <Compile Update="ModuloCupomEParceiro\TabelaParceiroControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ModuloFuncionario\TelaFuncionarioForm.cs" />
