@@ -2,11 +2,11 @@
 
 namespace LocadoraDeVeiculos.Infra.Orm.ModuloConfigPreco
 {
-    public class RepositorioConfigPrecoEmOrm : RepositorioBaseEmOrm<ConfiguracaoPreco>, IRepositorioConfiguracaoPreco
-    { 
-        public RepositorioConfigPrecoEmOrm(LocadoraDeVeiculosDbContext dbContext) : base(dbContext)
-        {           
+    //public class RepositorioConfigPrecoEmOrm : RepositorioBaseEmOrm<ConfiguracaoPreco>, IRepositorioConfiguracaoPreco
+    //{ 
+    //    public RepositorioConfigPrecoEmOrm(LocadoraDeVeiculosDbContext dbContext) : base(dbContext)
+    //    {           
         
-        }     
-    }
+    //    }     
+    //}
 }

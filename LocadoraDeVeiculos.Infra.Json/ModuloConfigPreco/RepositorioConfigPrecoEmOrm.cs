@@ -2,11 +2,21 @@
 
 namespace LocadoraDeVeiculos.Infra.Orm.ModuloConfigPreco
 {
-    public class RepositorioConfigPrecoEmOrm : RepositorioBaseEmOrm<ConfiguracaoPreco>, IRepositorioConfiguracaoPreco
+    public class RepositorioConfigPrecoEmOrm : IRepositorioConfiguracaoPreco
     { 
-        public RepositorioConfigPrecoEmOrm(LocadoraDeVeiculosDbContext dbContext) : base(dbContext)
-        {           
+    //    public RepositorioConfigPrecoEmOrm(LocadoraDeVeiculosDbContext dbContext) : base(dbContext)
+    //    {           
         
-        }     
+    //    }
+
+        public void GravarConfiguracaoPrecoEmArquivoJson(ConfiguracaoPreco configuracaoPreco)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ConfiguracaoPreco ObterConfiguracaoPreco()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -84,7 +84,7 @@ namespace LocadoraDeVeiculos.WinApp
 
             ServicoConfiguracaoPreco servicoConfiguracaoPreco = new(repositorioConfiguracaoPreco, validadorConfiguracaoPreco);
 
-            //controladores.Add("ControladorGrupoAutomovel", new ControladorConfigPreco(repositorioConfiguracaoPreco, servicoGrupoAutomovel));
+            controladores.Add("ControladorConfigPreco", new ControladorConfigPreco());
         }
 
         private void funcionariosMenuItem_Click(object sender, EventArgs e)
