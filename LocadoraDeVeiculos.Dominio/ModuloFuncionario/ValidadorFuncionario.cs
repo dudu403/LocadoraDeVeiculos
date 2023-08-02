@@ -1,11 +1,4 @@
-﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
+﻿namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
 {
     public class ValidadorFuncionario : AbstractValidator<Funcionario>, IValidadorFuncionario
     {
@@ -16,6 +9,15 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
                 .NotNull()
                 .MinimumLength(3)
                 .NaoPodeCaracteresEspeciais();
+
+            RuleFor(x => x.dataAdmissao)
+                .NotEmpty()
+                .NotNull()
+                .LessThan(DateTime.Today);
+
+            RuleFor(x => x.salario)
+                .NotEmpty()
+                .NotNull();
         }
     }
 }

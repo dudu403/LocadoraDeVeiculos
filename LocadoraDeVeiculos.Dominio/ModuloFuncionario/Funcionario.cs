@@ -4,26 +4,26 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
     public class Funcionario : EntidadeBase<Funcionario>
     {
         public string nome { get; set; }
-        public DateTime dataAdimissao { get; set; }
+        public DateTime dataAdmissao { get; set; }
         public decimal salario { get; set; }
 
         public Funcionario() 
         {
-            dataAdimissao = DateTime.Now;
+            dataAdmissao = DateTime.Now;
         }
 
         public Funcionario(string nome, decimal salario, DateTime dataAdmissao) 
         {
             this.nome = nome;
             this.salario = salario;
-            this.dataAdimissao = dataAdmissao;
+            this.dataAdmissao = dataAdmissao;
         }
 
         public override void AtualizarInformacoes(Funcionario registroAtualizado)
         {
             nome = registroAtualizado.nome;
             salario = registroAtualizado.salario;
-            dataAdimissao = registroAtualizado.dataAdimissao;
+            dataAdmissao = registroAtualizado.dataAdmissao;
         }
     }
 }

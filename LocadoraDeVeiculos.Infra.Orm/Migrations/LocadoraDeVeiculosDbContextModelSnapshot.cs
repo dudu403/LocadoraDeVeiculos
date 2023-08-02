@@ -269,7 +269,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<Guid>("id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("dataAdimissao")
+                    b.Property<DateTime>("dataAdmissao")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("nome")

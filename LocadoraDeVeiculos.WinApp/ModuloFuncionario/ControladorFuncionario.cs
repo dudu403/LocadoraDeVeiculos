@@ -42,7 +42,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         public override void Editar()
         {
-            int id = tabelaFuncionario.ObterNumeroFuncionarioSelecionado();
+            Guid id = tabelaFuncionario.ObterIdSelecionado();
 
             Funcionario funcionarioSelecionado = repositorioFuncionario.SelecionarPorId(id);
 
@@ -72,7 +72,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         public override void Excluir()
         {
-            int id = tabelaFuncionario.ObterNumeroFuncionarioSelecionado();
+            Guid id = tabelaFuncionario.ObterIdSelecionado();
 
             Funcionario funcionario = repositorioFuncionario.SelecionarPorId(id);
 

@@ -45,7 +45,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
                 grid.Rows.Add(funcionario.id,
                               funcionario.nome,
                       "R$ " + funcionario.salario,
-                              funcionario.dataAdimissao.ToString("dd/MM/yyyy"));
+                              funcionario.dataAdmissao.ToString("dd/MM/yyyy"));
             }      
         }
     }

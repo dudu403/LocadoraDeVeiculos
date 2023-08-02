@@ -24,14 +24,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             this.funcionario = funcionarioSelecionado;
 
             txtNome.Text = funcionarioSelecionado.nome;
-            txtData.Value = funcionarioSelecionado.dataAdimissao;
+            txtData.Value = funcionarioSelecionado.dataAdmissao;
             txtSalario.Text = funcionarioSelecionado.salario.ToString();
         }
 
         public Funcionario ObterFuncionario()
         {
             funcionario.nome = txtNome.Text;
-            funcionario.dataAdimissao = (txtData.Value);
+            funcionario.dataAdmissao = (txtData.Value);
             funcionario.salario = Convert.ToDecimal(txtSalario.Text);
 
             return funcionario;
