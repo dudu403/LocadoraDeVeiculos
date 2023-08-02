@@ -18,6 +18,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
         public Result Inserir(Funcionario funcionario) 
         {
             Log.Debug("Tentando inserir um funcionario...{@d}", funcionario);
+            
             List<string> erros = ValidarFuncionario(funcionario);
 
             if (erros.Count() > 0)
@@ -41,7 +42,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             }
         }
 
-
         public Result Editar(Funcionario funcionario)
         {
             Log.Debug("Tentando editar um funcionario...{@d}", funcionario);
@@ -54,7 +54,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             {
                 repositorioFuncionario.Editar(funcionario);
 
-                Log.Debug("Grupo de automovel {funcionarioId} editado com sucesso", funcionario.id);
+                Log.Debug("Funcionario {funcionarioId} editado com sucesso", funcionario.id);
 
                 return Result.Ok();
             }
@@ -63,6 +63,46 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
                 string msgErro = "Falha ao tentar editar um funcionario.";
 
                 Log.Error(exc, msgErro + "{@d}", funcionario);
+
+                return Result.Fail(msgErro);
+            }
+        }
+
+        public Result Excluir(Funcionario funcionario)
+        {
+            Log.Debug("Tentando excluir um funcionario...{@d}", funcionario);
+
+            try
+            {
+                bool funcionarioExiste = repositorioFuncionario.Existe(funcionario);
+
+                if (funcionarioExiste == false)
+                {
+                    Log.Debug("Funcionario {funcionarioId} não encontrado para excluir", funcionario.id);
+
+                    return Result.Fail("Funcionamrio não encontrado.");
+                }
+
+                repositorioFuncionario.Excluir(funcionario);
+
+                Log.Debug("Funcionario {funcionarioId} excluido com sucesso", funcionario.id);
+
+                return Result.Ok();
+            }
+            catch (Exception exc)
+            {
+                List<string> erros = new();
+
+                string msgErro;
+
+                if (exc.Message.Contains("FK_TBAluguel_TBFuncionario"))
+                    msgErro = "Este funcionario está relacionado a um alguel e não pode ser excluido";
+                else
+                    msgErro = "Falha ao tentar excluir um funcionario.";
+
+                erros.Add(msgErro);
+
+                Log.Error(exc, msgErro + "{FuncionarioId}", funcionario.id);
 
                 return Result.Fail(msgErro);
             }
@@ -95,9 +135,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             if (funcionarioEncontrado != null &&
                 funcionarioEncontrado.id != funcionario.id &&
                 funcionarioEncontrado.nome == funcionario.nome)
-            {
-                return true;
-            }
+            return true;
+            
             return false;
         }
     }

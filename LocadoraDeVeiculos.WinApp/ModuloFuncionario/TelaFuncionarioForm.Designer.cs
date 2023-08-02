@@ -80,6 +80,7 @@
             txtSalario.Size = new Size(195, 29);
             txtSalario.TabIndex = 71;
             txtSalario.Text = "0.00";
+            txtSalario.KeyPress += txtSalario_KeyPress;
             // 
             // txtData
             // 
@@ -89,7 +90,7 @@
             txtData.Name = "txtData";
             txtData.Size = new Size(195, 29);
             txtData.TabIndex = 70;
-            txtData.Value = new DateTime(2023, 6, 16, 0, 0, 0, 0);
+            txtData.Value = new DateTime(2023, 8, 1, 22, 0, 14, 0);
             // 
             // txtNome
             // 

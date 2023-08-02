@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
+﻿using FluentResults;
+using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloAluguel;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
@@ -15,11 +16,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         private TabelaFuncionarioControl tabelaFuncionario;
 
-        private readonly ServicoFuncionario servicoFuncionario;
+        private ServicoFuncionario servicoFuncionario;
 
-       
-        public ControladorFuncionario(IRepositorioFuncionario repositorioFuncionario,
-                                        ServicoFuncionario servicoFuncionario)
+        public ControladorFuncionario(IRepositorioFuncionario repositorioFuncionario, ServicoFuncionario servicoFuncionario)
         {
             this.repositorioFuncionario = repositorioFuncionario;
             this.servicoFuncionario = servicoFuncionario;
@@ -34,6 +33,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
             tela.ConfigurarTela(new Funcionario());
 
             DialogResult resultado = tela.ShowDialog();
+
             if (resultado == DialogResult.OK)
             {
                 CarregarFuncionarios();
@@ -42,7 +42,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         public override void Editar()
         {
-            Funcionario funcionarioSelecionado = ObterIdFuncionarioSelecionado();
+            int id = tabelaFuncionario.ObterNumeroFuncionarioSelecionado();
+
+            Funcionario funcionarioSelecionado = repositorioFuncionario.SelecionarPorId(id);
 
             if (funcionarioSelecionado == null)
             {
@@ -64,17 +66,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Funcionario funcionario = tela.ObterFuncionario();
-
-                repositorioFuncionario.Editar(funcionarioSelecionado);
-
                 CarregarFuncionarios();
             }
         }
 
         public override void Excluir()
         {
-            Funcionario funcionario = ObterIdFuncionarioSelecionado();
+            int id = tabelaFuncionario.ObterNumeroFuncionarioSelecionado();
+
+            Funcionario funcionario = repositorioFuncionario.SelecionarPorId(id);
 
             if (funcionario == null)
             {
@@ -85,22 +85,26 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
                 return;
             }
-            //if (repositorioAluguel.SelecionarTodos().Any(x => x.funcionario == funcionario))
-            //{
-            //    MessageBox.Show($"Não é possivel remover esse funcionario pois ele possuí vinculo com ao menos um Aluguel!",
-            //        "Exclusão de funcionarios",
-            //        MessageBoxButtons.OK,
-            //        MessageBoxIcon.Exclamation);
-
-            //    return;
-            //}
-
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o funcionario {funcionario.nome}?", "Exclusão de funcionarios",
-                MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+       
+            DialogResult opcaoEscolhida = 
+                MessageBox.Show($"Deseja excluir o funcionario {funcionario.nome}?", 
+                "Exclusão de funcionarios",
+                MessageBoxButtons.OKCancel, 
+                MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                repositorioFuncionario.Excluir(funcionario);
+                Result resultado = servicoFuncionario.Excluir(funcionario);
+
+                if (resultado.IsFailed)
+                {
+                    MessageBox.Show(resultado.Errors[0].Message,
+                    "Exclusão de funcionarios",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question);
+
+                    return;
+                }
 
                 CarregarFuncionarios();
             }
@@ -109,13 +113,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolboxFuncionario();
-        }
-
-        private Funcionario ObterIdFuncionarioSelecionado()
-        {
-            int id = tabelaFuncionario.ObterNumeroFuncionarioSelecionado();
-
-            return repositorioFuncionario.SelecionarPorId(id);
         }
 
         public override UserControl ObterListagem()
@@ -127,9 +124,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
             return tabelaFuncionario;
         }
+
         private void CarregarFuncionarios()
         {
             List<Funcionario> funcionarios = repositorioFuncionario.SelecionarTodos();
+
             tabelaFuncionario.AtualizarRegistros(funcionarios);
 
             mensagemRodape = string.Format("Visualizando {0} funcionarios{1}", funcionarios.Count, funcionarios.Count == 1 ? "" : "s");

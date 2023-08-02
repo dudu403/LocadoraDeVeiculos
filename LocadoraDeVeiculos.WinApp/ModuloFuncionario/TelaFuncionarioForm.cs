@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 {
@@ -20,28 +21,22 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
 
         public void ConfigurarTela(Funcionario funcionarioSelecionado)
         {
-            txtNome.Text = funcionarioSelecionado.nome;
-         //   txtData.Text = funcionarioSelecionado.dataAdimissao.ToString();
-            txtSalario.Text = funcionario.salario.ToString();
-            //txtValorEntrada.Text = (String.Format("{0:0.00}", aluguel.pagamento.valorEntrada).ToString());
+            this.funcionario = funcionarioSelecionado;
 
+            txtNome.Text = funcionarioSelecionado.nome;
+            txtData.Value = funcionarioSelecionado.dataAdimissao;
+            txtSalario.Text = funcionarioSelecionado.salario.ToString();
         }
+
         public Funcionario ObterFuncionario()
         {
-            string nome = txtNome.Text;
-            DateOnly dataAdmissao = DateOnly.FromDateTime(txtData.Value);
-            string salario = txtSalario.Text;
-
-            if (funcionario.dataAdimissao > DateTimePicker.MinimumDateTime)
-            {
-                txtData.Value = funcionario.dataAdimissao;
-            }
-            else
-                txtData.Value = DateTime.Now;
-
+            funcionario.nome = txtNome.Text;
+            funcionario.dataAdimissao = (txtData.Value);
+            funcionario.salario = Convert.ToDecimal(txtSalario.Text);
 
             return funcionario;
         }
+
         private void btnGravar_Click(object sender, EventArgs e)
         {
             this.funcionario = ObterFuncionario();
@@ -61,6 +56,27 @@ namespace LocadoraDeVeiculos.WinApp.ModuloFuncionario
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             TelaPrincipalForm.Tela.AtualizarRodape("");
+        }
+
+        private void txtSalario_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
+            {
+                TextBox t = (TextBox)sender;
+                string s = Regex.Replace(t.Text, "[^0-9]", string.Empty);
+
+                if (s == string.Empty)
+                    s = "00";
+                if (e.KeyChar.Equals((char)Keys.Back))
+                    s = s.Substring(0, s.Length - 1);
+                else
+                    s += e.KeyChar;
+
+                t.Text = string.Format("{0:#,##0.00}", double.Parse(s) / 100);
+
+                t.Select(t.Text.Length, 0);
+            }
+            e.Handled = true;
         }
     }
 }

@@ -9,14 +9,16 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
 
         public Funcionario() 
         {
+            dataAdimissao = DateTime.Now;
         }
-        public Funcionario(string nome, string salario, DateOnly dataAdmissao) 
+
+        public Funcionario(string nome, decimal salario, DateTime dataAdmissao) 
         {
-            nome = nome;
-            salario = salario;
-            dataAdmissao = dataAdmissao;
-         
+            this.nome = nome;
+            this.salario = salario;
+            this.dataAdimissao = dataAdmissao;
         }
+
         public override void AtualizarInformacoes(Funcionario registroAtualizado)
         {
             nome = registroAtualizado.nome;

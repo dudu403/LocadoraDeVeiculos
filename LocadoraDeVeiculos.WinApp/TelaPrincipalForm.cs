@@ -63,12 +63,12 @@ namespace LocadoraDeVeiculos.WinApp
 
             var dbContext = new LocadoraDeVeiculosDbContext(optionsBuilder.Options);
 
-            var migracoesPendentes = dbContext.Database.GetPendingMigrations();
+            //var migracoesPendentes = dbContext.Database.GetPendingMigrations();
 
-            if (migracoesPendentes.Count() > 0)
-            {
-                dbContext.Database.Migrate();
-            }
+            //if (migracoesPendentes.Count() > 0)
+            //{
+            //    dbContext.Database.Migrate();
+            //}
 
 
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
@@ -90,9 +90,9 @@ namespace LocadoraDeVeiculos.WinApp
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
 
 
-           }
+        }
 
-            private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void funcionariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorFuncionario"]);
         }
