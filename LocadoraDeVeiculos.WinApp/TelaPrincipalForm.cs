@@ -30,6 +30,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Infra.Orm.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Aplicacao.ModuloTaxaEServico;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -93,6 +96,14 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoConfiguracaoPreco servicoConfiguracaoPreco = new(repositorioConfiguracaoPreco, validadorConfiguracaoPreco);
 
             controladores.Add("ControladorConfigPreco", new ControladorConfigPreco(repositorioConfiguracaoPreco, servicoConfiguracaoPreco));
+
+            IRepositorioTaxaEServico repositorioTaxaEServico = new RepositorioTaxaEServicoEmOrm(dbContext);
+
+            ValidadorTaxaEServico validadorTaxaEServico = new();
+
+            ServicoTaxaEServico servicoTaxaEServico = new(repositorioTaxaEServico, validadorTaxaEServico);
+
+            controladores.Add("ControladorTaxaEServico", new ControladorTaxaEServico(repositorioTaxaEServico, servicoTaxaEServico));
 
             IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
 
