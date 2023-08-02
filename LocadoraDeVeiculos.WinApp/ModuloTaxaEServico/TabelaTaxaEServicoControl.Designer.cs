@@ -36,10 +36,12 @@
             // 
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grid.Location = new Point(0, 0);
+            grid.MaximumSize = new Size(1184, 586);
+            grid.MinimumSize = new Size(1184, 586);
             grid.Name = "grid";
             grid.RowHeadersVisible = false;
             grid.RowTemplate.Height = 25;
-            grid.Size = new Size(150, 150);
+            grid.Size = new Size(1184, 586);
             grid.TabIndex = 0;
             // 
             // TabelaTaxaEServicoControl
@@ -47,7 +49,10 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(grid);
+            MaximumSize = new Size(1184, 586);
+            MinimumSize = new Size(1184, 586);
             Name = "TabelaTaxaEServicoControl";
+            Size = new Size(1184, 586);
             ((System.ComponentModel.ISupportInitialize)grid).EndInit();
             ResumeLayout(false);
         }

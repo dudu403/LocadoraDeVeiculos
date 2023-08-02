@@ -7,23 +7,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 {
     public class ControladorGrupoAutomovel : ControladorBase
     {
-        private IRepositorioGrupoAutomovel repositorioGrupoAutomovel;
+        private IRepositorioGrupoAutomovel repositorioTaxaEServico;
 
         private TabelaGrupoAutomovelControl tabelaGrupoAutomovel;
 
-        private ServicoGrupoAutomovel servicoGrupoAutomovel;
+        private ServicoGrupoAutomovel servicoTaxaEServico;
 
-        public ControladorGrupoAutomovel(IRepositorioGrupoAutomovel repositorioGrupoAutomovel, ServicoGrupoAutomovel servicoGrupoAutomovel)
+        public ControladorGrupoAutomovel(IRepositorioGrupoAutomovel repositorioTaxaEServico, ServicoGrupoAutomovel servicoTaxaEServico)
         {
-            this.repositorioGrupoAutomovel = repositorioGrupoAutomovel;
-            this.servicoGrupoAutomovel = servicoGrupoAutomovel;
+            this.repositorioTaxaEServico = repositorioTaxaEServico;
+            this.servicoTaxaEServico = servicoTaxaEServico;
         }
 
         public override void Inserir()
         {
             TelaGrupoAutomovelForm tela = new();
 
-            tela.onGravarRegistro += servicoGrupoAutomovel.Inserir;
+            tela.onGravarRegistro += servicoTaxaEServico.Inserir;
 
             tela.ConfigurarGrupoAutomovel(new GrupoAutomovel());
 
@@ -39,7 +39,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
         {
             Guid id = tabelaGrupoAutomovel.ObterIdSelecionado();
 
-            GrupoAutomovel grupoAutomovelSelecionado = repositorioGrupoAutomovel.SelecionarPorId(id);
+            GrupoAutomovel grupoAutomovelSelecionado = repositorioTaxaEServico.SelecionarPorId(id);
 
             if (grupoAutomovelSelecionado == null)
             {
@@ -52,7 +52,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
             TelaGrupoAutomovelForm tela = new TelaGrupoAutomovelForm();
 
-            tela.onGravarRegistro += servicoGrupoAutomovel.Editar;
+            tela.onGravarRegistro += servicoTaxaEServico.Editar;
 
             tela.ConfigurarGrupoAutomovel(grupoAutomovelSelecionado);
 
@@ -68,7 +68,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
         {
             Guid id = tabelaGrupoAutomovel.ObterIdSelecionado();
 
-            GrupoAutomovel grupoAutomovelSelecionado = repositorioGrupoAutomovel.SelecionarPorId(id);
+            GrupoAutomovel grupoAutomovelSelecionado = repositorioTaxaEServico.SelecionarPorId(id);
 
             if (grupoAutomovelSelecionado == null)
             {
@@ -87,7 +87,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Result resultado = servicoGrupoAutomovel.Excluir(grupoAutomovelSelecionado);
+                Result resultado = servicoTaxaEServico.Excluir(grupoAutomovelSelecionado);
 
                 if (resultado.IsFailed)
                 {
@@ -120,7 +120,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
         private void CarregarGrupoAutomoveis()
         {
-            List<GrupoAutomovel> grupoAutomoveis = repositorioGrupoAutomovel.SelecionarTodos();
+            List<GrupoAutomovel> grupoAutomoveis = repositorioTaxaEServico.SelecionarTodos();
 
             tabelaGrupoAutomovel.AtualizarRegistros(grupoAutomoveis);
 

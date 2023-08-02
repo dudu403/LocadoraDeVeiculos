@@ -15,7 +15,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
 
         public Result Inserir(GrupoAutomovel grupoAutomovel)
         {
-            Log.Debug("Tentando inserir um grupo de automovel...{@d}", grupoAutomovel);
+            Log.Debug("Tentando inserir uma taxa ou serviço...{@d}", grupoAutomovel);
 
             List<string> erros = ValidarGrupoAutomovel(grupoAutomovel);
 
@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
             }
             catch (Exception exc)
             {
-                string msgErro = "Falha ao tentar inserir um grupo de automovel.";
+                string msgErro = "Falha ao tentar inserir uma taxa ou serviço.";
 
                 Log.Error(exc, msgErro + "{@d}", grupoAutomovel);
 
@@ -42,7 +42,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
         
         public Result Editar(GrupoAutomovel grupoAutomovel)
         {
-            Log.Debug("Tentando editar um grupo de automovel...{@d}", grupoAutomovel);
+            Log.Debug("Tentando editar uma taxa ou serviço...{@d}", grupoAutomovel);
 
             List<string> erros = ValidarGrupoAutomovel(grupoAutomovel);
 
@@ -59,7 +59,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
             }
             catch (Exception exc)
             {
-                string msgErro = "Falha ao tentar editar um grupo de automovel.";
+                string msgErro = "Falha ao tentar editar uma taxa ou serviço.";
 
                 Log.Error(exc, msgErro + "{@d}", grupoAutomovel);
 
@@ -69,7 +69,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
 
         public Result Excluir(GrupoAutomovel grupoAutomovel)
         {
-            Log.Debug("Tentando excluir um grupo de automovel...{@d}", grupoAutomovel);
+            Log.Debug("Tentando excluir uma taxa ou serviço...{@d}", grupoAutomovel);
 
             try
             {
@@ -94,10 +94,10 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel
               
                 string msgErro;
 
-                if (ex.Message.Contains("FK_TBAutomovel_TBGrupoAutomovel"))
-                    msgErro = "Este grupo de automovel está relacionado a um automovel e não pode ser excluído";
+                if (ex.Message.Contains("FK_TBAluguel_TBTaxaEServico"))
+                    msgErro = "Esta taxa/serviço está relacionado a um aluguel e não pode ser excluído";
                 else
-                    msgErro = "Falha ao tentar excluir um grupo de automovel";
+                    msgErro = "Falha ao tentar excluir uma taxa ou serviço";
 
                 erros.Add(msgErro);
 

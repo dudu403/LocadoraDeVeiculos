@@ -7,8 +7,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxaEServico
     {
         public TabelaTaxaEServicoControl()
         {
-            InitializeComponent(); 
-            
+            InitializeComponent();
+
             grid.ConfigurarGridZebrado();
             grid.ConfigurarGridSomenteLeitura();
             grid.Columns.AddRange(ObterColunas());
@@ -24,10 +24,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloTaxaEServico
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Plano de Calculo", HeaderText = "Plano de Calculo"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Tipo Do Custo", HeaderText = "Tipo Do Custo"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Preço", HeaderText = "Preço"}
-
             };
 
             return colunas;
