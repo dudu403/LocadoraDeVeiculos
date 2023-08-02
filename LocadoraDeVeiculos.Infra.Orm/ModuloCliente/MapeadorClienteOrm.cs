@@ -12,7 +12,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloCliente
 
             builder.Property(d => d.nome).HasColumnType("varchar(200)").IsRequired();
 
-            builder.Property(d => d.edereco).HasColumnType("varchar(500)").IsRequired();
+            builder.Property(d => d.endereco).HasColumnType("varchar(500)").IsRequired();
 
             builder.Property(d => d.estado).HasColumnType("varchar(200)").IsRequired();
 

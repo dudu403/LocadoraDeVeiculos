@@ -159,7 +159,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<string>("cpf")
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("edereco")
+                    b.Property<string>("endereco")
                         .IsRequired()
                         .HasColumnType("varchar(500)");
 
