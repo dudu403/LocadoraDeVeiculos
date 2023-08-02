@@ -5,9 +5,9 @@ using System.Reflection;
 namespace LocadoraDeVeiculos.Infra.Orm.Compartilhado
 {
     public class LocadoraDeVeiculosDbContext : DbContext
-    {        
+    {
         public LocadoraDeVeiculosDbContext(DbContextOptions options) : base(options)
-        {            
+        {
 
         }
 
@@ -26,7 +26,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Compartilhado
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             Assembly assembly = typeof(LocadoraDeVeiculosDbContext).Assembly;
-            
+
             modelBuilder.ApplyConfigurationsFromAssembly(assembly);
 
             base.OnModelCreating(modelBuilder);

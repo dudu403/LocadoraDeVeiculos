@@ -13,6 +13,9 @@ using LocadoraDeVeiculos.Infra.Orm.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Infra.Orm.ModuloConfigPreco;
 using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
+using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
+using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+using LocadoraDeVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloAluguel;
 using LocadoraDeVeiculos.WinApp.ModuloConfigPreco;
 using LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro;
@@ -25,6 +28,8 @@ using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
+using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
+using LocadoraDeVeiculos.WinApp.ModuloTaxaEServico;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -96,16 +101,19 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoParceiro servicoParceiro = new(repositorioParceiro, validadorParceiro);
 
             controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
+
+            IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioEmOrm(dbContext);
+
+            ValidadorFuncionario validadorFuncionario = new();
+
+            ServicoFuncionario servicoFuncionario = new(repositorioFuncionario, validadorFuncionario);
+
+            controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
         }
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)
         {
             ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
-        }
-
-        private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
         }
 
         private void funcionariosMenuItem_Click(object sender, EventArgs e)
@@ -143,9 +151,9 @@ namespace LocadoraDeVeiculos.WinApp
             ConfigurarTelaPrincipal(controladores["ControladorTaxaEServico"]);
         }
 
-        private void cuponsEParceirosMenuItem_Click(object sender, EventArgs e)
+        private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(controladores["ControladorCupomEParceiro"]);
+            ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
         }
 
         private void configuracaoDePrecosMenuItem_Click(object sender, EventArgs e)
@@ -203,6 +211,7 @@ namespace LocadoraDeVeiculos.WinApp
 
                 ConfigurarVisibilidadeBotoes(configuracao);
             }
+
         }
 
         private void ConfigurarListagem(ControladorBase controladorBase)
