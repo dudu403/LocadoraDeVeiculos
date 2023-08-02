@@ -2,5 +2,7 @@
 {
     public interface IRepositorioFuncionario : IRepositorio<Funcionario>
     {
+        Funcionario SelecionarPorNome(string nome);
+      
     }
 }

@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using System.Reflection;
 
 namespace LocadoraDeVeiculos.Infra.Orm.Compartilhado
 {
-    internal class LocadoraDeVeiculosDesignFactory : IDesignTimeDbContextFactory<LocadoraDeVeiculosDbContext>
+    internal class GeradorTestesDesignFactory : IDesignTimeDbContextFactory<LocadoraDeVeiculosDbContext>
     {
         public LocadoraDeVeiculosDbContext CreateDbContext(string[] args)
-        {
+        {            
             var configuracao = new ConfigurationBuilder()
                .SetBasePath(Directory.GetCurrentDirectory())
                .AddJsonFile("appsettings.json")
