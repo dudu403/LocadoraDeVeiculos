@@ -119,7 +119,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<Guid>("grupoAutomovelid")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("kilometragem")
+                    b.Property<decimal>("quilometragem")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("marca")
