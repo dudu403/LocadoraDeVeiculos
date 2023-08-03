@@ -95,7 +95,7 @@
             Name = "TelaParceiroForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Parceiro";
+            Text = "Cadastro de Parceiro";
             ResumeLayout(false);
             PerformLayout();
         }

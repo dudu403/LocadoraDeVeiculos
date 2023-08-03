@@ -1,6 +1,6 @@
 ﻿namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 {
-    public class ConfiguracaoToolboxCupomEParceiro : ConfiguracaoToolboxBase
+    public class ConfiguracaoToolboxParceiro : ConfiguracaoToolboxBase
     {
         public override string TipoCadastro => "Cadastro de Parceiros";
         public override string ToolTipInserir => "Inserir novo parceiro";

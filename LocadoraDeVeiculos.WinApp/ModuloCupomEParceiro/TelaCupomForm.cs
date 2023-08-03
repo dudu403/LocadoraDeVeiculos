@@ -26,8 +26,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
             txtNome.Text = cupomSelecionado.nome;
             txtValor.Text = cupomSelecionado.valor.ToString();
             txtData.Value = cupomSelecionado.validade;
-
-            cmbParceiro.Text = cupomSelecionado.parceiro.ToString();
+            cmbParceiro.SelectedItem = cupomSelecionado.parceiro;
         }
 
         public Cupom ObterCupom()
@@ -35,13 +34,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
             cupom.nome = txtNome.Text;
             cupom.valor = Convert.ToDecimal(txtValor.Text);
             cupom.validade = (txtData.Value);
-            Parceiro parceiro = (Parceiro)cmbParceiro.SelectedItem;
+            cupom.parceiro = (Parceiro)cmbParceiro.SelectedItem;
 
             return cupom;
         }
 
         private void CarregarParceiros(List<Parceiro> parceiros)
         {
+            cmbParceiro.Items.Clear();
+            
             foreach (Parceiro parceiro in parceiros)
             {
                 cmbParceiro.Items.Add(parceiro);
@@ -87,8 +88,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
                 t.Select(t.Text.Length, 0);
             }
-            e.Handled = true;
 
+            e.Handled = true;
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class Cliente : EntidadeBase<Cliente>
     {
-        public string edereco { get; set; }
+        public string endereco { get; set; }
         public string estado { get; set; }
         public string cidade { get; set; }
         public string bairro { get; set; }

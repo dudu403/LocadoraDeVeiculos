@@ -57,7 +57,7 @@ namespace LocadoraDeVeiculos.WinApp
         }
 
         private void ConfigurarControladores()
-        {          
+        {
             var configuracao = new ConfigurationBuilder()
               .SetBasePath(Directory.GetCurrentDirectory())
               .AddJsonFile("appsettings.json")
@@ -109,6 +109,15 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoFuncionario servicoFuncionario = new(repositorioFuncionario, validadorFuncionario);
 
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
+
+
+            IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
+
+            ValidadorCupom validadorCupom = new();
+
+            ServicoCupom servicoCupom = new(repositorioCupom, validadorCupom);
+
+            controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, servicoCupom, repositorioParceiro));
         }
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)
