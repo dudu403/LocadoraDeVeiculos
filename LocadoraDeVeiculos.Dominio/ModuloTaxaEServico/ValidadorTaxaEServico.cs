@@ -16,7 +16,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloTaxaEServico
             RuleFor(x => x.preco)
                .NotEmpty()
                .NotNull()
-               .SemValoresNegativos();
+               .SemValoresNegativosDecimal();
 
             RuleFor(x => x.tipoDoCusto)
                .NotEmpty()

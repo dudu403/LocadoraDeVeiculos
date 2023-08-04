@@ -3,9 +3,9 @@ using System.Text.RegularExpressions;
 
 namespace LocadoraDeVeiculos.Dominio.Compartilhado.Validators
 {
-    public class FormatoEmailValidator<T> : PropertyValidator<T, string>
+    public class FormatoCnpjValidator<T> : PropertyValidator<T, string>
     {
-        public override string Name => "FormatoEmailValidator";
+        public override string Name => "FormatoCnpjValidator";
 
         private string nomePropriedade;
 

@@ -32,9 +32,14 @@
             return ruleBuilder.SetValidator(new FormatoTelefoneValidator<T>());
         }
 
-        public static IRuleBuilderOptions<T, decimal> SemValoresNegativos<T>(this IRuleBuilder<T, decimal> ruleBuilder)
+        public static IRuleBuilderOptions<T, decimal> SemValoresNegativosDecimal<T>(this IRuleBuilder<T, decimal> ruleBuilder)
         {
-            return ruleBuilder.SetValidator(new NaoPodeValoresNegativosValidator<T>());
+            return ruleBuilder.SetValidator(new NaoPodeValoresNegativosValidator1<T>());
+        }
+
+        public static IRuleBuilderOptions<T, double> SemValoresNegativosDouble<T>(this IRuleBuilder<T, double> ruleBuilder)
+        {
+            return ruleBuilder.SetValidator(new NaoPodeValoresNegativosValidator2<T>());
         }
     }
 }

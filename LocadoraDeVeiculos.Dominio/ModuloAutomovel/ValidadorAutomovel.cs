@@ -9,7 +9,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
             RuleFor(x => x.quilometragem)
                 .NotEmpty()
                 .NotNull()
-                .SemValoresNegativos();
+                .SemValoresNegativosDouble();
 
             RuleFor(x => x.marca)
                 .NotEmpty()
@@ -36,7 +36,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
             RuleFor(x => x.capacidadeTanqueLitros)
                 .NotEmpty()
                 .NotNull()
-                .SemValoresNegativos();
+                .SemValoresNegativosDecimal();
         }
     }
 }

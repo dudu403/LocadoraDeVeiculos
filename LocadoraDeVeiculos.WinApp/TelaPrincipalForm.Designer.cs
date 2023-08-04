@@ -92,11 +92,11 @@
             panelRegistros.Size = new Size(1188, 589);
             panelRegistros.TabIndex = 11;
             // 
-            // pictureBox1
+            // pctBoxFoto
             // 
             pictureBox1.Location = new Point(-1, -1);
             pictureBox1.Margin = new Padding(4);
-            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Name = "pctBoxFoto";
             pictureBox1.Size = new Size(1184, 586);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox1.TabIndex = 0;

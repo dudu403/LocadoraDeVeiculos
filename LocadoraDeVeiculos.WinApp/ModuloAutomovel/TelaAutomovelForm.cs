@@ -1,16 +1,19 @@
-﻿using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
+﻿using FluentResults;
+using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 {
     public partial class TelaAutomovelForm : Form
     {
-        private Dominio.ModuloAutomovel.Automovel automovel { set; get; }
-        
-        public event GravarRegistroDelegate<Dominio.ModuloAutomovel.Automovel> onGravarRegistro;
+        private Automovel automovel { set; get; }
+        private Image image { set; get; }   
 
-        public TelaAutomovelForm(List<Dominio.ModuloGrupoAutomovel.GrupoAutomovel> gruposAutomoveis)
+        public event GravarRegistroDelegate<Automovel> onGravarRegistro;
+
+        public TelaAutomovelForm(List<GrupoAutomovel> gruposAutomoveis)
         {
             InitializeComponent();
 
@@ -21,17 +24,34 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
             CarregarGruposAutomoveis(gruposAutomoveis);
         }
 
-        public Dominio.ModuloAutomovel.Automovel ObterAutomovel()
+        public Automovel ObterAutomovel()
         {
-          //  automovel.nome = txtNome.Text;
+            automovel.foto = ConverterEmBinario(image);
+            automovel.quilometragem = Convert.ToDouble(txtKm.Text);
+            automovel.grupoAutomovel = (GrupoAutomovel)cmbGrpAutomovel.SelectedItem;
+            automovel.modelo = txtModelo.Text;
+            automovel.marca = txtMarca.Text;
+            automovel.cor = txtCor.Text;
+            automovel.tipoCombustivel = (TipoCombustivelEnum)cmbTipoCombustivel.SelectedItem;
+            automovel.capacidadeTanqueLitros = Convert.ToDecimal(numCapacidadeTanque.Value);
 
             return automovel;
         }
 
-        public void ConfigurarAutomovel(Dominio.ModuloAutomovel.Automovel automovel)
+        public void ConfigurarAutomovel(Automovel automovelSelecionado)
         {
-            this.automovel = automovel;
+            this.automovel = automovelSelecionado;
 
+            if (automovelSelecionado.foto != null)
+                pctBoxFoto.Image = ConverterParaImagem(automovelSelecionado.foto);
+
+            txtKm.Text = automovel.quilometragem.ToString();
+            cmbGrpAutomovel.SelectedItem = automovelSelecionado.grupoAutomovel;
+            txtModelo.Text = automovelSelecionado.modelo;
+            txtMarca.Text = automovelSelecionado.marca;
+            txtCor.Text = automovelSelecionado.cor;
+            cmbTipoCombustivel.SelectedItem = automovel.tipoCombustivel;
+            numCapacidadeTanque.Value = automovelSelecionado.capacidadeTanqueLitros;
         }
 
         private void CarregarTiposCombustiveis()
@@ -45,11 +65,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
             cmbTipoCombustivel.Items.Add(TipoCombustivelEnum.Gás);
         }
 
-        private void CarregarGruposAutomoveis(List<Dominio.ModuloGrupoAutomovel.GrupoAutomovel> gruposAutomoveis)
+        private void CarregarGruposAutomoveis(List<GrupoAutomovel> gruposAutomoveis)
         {
             cmbTipoCombustivel.Items.Clear();
 
-            foreach (Dominio.ModuloGrupoAutomovel.GrupoAutomovel grupo in gruposAutomoveis)
+            foreach (GrupoAutomovel grupo in gruposAutomoveis)
             {
                 cmbTipoCombustivel.Items.Add(grupo);
             }
@@ -57,7 +77,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
         private Bitmap RedimensionarImagem(string path)
         {
-            Image image = Image.FromFile(path);
+            image = Image.FromFile(path);
 
             double largura = image.Width;
             double altura = image.Height;
@@ -91,15 +111,42 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folder = new();
+            OpenFileDialog file = new();
 
-            if (folder.ShowDialog() == DialogResult.OK)
-                //. = folder.SelectedPath;
+            //file.Filter = "*.jpg;*.jpeg;*.png;*.gif;*.bmp";
+            file.Filter = "Bitmaps|*.bmp|jpeg|*.jpg";
 
-                DialogResult = DialogResult.None;
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                image = Bitmap.FromFile(file.FileName);
+                    
+                RedimensionarImagem(file.FileName);
+
+                pctBoxFoto.Image = image;
+            }
+            //else
+            //    return;
+
+            DialogResult = DialogResult.None;
         }
 
-        private void txtValor_KeyPress(object sender, KeyPressEventArgs e)
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            this.automovel = ObterAutomovel();
+
+            Result resultado = onGravarRegistro(automovel);
+
+            if (resultado.IsFailed)
+            {
+                string erro = resultado.Errors[0].Message;
+
+                TelaPrincipalForm.Tela.AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
+        }
+
+        private void txtKm_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
             {

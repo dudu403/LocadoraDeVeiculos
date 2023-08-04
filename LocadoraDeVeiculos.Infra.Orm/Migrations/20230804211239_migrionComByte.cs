@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 {
     /// <inheritdoc />
-    public partial class ConfigTabelasGuid : Migration
+    public partial class migrionComByte : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,7 +38,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     nome = table.Column<string>(type: "varchar(100)", nullable: false),
-                    dataAdmissao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    dataAdmissao = table.Column<DateTime>(type: "datetime", nullable: false),
                     salario = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -101,9 +101,10 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     tipoCombustivel = table.Column<int>(type: "int", nullable: false),
                     capacidadeTanqueLitros = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     grupoAutomovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    kilometragem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    quilometragem = table.Column<double>(type: "float", nullable: false),
                     modelo = table.Column<string>(type: "varchar(100)", nullable: false),
                     marca = table.Column<string>(type: "varchar(100)", nullable: false),
+                    foto = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     cor = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>

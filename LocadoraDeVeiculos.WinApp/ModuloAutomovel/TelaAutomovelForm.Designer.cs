@@ -33,22 +33,22 @@
             cmbGrpAutomovel = new ComboBox();
             label7 = new Label();
             label4 = new Label();
-            txtCidade = new TextBox();
+            txtModelo = new TextBox();
             label3 = new Label();
-            txtNumero = new TextBox();
+            txtMarca = new TextBox();
             label2 = new Label();
-            txtRua = new TextBox();
+            txtCor = new TextBox();
             label5 = new Label();
             cmbTipoCombustivel = new ComboBox();
             label6 = new Label();
             numCapacidadeTanque = new NumericUpDown();
             btnCancelar = new Button();
             btnGravar = new Button();
-            pictureBox1 = new PictureBox();
-            txtValor = new TextBox();
+            pctBoxFoto = new PictureBox();
+            txtKm = new TextBox();
             label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)numCapacidadeTanque).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctBoxFoto).BeginInit();
             SuspendLayout();
             // 
             // btnBuscar
@@ -91,9 +91,9 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(96, 219);
+            label7.Location = new Point(52, 224);
             label7.Name = "label7";
-            label7.Size = new Size(159, 21);
+            label7.Size = new Size(203, 21);
             label7.TabIndex = 99;
             label7.Text = "Grupo do GrupoAutomovel:";
             // 
@@ -107,13 +107,13 @@
             label4.TabIndex = 106;
             label4.Text = "Modelo:";
             // 
-            // txtCidade
+            // txtModelo
             // 
-            txtCidade.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCidade.Location = new Point(274, 267);
-            txtCidade.Name = "txtCidade";
-            txtCidade.Size = new Size(422, 29);
-            txtCidade.TabIndex = 105;
+            txtModelo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtModelo.Location = new Point(274, 267);
+            txtModelo.Name = "txtModelo";
+            txtModelo.Size = new Size(422, 29);
+            txtModelo.TabIndex = 105;
             // 
             // label3
             // 
@@ -125,13 +125,13 @@
             label3.TabIndex = 104;
             label3.Text = "Marca:";
             // 
-            // txtNumero
+            // txtMarca
             // 
-            txtNumero.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtNumero.Location = new Point(274, 314);
-            txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(422, 29);
-            txtNumero.TabIndex = 103;
+            txtMarca.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtMarca.Location = new Point(274, 314);
+            txtMarca.Name = "txtMarca";
+            txtMarca.Size = new Size(422, 29);
+            txtMarca.TabIndex = 103;
             // 
             // label2
             // 
@@ -143,13 +143,13 @@
             label2.TabIndex = 102;
             label2.Text = "Cor:";
             // 
-            // txtRua
+            // txtCor
             // 
-            txtRua.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtRua.Location = new Point(274, 360);
-            txtRua.Name = "txtRua";
-            txtRua.Size = new Size(422, 29);
-            txtRua.TabIndex = 101;
+            txtCor.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtCor.Location = new Point(274, 360);
+            txtCor.Name = "txtCor";
+            txtCor.Size = new Size(422, 29);
+            txtCor.TabIndex = 101;
             // 
             // label5
             // 
@@ -220,24 +220,25 @@
             btnGravar.Text = "Gravar";
             btnGravar.TextImageRelation = TextImageRelation.TextAboveImage;
             btnGravar.UseVisualStyleBackColor = true;
+            btnGravar.Click += btnGravar_Click;
             // 
-            // pictureBox1
+            // pctBoxFoto
             // 
-            pictureBox1.Location = new Point(274, 24);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(300, 120);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pctBoxFoto.Location = new Point(274, 24);
+            pctBoxFoto.Name = "pctBoxFoto";
+            pctBoxFoto.Size = new Size(300, 120);
+            pctBoxFoto.TabIndex = 0;
+            pctBoxFoto.TabStop = false;
             // 
-            // txtValor
+            // txtKm
             // 
-            txtValor.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtValor.Location = new Point(274, 164);
-            txtValor.Name = "txtValor";
-            txtValor.Size = new Size(208, 29);
-            txtValor.TabIndex = 115;
-            txtValor.Text = "0.00";
-            txtValor.KeyPress += txtValor_KeyPress;
+            txtKm.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtKm.Location = new Point(274, 164);
+            txtKm.Name = "txtKm";
+            txtKm.Size = new Size(208, 29);
+            txtKm.TabIndex = 115;
+            txtKm.Text = "0.000";
+            txtKm.KeyPress += txtKm_KeyPress;
             // 
             // label8
             // 
@@ -254,9 +255,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(734, 592);
-            Controls.Add(txtValor);
+            Controls.Add(txtKm);
             Controls.Add(label8);
-            Controls.Add(pictureBox1);
+            Controls.Add(pctBoxFoto);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
             Controls.Add(numCapacidadeTanque);
@@ -264,11 +265,11 @@
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
-            Controls.Add(txtCidade);
+            Controls.Add(txtModelo);
             Controls.Add(label3);
-            Controls.Add(txtNumero);
+            Controls.Add(txtMarca);
             Controls.Add(label2);
-            Controls.Add(txtRua);
+            Controls.Add(txtCor);
             Controls.Add(cmbGrpAutomovel);
             Controls.Add(label7);
             Controls.Add(label1);
@@ -277,7 +278,7 @@
             ShowIcon = false;
             Text = "Automóvel";
             ((System.ComponentModel.ISupportInitialize)numCapacidadeTanque).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctBoxFoto).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -289,19 +290,19 @@
         private ComboBox cmbGrpAutomovel;
         private Label label7;
         private Label label4;
-        private TextBox txtCidade;
+        private TextBox txtModelo;
         private Label label3;
-        private TextBox txtNumero;
+        private TextBox txtMarca;
         private Label label2;
-        private TextBox txtRua;
+        private TextBox txtCor;
         private Label label5;
         private ComboBox cmbTipoCombustivel;
         private Label label6;
         private NumericUpDown numCapacidadeTanque;
         private Button btnCancelar;
         private Button btnGravar;
-        private PictureBox pictureBox1;
-        private TextBox txtValor;
+        private PictureBox pctBoxFoto;
+        private TextBox txtKm;
         private Label label8;
     }
 }

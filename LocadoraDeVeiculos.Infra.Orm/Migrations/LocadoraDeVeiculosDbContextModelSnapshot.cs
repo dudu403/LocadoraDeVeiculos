@@ -104,7 +104,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.ToTable("TBAluguel", (string)null);
                 });
 
-            modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ModuloAutomovel.GrupoAutomovel", b =>
+            modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ModuloAutomovel.Automovel", b =>
                 {
                     b.Property<Guid>("id")
                         .HasColumnType("uniqueidentifier");
@@ -116,11 +116,12 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<byte[]>("foto")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<Guid>("grupoAutomovelid")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("quilometragem")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("marca")
                         .IsRequired()
@@ -129,6 +130,9 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<string>("modelo")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
+
+                    b.Property<double>("quilometragem")
+                        .HasColumnType("float");
 
                     b.Property<int>("tipoCombustivel")
                         .HasColumnType("int");
@@ -270,7 +274,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("dataAdmissao")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("nome")
                         .IsRequired()
@@ -375,7 +379,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 
             modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ModuloAluguel.Aluguel", b =>
                 {
-                    b.HasOne("LocadoraDeVeiculos.Dominio.ModuloAutomovel.GrupoAutomovel", "automovel")
+                    b.HasOne("LocadoraDeVeiculos.Dominio.ModuloAutomovel.Automovel", "automovel")
                         .WithMany()
                         .HasForeignKey("automovelid")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -429,7 +433,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Navigation("grupoAutomovel");
                 });
 
-            modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ModuloAutomovel.GrupoAutomovel", b =>
+            modelBuilder.Entity("LocadoraDeVeiculos.Dominio.ModuloAutomovel.Automovel", b =>
                 {
                     b.HasOne("LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel.GrupoAutomovel", "grupoAutomovel")
                         .WithMany()

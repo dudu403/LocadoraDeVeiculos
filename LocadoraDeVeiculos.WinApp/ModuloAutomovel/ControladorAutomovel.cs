@@ -28,7 +28,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
             tela.onGravarRegistro += servicoAutomovel.Inserir;
 
-            tela.ConfigurarAutomovel(new Dominio.ModuloAutomovel.Automovel());
+            tela.ConfigurarAutomovel(new Automovel());
 
             DialogResult resultado = tela.ShowDialog();
 
@@ -42,12 +42,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
         {
             Guid id = tabelaAutomovel.ObterIdSelecionado();
 
-            Dominio.ModuloAutomovel.Automovel automovelSelecionado = repositorioAutomovel.SelecionarPorId(id);
+            Automovel automovelSelecionado = repositorioAutomovel.SelecionarPorId(id);
 
             if (automovelSelecionado == null)
             {
                 MessageBox.Show("Selecione um automovel primeiro",
-                "Edição de Grupo De GrupoAutomovel",
+                "Edição de Automovel",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
                 return;
@@ -71,12 +71,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
         {
             Guid id = tabelaAutomovel.ObterIdSelecionado();
 
-            Dominio.ModuloAutomovel.Automovel automovelSelecionado = respositorioAutomovel.SelecionarPorId(id);
+            Automovel automovelSelecionado = repositorioAutomovel.SelecionarPorId(id);
 
             if (automovelSelecionado == null)
             {
                 MessageBox.Show("Selecione um automovel primeiro",
-                "Exclusão de GrupoAutomovel",
+                "Exclusão de Automovel",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
                 return;
@@ -84,7 +84,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
             DialogResult opcaoEscolhida =
                MessageBox.Show($"Deseja realmente excluir o automovel \"{automovelSelecionado}\"?",
-               "Exclusão de GrupoAutomovel",
+               "Exclusão de Automovel",
                MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question);
 
@@ -95,7 +95,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
                 if (resultado.IsFailed)
                 {
                     MessageBox.Show(resultado.Errors[0].Message,
-                        "Exclusão de GrupoAutomovel",
+                        "Exclusão de Automovel",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
 
@@ -112,7 +112,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
             tabelaAutomovel.AtualizarRegistros(automoveis);
 
-            mensagemRodape = string.Format("Visualizando {0} grupo{1} de automoveis", automoveis.Count, automoveis.Count == 1 ? "" : "s");
+            mensagemRodape = string.Format("Visualizando {0} automove", automoveis.Count, automoveis.Count == 1 ? "l" : "is");
 
             TelaPrincipalForm.Tela.AtualizarRodape(mensagemRodape);
         }
