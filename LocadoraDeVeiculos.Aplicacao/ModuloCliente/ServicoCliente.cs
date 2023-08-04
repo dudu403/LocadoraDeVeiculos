@@ -124,7 +124,16 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
                 erros.AddRange(resultadoValidacao.Errors.Select(x => x.ErrorMessage));
 
             if (NomeDuplicado(cliente))
-                erros.Add($"Este nome ´{cliente.nome}´ já está sendo utilizado");
+                erros.Add($"Este nome '{cliente.nome}' já está sendo utilizado");
+
+            if (cliente.tipoPessoa == "Pessoa Física" && string.IsNullOrWhiteSpace(cliente.cpf))
+                erros.Add("O CPF é obrigatório para Pessoa Física");
+
+            if (cliente.tipoPessoa == "Pessoa Jurídica" && string.IsNullOrWhiteSpace(cliente.cnpj))
+                erros.Add("O CNPJ é obrigatório para Pessoa Jurídica");
+
+            if (string.IsNullOrWhiteSpace(cliente.telefone?.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")))
+                erros.Add("O telefone é obrigatório");
 
             foreach (string erro in erros)
             {
@@ -133,8 +142,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 
             return erros;
         }
-
-
 
         private bool NomeDuplicado(Cliente cliente)
         {

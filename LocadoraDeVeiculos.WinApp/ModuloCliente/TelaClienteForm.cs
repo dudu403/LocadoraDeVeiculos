@@ -152,7 +152,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                 txtBairro.Text = endereco.District;
             }
         }
-
         private void ConfigurarTxt()
         {
             txtEstado.Enabled = false;

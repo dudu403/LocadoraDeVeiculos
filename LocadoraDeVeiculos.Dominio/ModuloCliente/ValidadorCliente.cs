@@ -17,10 +17,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
                 .MinimumLength(3)
                 .NaoPodeCaracteresEspeciais();
 
-            //RuleFor(x => x.cep)
-            //    .NotEmpty()
-            //    .NotNull()
-            //    .MinimumLength(8);
+            RuleFor(x => x.cep)
+                .NotEmpty()
+                .NotNull()
+                .MinimumLength(8);
 
             RuleFor(x => x.email)
                 .NotEmpty()
@@ -31,7 +31,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
                 .NotNull()
                 .MinimumLength(8);
 
-            
             When(x => x.tipoPessoa == "Pessoa Física", () =>
             {
                 RuleFor(x => x.cpf)
