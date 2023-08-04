@@ -1,13 +1,24 @@
+using LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro;
+using LocadoraDeVeiculos.Aplicacao.ModuloConfigPreco;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloAluguel;
 using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
+using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
+using LocadoraDeVeiculos.Infra.Json.ModuloConfigPreco;
 using LocadoraDeVeiculos.Infra.Orm.Compartilhado;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAluguel;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAutomovel;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCupomEParceiro;
+using LocadoraDeVeiculos.Infra.Orm.ModuloConfigPreco;
 using LocadoraDeVeiculos.Infra.Orm.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.WinApp.Compartilhado;
+using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
+using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+using LocadoraDeVeiculos.Infra.Orm.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloAluguel;
+using LocadoraDeVeiculos.WinApp.ModuloConfigPreco;
+using LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +27,12 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
+using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
+using LocadoraDeVeiculos.WinApp.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Infra.Orm.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Aplicacao.ModuloTaxaEServico;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -23,7 +40,7 @@ namespace LocadoraDeVeiculos.WinApp
     {
         private Dictionary<string, ControladorBase> controladores { get; set; }
         public static TelaPrincipalForm Tela { get; private set; }
-        private ControladorBase controlador { get; set; }   
+        private ControladorBase controlador { get; set; }
 
         public TelaPrincipalForm()
         {
@@ -43,7 +60,7 @@ namespace LocadoraDeVeiculos.WinApp
         }
 
         private void ConfigurarControladores()
-        {
+        {          
             var configuracao = new ConfigurationBuilder()
               .SetBasePath(Directory.GetCurrentDirectory())
               .AddJsonFile("appsettings.json")
@@ -71,6 +88,43 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoGrupoAutomovel servicoGrupoAutomovel = new(repositorioGrupoAutomovel, validadorGrupoAutomovel);
 
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
+
+            IRepositorioConfiguracaoPreco repositorioConfiguracaoPreco = new RepositorioConfigPrecoEmJson(carregarDados: true);
+
+            ValidadorConfiguracaoPreco validadorConfiguracaoPreco = new();
+
+            ServicoConfiguracaoPreco servicoConfiguracaoPreco = new(repositorioConfiguracaoPreco, validadorConfiguracaoPreco);
+
+            controladores.Add("ControladorConfigPreco", new ControladorConfigPreco(repositorioConfiguracaoPreco, servicoConfiguracaoPreco));
+
+            IRepositorioTaxaEServico repositorioTaxaEServico = new RepositorioTaxaEServicoEmOrm(dbContext);
+
+            ValidadorTaxaEServico validadorTaxaEServico = new();
+
+            ServicoTaxaEServico servicoTaxaEServico = new(repositorioTaxaEServico, validadorTaxaEServico);
+
+            controladores.Add("ControladorTaxaEServico", new ControladorTaxaEServico(repositorioTaxaEServico, servicoTaxaEServico));
+
+            IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
+
+            ValidadorParceiro validadorParceiro = new();
+
+            ServicoParceiro servicoParceiro = new(repositorioParceiro, validadorParceiro);
+
+            controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
+
+            IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioEmOrm(dbContext);
+
+            ValidadorFuncionario validadorFuncionario = new();
+
+            ServicoFuncionario servicoFuncionario = new(repositorioFuncionario, validadorFuncionario);
+
+            controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
+        }
+
+        private void cuponsMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
         }
 
         private void funcionariosMenuItem_Click(object sender, EventArgs e)
@@ -108,9 +162,9 @@ namespace LocadoraDeVeiculos.WinApp
             ConfigurarTelaPrincipal(controladores["ControladorTaxaEServico"]);
         }
 
-        private void cuponsEParceirosMenuItem_Click(object sender, EventArgs e)
+        private void parceirosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(controladores["ControladorCupomEParceiro"]);
+            ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
         }
 
         private void configuracaoDePrecosMenuItem_Click(object sender, EventArgs e)
@@ -168,6 +222,7 @@ namespace LocadoraDeVeiculos.WinApp
 
                 ConfigurarVisibilidadeBotoes(configuracao);
             }
+
         }
 
         private void ConfigurarListagem(ControladorBase controladorBase)
@@ -192,7 +247,7 @@ namespace LocadoraDeVeiculos.WinApp
             btnAdicionarItens.ToolTipText = config.ToolTipAdicionarItens;
             btnRemoverItens.ToolTipText = config.ToolTipRemoverItens;
             btnFinalizarPgto.ToolTipText = config.ToolTipFinalizarPagamento;
-            btnConfigurar.ToolTipText = config.ToolTipConfigDesconto;
+            btnConfigurar.ToolTipText = config.ToolTipConfig;
             btnVisualizar.ToolTipText = config.ToolTipVisualizar;
             btnVisualizar.ToolTipText = config.ToolTipVisualizar;
             btnVisualizarGabarito.ToolTipText = config.ToolTipVisualizarGabarito;
@@ -210,7 +265,7 @@ namespace LocadoraDeVeiculos.WinApp
             btnAdicionarItens.Enabled = config.AdicionarItensHabilitado;
             btnRemoverItens.Enabled = config.RemoverItensHabilitado;
             btnFinalizarPgto.Enabled = config.FinalizarPagamentoHabilitado;
-            btnConfigurar.Enabled = config.ConfigDescontoHabilitado;
+            btnConfigurar.Enabled = config.ConfigHabilitado;
             btnVisualizar.Enabled = config.VisualizarHabilitado;
             btnVisualizarGabarito.Enabled = config.VisualizarGabaritoHabilitado;
             btnGerarPdf.Enabled = config.GerarPdfHabilitado;
@@ -226,7 +281,7 @@ namespace LocadoraDeVeiculos.WinApp
             btnAdicionarItens.Visible = config.AdicionarItensVisivel;
             btnRemoverItens.Visible = config.RemoverItensVisivel;
             btnFinalizarPgto.Visible = config.FinalizarPagamentoVisivel;
-            btnConfigurar.Visible = config.ConfigDescontoVisivel;
+            btnConfigurar.Visible = config.ConfigVisivel;
             btnVisualizar.Visible = config.VisualizarVisivel;
             btnVisualizarGabarito.Visible = config.VisualizarGabaritoVisivel;
             btnGerarPdf.Visible = config.GerarPdfVisivel;

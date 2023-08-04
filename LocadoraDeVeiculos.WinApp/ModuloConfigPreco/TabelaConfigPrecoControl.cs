@@ -1,4 +1,6 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloConfigPreco
+﻿using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
+
+namespace LocadoraDeVeiculos.WinApp.ModuloConfigPreco
 {
     public partial class TabelaConfigPrecoControl : UserControl
     {
@@ -17,28 +19,30 @@
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Preço da Gasolina", HeaderText = "Preço da Gasolina"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Preço do Álcool", HeaderText = "Preço do Álcool"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Preço do Disel", HeaderText = "Preço do Disel"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Preço do Gás", HeaderText = "Preço do Gás"}
 
             };
 
             return colunas;
         }
 
-        public int ObterNumeroTesteSelecionado()
+        public Guid ObterIdSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId();
         }
 
-        //public void AtualizarRegistros(List<var> vars)
-        //{
-        //    grid.Rows.Clear();
+        public void AtualizarRegistros(ConfiguracaoPreco configPreco)
+        {
+            grid.Rows.Clear();
 
-        //    foreach (var var in vars)
-        //    {
-        //        grid.Rows.Add(var.id, var.nome,...................);
-        //    }
-        //}
+            grid.Rows.Add(configPreco.precoGasolina, configPreco.precoAlcool, configPreco.precoDisel, configPreco.precoGas);
+            
+        }
     }
 }

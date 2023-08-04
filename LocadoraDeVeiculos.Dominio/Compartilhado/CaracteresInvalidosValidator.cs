@@ -36,8 +36,6 @@ namespace LocadoraDeVeiculos.Dominio.Compartilhado
             }
 
             return estaValido;
-        }
-
-        
+        }        
     }
 }

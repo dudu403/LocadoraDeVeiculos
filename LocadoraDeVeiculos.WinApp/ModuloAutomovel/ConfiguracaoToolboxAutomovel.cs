@@ -4,7 +4,7 @@
     {
         public override string TipoCadastro => "Cadastro de Automoveis";
 
-        public override string ToolTipInserir => "Inserir novo automovel";
+        public override string ToolTipInserir => "Configurar novo automovel";
 
         public override string ToolTipEditar => "Editar um automovel existente";
 

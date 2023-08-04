@@ -6,9 +6,28 @@
         public decimal preco { get; set; }
         public TipoCustoEnum tipoDoCusto { get; set; }
 
+        public TaxaEServico()
+        {
+            tipoDoCusto = TipoCustoEnum.Nenhum;
+        }
+
+        public TaxaEServico(string nome, decimal preco, TipoCustoEnum tipoDoCusto)
+        {
+            this.nome = nome; 
+            this.preco = preco;
+            this.tipoDoCusto = tipoDoCusto;
+        }
+
         public override void AtualizarInformacoes(TaxaEServico registroAtualizado)
         {
-            throw new NotImplementedException();
+            nome = registroAtualizado.nome;
+            preco = registroAtualizado.preco;
+            tipoDoCusto = registroAtualizado.tipoDoCusto;
+        }
+
+        public override string ToString()
+        {
+            return nome;
         }
     }
 }

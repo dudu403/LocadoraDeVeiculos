@@ -18,7 +18,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
         public GrupoAutomovel ObterGrupoAutomovel()
         {
-            grupoAutomovel.id = Convert.ToInt32(txtId.Text);
             grupoAutomovel.nome = txtNome.Text;
 
             return grupoAutomovel;
@@ -28,7 +27,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
         {
             this.grupoAutomovel = grupoAutomovel;
 
-            txtId.Text = grupoAutomovel.id.ToString();
             txtNome.Text = grupoAutomovel.nome;
         }
 

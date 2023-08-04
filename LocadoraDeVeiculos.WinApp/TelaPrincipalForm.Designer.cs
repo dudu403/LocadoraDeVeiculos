@@ -64,6 +64,7 @@
             taxasEServiçosToolStripMenuItem = new ToolStripMenuItem();
             cuponsEParceirosToolStripMenuItem = new ToolStripMenuItem();
             configuraçãoDePreçosToolStripMenuItem = new ToolStripMenuItem();
+            parceirosToolStripMenuItem = new ToolStripMenuItem();
             serviçosToolStripMenuItem = new ToolStripMenuItem();
             aluguéisToolStripMenuItem = new ToolStripMenuItem();
             panelRegistros.SuspendLayout();
@@ -159,7 +160,7 @@
             btnInserir.Name = "btnInserir";
             btnInserir.Padding = new Padding(6);
             btnInserir.Size = new Size(32, 32);
-            btnInserir.Text = "Inserir";
+            btnInserir.Text = "Configurar";
             btnInserir.Visible = false;
             btnInserir.Click += btnInserir_Click;
             // 
@@ -301,13 +302,13 @@
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(6, 35);
+            toolStripSeparator5.Size = new Size(6, 25);
             toolStripSeparator5.Visible = false;
             // 
             // labelTipoDoCadastro
             // 
             labelTipoDoCadastro.Name = "labelTipoDoCadastro";
-            labelTipoDoCadastro.Size = new Size(76, 32);
+            labelTipoDoCadastro.Size = new Size(76, 22);
             labelTipoDoCadastro.Text = "                       ";
             // 
             // rodape
@@ -332,7 +333,7 @@
             // 
             // cadastrosToolStrip
             // 
-            cadastrosToolStrip.DropDownItems.AddRange(new ToolStripItem[] { funcionáriosToolStripMenuItem, grupoDeAutomóveisToolStripMenuItem, planosDeCobrançaToolStripMenuItem, automoveisToolStripMenuItem, clientesToolStripMenuItem, condutoresToolStripMenuItem, taxasEServiçosToolStripMenuItem, cuponsEParceirosToolStripMenuItem, configuraçãoDePreçosToolStripMenuItem });
+            cadastrosToolStrip.DropDownItems.AddRange(new ToolStripItem[] { funcionáriosToolStripMenuItem, grupoDeAutomóveisToolStripMenuItem, planosDeCobrançaToolStripMenuItem, automoveisToolStripMenuItem, clientesToolStripMenuItem, condutoresToolStripMenuItem, taxasEServiçosToolStripMenuItem, parceirosToolStripMenuItem, cuponsEParceirosToolStripMenuItem, configuraçãoDePreçosToolStripMenuItem });
             cadastrosToolStrip.Name = "cadastrosToolStrip";
             cadastrosToolStrip.Size = new Size(71, 19);
             cadastrosToolStrip.Text = "Cadastros";
@@ -390,8 +391,8 @@
             // 
             cuponsEParceirosToolStripMenuItem.Name = "cuponsEParceirosToolStripMenuItem";
             cuponsEParceirosToolStripMenuItem.Size = new Size(203, 22);
-            cuponsEParceirosToolStripMenuItem.Text = "Cupons e Parceiros";
-            cuponsEParceirosToolStripMenuItem.Click += cuponsEParceirosMenuItem_Click;
+            cuponsEParceirosToolStripMenuItem.Text = "Cupons";
+            cuponsEParceirosToolStripMenuItem.Click += cuponsMenuItem_Click;
             // 
             // configuraçãoDePreçosToolStripMenuItem
             // 
@@ -399,6 +400,13 @@
             configuraçãoDePreçosToolStripMenuItem.Size = new Size(203, 22);
             configuraçãoDePreçosToolStripMenuItem.Text = "Configuração de preços ";
             configuraçãoDePreçosToolStripMenuItem.Click += configuracaoDePrecosMenuItem_Click;
+            // 
+            // parceirosToolStripMenuItem
+            // 
+            parceirosToolStripMenuItem.Name = "parceirosToolStripMenuItem";
+            parceirosToolStripMenuItem.Size = new Size(203, 22);
+            parceirosToolStripMenuItem.Text = "Parceiros";
+            parceirosToolStripMenuItem.Click += parceirosToolStripMenuItem_Click;
             // 
             // serviçosToolStripMenuItem
             // 
@@ -478,5 +486,6 @@
         private ToolStripMenuItem configuraçãoDePreçosToolStripMenuItem;
         private ToolStripMenuItem serviçosToolStripMenuItem;
         private ToolStripMenuItem aluguéisToolStripMenuItem;
+        private ToolStripMenuItem parceirosToolStripMenuItem;
     }
 }

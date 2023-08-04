@@ -7,6 +7,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloTaxaEServico
         public RepositorioTaxaEServicoEmOrm(LocadoraDeVeiculosDbContext dbContext) : base(dbContext)
         {           
         
-        }     
+        }
+
+        public TaxaEServico SelecionarPorNome(string nome)
+        {
+            return registros.FirstOrDefault(x => x.nome == nome);
+        }
     }
 }

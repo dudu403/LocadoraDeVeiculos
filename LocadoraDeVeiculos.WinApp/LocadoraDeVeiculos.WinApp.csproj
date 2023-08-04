@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Compartilhado\ArquivoConfiguracaoPreco.json" />
+    <None Remove="Compartilhado\ConfigConfiguracaoPreco.json" />
+    <None Remove="Compartilhado\ControladorDeFestasInfantis.json" />
+    <None Remove="Compartilhado\json1.json" />
+  </ItemGroup>
+
+  <ItemGroup>
   	  <PackageReference Include="FluentResults" Version="3.15.2" />
   	  <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.9">
   	  	 <PrivateAssets>all</PrivateAssets>
@@ -23,6 +30,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LocadoraDeVeiculos.Aplicacao\LocadoraDeVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
+    <ProjectReference Include="..\LocadoraDeVeiculos.Infra.Json\LocadoraDeVeiculos.Infra.Json.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Infra.Orm\LocadoraDeVeiculos.Infra.Orm.csproj" />
   </ItemGroup>
 
@@ -55,7 +63,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ModuloCupomEParceiro\TelaCupomForm.cs" />
-    <Compile Update="ModuloCupomEParceiro\TabelaCupomEParceiroControl.cs">
+    <Compile Update="ModuloCupomEParceiro\TabelaParceiroControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ModuloFuncionario\TelaFuncionarioForm.cs" />
@@ -74,12 +82,16 @@
     <Compile Update="ModuloPlanoCobranca\TabelaPlanoCobrancaForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="ModuloTaxaEServico\TelaTaxaEServicoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="ModuloTaxaEServico\TabelaTaxaEServicoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

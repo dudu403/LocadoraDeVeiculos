@@ -18,7 +18,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Visible = false},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"}
 
@@ -27,9 +27,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             return colunas;
         }
 
-        public int ObterNumeroTesteSelecionado()
+        public Guid ObterIdSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId();
         }
 
         //public void AtualizarRegistros(List<var> vars)

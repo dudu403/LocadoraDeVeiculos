@@ -2,5 +2,6 @@
 {
     public interface IRepositorioTaxaEServico : IRepositorio<TaxaEServico>
     {
+        TaxaEServico SelecionarPorNome(string nome);
     }
 }

@@ -19,7 +19,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
         {
             var colunas = new DataGridViewColumn[]
             {
-                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Visible = false},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"}
 
@@ -28,9 +28,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
             return colunas;
         }
 
-        public int ObterNumeroTesteSelecionado()
+        public Guid ObterIdSelecionado()
         {
-            return grid.SelecionarNumero<int>();
+            return grid.SelecionarId();
         }
 
         public void AtualizarRegistros(List<GrupoAutomovel> grupoAutomoveis)
