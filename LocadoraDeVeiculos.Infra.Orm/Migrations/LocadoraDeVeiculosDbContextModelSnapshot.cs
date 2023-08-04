@@ -145,28 +145,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<Guid>("id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("nome")
+                    b.Property<string>("bairro")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("telefone")
-                        .IsRequired()
-                        .HasColumnType("varchar(200");
-
-                    b.Property<string>("TipodePessoa")
-                        .HasColumnType("varchar(200");
-
-                    b.Property<string>("cpf")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("cnpj")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("estado")
+                    b.Property<string>("cep")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
@@ -174,18 +157,37 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("rua")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("cnpj")
+                        .HasColumnType("varchar(200)");
 
-                    b.Property<string>("bairro")
+                    b.Property<string>("cpf")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("estado")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("nome")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
                     b.Property<int>("numero")
+                        .HasColumnType("int");
+
+                    b.Property<string>("rua")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("telefone")
+                        .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<int>("cep")
+                    b.Property<string>("tipoPessoa")
+                        .IsRequired()
                         .HasColumnType("varchar(200)");
 
                     b.HasKey("id");
@@ -276,7 +278,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("dataAdmissao")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("nome")
                         .IsRequired()
