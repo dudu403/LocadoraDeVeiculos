@@ -1,4 +1,6 @@
-﻿namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
+﻿using LocadoraDeVeiculos.Dominio.Compartilhado.Validators;
+
+namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
 {
     public class ValidadorAutomovel : AbstractValidator<Automovel>, IValidadorAutomovel
     {

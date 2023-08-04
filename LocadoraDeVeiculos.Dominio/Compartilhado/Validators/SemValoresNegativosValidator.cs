@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
 
-namespace LocadoraDeVeiculos.Dominio.Compartilhado
+namespace LocadoraDeVeiculos.Dominio.Compartilhado.Validators
 {
     public class NaoPodeValoresNegativosValidator<T> : PropertyValidator<T, decimal>
     {
@@ -10,7 +10,7 @@ namespace LocadoraDeVeiculos.Dominio.Compartilhado
         private string nomePropriedade;
 
         protected override string GetDefaultMessageTemplate(string errorCode)
-        {            
+        {
             return $"'{nomePropriedade}' deve ser composto por apenas letras.";
         }
 
@@ -22,6 +22,6 @@ namespace LocadoraDeVeiculos.Dominio.Compartilhado
                 return false;
             else
                 return true;
-        }        
+        }
     }
 }
