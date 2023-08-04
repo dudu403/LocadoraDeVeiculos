@@ -30,6 +30,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Infra.Orm.ModuloPlanoCobranca;
+using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca;
+using LocadoraDeVeiculos.Aplicacao.ModuloPlanoCobranca;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -86,6 +90,7 @@ namespace LocadoraDeVeiculos.WinApp
 
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
 
+
             IRepositorioConfiguracaoPreco repositorioConfiguracaoPreco = new RepositorioConfigPrecoEmJson(carregarDados: true);
 
             ValidadorConfiguracaoPreco validadorConfiguracaoPreco = new();
@@ -94,6 +99,7 @@ namespace LocadoraDeVeiculos.WinApp
 
             controladores.Add("ControladorConfigPreco", new ControladorConfigPreco(repositorioConfiguracaoPreco, servicoConfiguracaoPreco));
 
+
             IRepositorioParceiro repositorioParceiro = new RepositorioParceiroEmOrm(dbContext);
 
             ValidadorParceiro validadorParceiro = new();
@@ -101,6 +107,7 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoParceiro servicoParceiro = new(repositorioParceiro, validadorParceiro);
 
             controladores.Add("ControladorParceiro", new ControladorParceiro(repositorioParceiro, servicoParceiro));
+
 
             IRepositorioFuncionario repositorioFuncionario = new RepositorioFuncionarioEmOrm(dbContext);
 
@@ -118,6 +125,16 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoCupom servicoCupom = new(repositorioCupom, validadorCupom);
 
             controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, servicoCupom, repositorioParceiro));
+
+
+            IRepositorioPlanoCobranca repositorioPlanoCobranca = new RepositorioPlanoCobrancaEmOrm(dbContext);
+
+            ValidadorPlanoCobranca validadorPlanoCobranca = new();
+
+            ServicoPlanoCobranca servicoPlanoCobranca = new(repositorioPlanoCobranca, validadorPlanoCobranca);
+
+            controladores.Add("ControladorPlanoCobranca", new ControladorPlanoCobranca(repositorioPlanoCobranca, servicoPlanoCobranca, repositorioGrupoAutomovel));
+
         }
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)

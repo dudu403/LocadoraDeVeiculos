@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaPrincipalForm));
             lableRodape = new ToolStripStatusLabel();
             panelRegistros = new Panel();
-            pictureBox1 = new PictureBox();
             toolStrip1 = new ToolStrip();
             btnHome = new ToolStripButton();
             toolStripSeparator0 = new ToolStripSeparator();
@@ -67,8 +66,6 @@
             configuraçãoDePreçosToolStripMenuItem = new ToolStripMenuItem();
             serviçosToolStripMenuItem = new ToolStripMenuItem();
             aluguéisToolStripMenuItem = new ToolStripMenuItem();
-            panelRegistros.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             toolStrip1.SuspendLayout();
             rodape.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -84,23 +81,12 @@
             // panelRegistros
             // 
             panelRegistros.BorderStyle = BorderStyle.FixedSingle;
-            panelRegistros.Controls.Add(pictureBox1);
             panelRegistros.Dock = DockStyle.Fill;
             panelRegistros.Location = new Point(0, 50);
             panelRegistros.Margin = new Padding(4);
             panelRegistros.Name = "panelRegistros";
             panelRegistros.Size = new Size(1188, 589);
             panelRegistros.TabIndex = 11;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(-1, -1);
-            pictureBox1.Margin = new Padding(4);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1184, 586);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // toolStrip1
             // 
@@ -436,9 +422,6 @@
             Name = "TelaPrincipalForm";
             ShowIcon = false;
             Text = "Locadora De Veículos";
-            panelRegistros.ResumeLayout(false);
-            panelRegistros.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
             rodape.ResumeLayout(false);
@@ -453,7 +436,6 @@
 
         private ToolStripStatusLabel lableRodape;
         private Panel panelRegistros;
-        private PictureBox pictureBox1;
         private ToolStrip toolStrip1;
         private ToolStripButton btnHome;
         private ToolStripSeparator toolStripSeparator0;
