@@ -24,7 +24,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
             tipoCombustivel = registroAtualizado.tipoCombustivel;
             capacidadeTanqueLitros = registroAtualizado.capacidadeTanqueLitros;
             grupoAutomovel = registroAtualizado.grupoAutomovel;
-
         }
     }
 }

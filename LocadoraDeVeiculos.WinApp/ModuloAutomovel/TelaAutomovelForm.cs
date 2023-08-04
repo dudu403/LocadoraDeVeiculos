@@ -1,13 +1,16 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 {
     public partial class TelaAutomovelForm : Form
     {
-        public TelaAutomovelForm(List<GrupoAutomovel> gruposAutomoveis)
+        private Dominio.ModuloAutomovel.Automovel automovel { set; get; }
+        
+        public event GravarRegistroDelegate<Dominio.ModuloAutomovel.Automovel> onGravarRegistro;
+
+        public TelaAutomovelForm(List<Dominio.ModuloGrupoAutomovel.GrupoAutomovel> gruposAutomoveis)
         {
             InitializeComponent();
 
@@ -16,6 +19,19 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
             CarregarTiposCombustiveis();
 
             CarregarGruposAutomoveis(gruposAutomoveis);
+        }
+
+        public Dominio.ModuloAutomovel.Automovel ObterAutomovel()
+        {
+          //  automovel.nome = txtNome.Text;
+
+            return automovel;
+        }
+
+        public void ConfigurarAutomovel(Dominio.ModuloAutomovel.Automovel automovel)
+        {
+            this.automovel = automovel;
+
         }
 
         private void CarregarTiposCombustiveis()
@@ -29,11 +45,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
             cmbTipoCombustivel.Items.Add(TipoCombustivelEnum.Gás);
         }
 
-        private void CarregarGruposAutomoveis(List<GrupoAutomovel> gruposAutomoveis)
+        private void CarregarGruposAutomoveis(List<Dominio.ModuloGrupoAutomovel.GrupoAutomovel> gruposAutomoveis)
         {
             cmbTipoCombustivel.Items.Clear();
 
-            foreach (GrupoAutomovel grupo in gruposAutomoveis)
+            foreach (Dominio.ModuloGrupoAutomovel.GrupoAutomovel grupo in gruposAutomoveis)
             {
                 cmbTipoCombustivel.Items.Add(grupo);
             }

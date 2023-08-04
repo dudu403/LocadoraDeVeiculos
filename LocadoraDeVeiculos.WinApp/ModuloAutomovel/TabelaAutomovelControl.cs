@@ -1,4 +1,6 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
+﻿using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
+
+namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 {
     public partial class TabelaAutomovelControl : UserControl
     {
@@ -19,8 +21,17 @@
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Visible = false},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Marca", HeaderText = "Marca"},
 
+                new DataGridViewTextBoxColumn { DataPropertyName = "Modelo", HeaderText = "Modelo"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cor", HeaderText = "Cor"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Quilometragem", HeaderText = "Quilometragem"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Combustível", HeaderText = "Combustível"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Capacidade Do Tanque (L)", HeaderText = "Capacidade Do Tanque (L)"}
             };
 
             return colunas;
@@ -31,14 +42,20 @@
             return grid.SelecionarId();
         }
 
-        //public void AtualizarRegistros(List<var> vars)
-        //{
-        //    grid.Rows.Clear();
+        public void AtualizarRegistros(List<Automovel> automoveis)
+        {
+            grid.Rows.Clear();
 
-        //    foreach (var var in vars)
-        //    {
-        //        grid.Rows.Add(var.id, var.nome,...................);
-        //    }
-        //}
+            foreach (Automovel automovel in automoveis)
+            {
+                grid.Rows.Add(automovel.id, 
+                              automovel.marca,
+                              automovel.modelo,
+                              automovel.cor,
+                              automovel.quilometragem,
+                              automovel.tipoCombustivel,
+                              automovel.capacidadeTanqueLitros);
+            }
+        }
     }
 }

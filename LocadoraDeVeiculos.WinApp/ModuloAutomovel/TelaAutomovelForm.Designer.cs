@@ -95,7 +95,7 @@
             label7.Name = "label7";
             label7.Size = new Size(159, 21);
             label7.TabIndex = 99;
-            label7.Text = "Grupo do Automovel:";
+            label7.Text = "Grupo do GrupoAutomovel:";
             // 
             // label4
             // 
