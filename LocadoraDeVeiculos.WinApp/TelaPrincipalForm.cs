@@ -139,6 +139,8 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)
         {
+            ConfigurarListagem(controladores["ControladorParceiro"]);
+
             ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
         }
 
@@ -154,6 +156,8 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void planosDeCobrancaMenuItem_Click(object sender, EventArgs e)
         {
+            ConfigurarListagem(controladores["ControladorGrupoAutomovel"]);
+
             ConfigurarTelaPrincipal(controladores["ControladorPlanoCobranca"]);
         }
 

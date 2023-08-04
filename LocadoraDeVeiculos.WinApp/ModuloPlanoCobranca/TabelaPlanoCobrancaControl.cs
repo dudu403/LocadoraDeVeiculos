@@ -47,7 +47,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
             foreach (PlanoCobranca var in planoCobrancas)
             {
                 grid.Rows.Add(var.id,
-                              var.grupoAutomovel.nome,
+                              var.grupoAutomovel,
                               var.tipoPlano,
                       "R$ " + var.precoDiaria,
                       "R$ " + var?.precoPorKmExtrapolado,

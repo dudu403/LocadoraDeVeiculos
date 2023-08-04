@@ -14,13 +14,21 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca
              .NotEmpty()
              .NotNull();
 
-            RuleFor(x => x.precoPorKmExtrapolado)
-            .NotEmpty()
-            .NotNull();
+            //RuleFor(x => x.precoPorKmExtrapolado)
+            //.NotEmpty()
+            //.NotNull();
 
-            RuleFor(x => x.precoPorKm)
-            .NotEmpty()
-            .NotNull();
+            //RuleFor(x => x.precoPorKm)
+            //.NotEmpty()
+            //.NotNull();
+
+            RuleFor(x => x.tipoPlano)
+              .NotEmpty()
+              .NotNull();
+
+            RuleFor(x=> x.grupoAutomovel)
+              .NotEmpty()
+              .NotNull();
         }
     }
 }

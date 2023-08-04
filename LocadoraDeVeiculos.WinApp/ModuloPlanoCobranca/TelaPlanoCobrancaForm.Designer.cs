@@ -41,6 +41,8 @@
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
+            label5 = new Label();
+            txtKmDisponivel = new TextBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -51,6 +53,7 @@
             cmbGAutomoveis.Name = "cmbGAutomoveis";
             cmbGAutomoveis.Size = new Size(345, 23);
             cmbGAutomoveis.TabIndex = 3;
+            cmbGAutomoveis.SelectedIndexChanged += cbmTipoPlano_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -97,6 +100,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtKmDisponivel);
+            groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(txtKmExcedente);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(txtKm);
@@ -123,7 +128,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(37, 138);
+            label6.Location = new Point(30, 138);
             label6.Name = "label6";
             label6.Size = new Size(144, 15);
             label6.TabIndex = 12;
@@ -181,6 +186,22 @@
             label2.TabIndex = 6;
             label2.Text = "Tipo do Plano:";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(85, 172);
+            label5.Name = "label5";
+            label5.Size = new Size(91, 15);
+            label5.TabIndex = 14;
+            label5.Text = "Km Disponiveis:";
+            // 
+            // txtKmDisponivel
+            // 
+            txtKmDisponivel.Location = new Point(189, 175);
+            txtKmDisponivel.Name = "txtKmDisponivel";
+            txtKmDisponivel.Size = new Size(256, 23);
+            txtKmDisponivel.TabIndex = 15;
+            // 
             // TelaPlanoCobrancaForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -215,5 +236,7 @@
         private Label label2;
         private TextBox txtKmExcedente;
         private Label label6;
+        private TextBox txtKmDisponivel;
+        private Label label5;
     }
 }

@@ -2,6 +2,7 @@
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraDeVeiculos.WinApp.ModuloConfigPreco;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,9 +27,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
 
             this.ConfigurarDialog();
 
-            carregarGrupoAutomoveis(grupoAutomovels);
+            CarregarGrupoAutomoveis(grupoAutomovels);
 
             carregarOpcoesDePlano();
+
+            cbmTipoPlano.Enabled = txtPrecoDiaria.Enabled = txtKm.Enabled = txtKmExcedente.Enabled = txtKmDisponivel.Enabled = false;
+
+            cmbGAutomoveis.Focus();
         }
 
         public void ConfigurarTela(PlanoCobranca planoCobranca)
@@ -36,10 +41,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
             this.planoCobranca = planoCobranca;
 
             cmbGAutomoveis.SelectedItem = planoCobranca.grupoAutomovel;
-            planoCobranca.tipoPlano = TipoPlanoEnum.Nenhum;
+            cbmTipoPlano.SelectedItem = planoCobranca.tipoPlano;
             txtPrecoDiaria.Text = planoCobranca.precoDiaria.ToString();
-            txtKm.Text = planoCobranca.precoPorKm.ToString();
-            txtKmExcedente.Text = planoCobranca.precoPorKmExtrapolado.ToString();
+            txtKm.Text = planoCobranca?.precoPorKm.ToString();
+            txtKmExcedente.Text = planoCobranca?.precoPorKmExtrapolado.ToString();
+            txtKmDisponivel.Text = planoCobranca?.kmDisponiveis.ToString();
         }
 
         public PlanoCobranca ObterPlanoCobranca()
@@ -47,13 +53,18 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
             planoCobranca.grupoAutomovel = (GrupoAutomovel)cmbGAutomoveis.SelectedItem;
             planoCobranca.tipoPlano = (TipoPlanoEnum)cbmTipoPlano.SelectedItem;
             planoCobranca.precoDiaria = Convert.ToDecimal(txtPrecoDiaria.Text);
-            planoCobranca.precoPorKm = Convert.ToDecimal(txtKm.Text);
-            planoCobranca.precoPorKmExtrapolado = Convert.ToDecimal(txtKmExcedente.Text);
+            
+            if(planoCobranca.precoPorKm != null)    
+                planoCobranca.precoPorKm = Convert.ToDecimal(txtKm.Text);
+            if(planoCobranca.precoPorKmExtrapolado != null)
+                planoCobranca.precoPorKmExtrapolado = Convert.ToDecimal(txtKmExcedente.Text);
+            if(planoCobranca.kmDisponiveis != null)
+                planoCobranca.kmDisponiveis = Convert.ToDecimal(txtKmDisponivel.Text);
 
             return planoCobranca;
         }
 
-        private void carregarGrupoAutomoveis(List<GrupoAutomovel> grupoAutomovels)
+        private void CarregarGrupoAutomoveis(List<GrupoAutomovel> grupoAutomovels)
         {
             cmbGAutomoveis.Items.Clear();
 
@@ -97,8 +108,32 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
 
         private void cbmTipoPlano_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Pesquisar
-            // if
+            cbmTipoPlano.Enabled = true;
+            cbmTipoPlano.Focus();
+
+            if ((TipoPlanoEnum)cbmTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Diária)
+            {
+                txtPrecoDiaria.Enabled = true;
+                txtKm.Enabled = true;
+                txtKmExcedente.Enabled = false;
+                txtKmDisponivel.Enabled = false;
+            }
+
+            if ((TipoPlanoEnum)cbmTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Controlada)
+            {
+                txtPrecoDiaria.Enabled = true;
+                txtKm.Enabled = false;
+                txtKmExcedente.Enabled = true;
+                txtKmDisponivel.Enabled = true;
+            }
+
+            if ((TipoPlanoEnum)cbmTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Km_Livre)
+            {
+                txtPrecoDiaria.Enabled = true;
+                txtKm.Enabled = false;
+                txtKmExcedente.Enabled = false;
+                txtKmDisponivel.Enabled = false;
+            }
         }
 
         private void txtPrecoLocacao_KeyPress(object sender, KeyPressEventArgs e)
