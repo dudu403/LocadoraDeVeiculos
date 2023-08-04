@@ -71,12 +71,12 @@ namespace LocadoraDeVeiculos.WinApp
 
             var dbContext = new LocadoraDeVeiculosDbContext(optionsBuilder.Options);
 
-            var migracoesPendentes = dbContext.Database.GetPendingMigrations();
+            //var migracoesPendentes = dbContext.Database.GetPendingMigrations();
 
-            if (migracoesPendentes.Count() > 0)
-            {
-                dbContext.Database.Migrate();
-            }
+            //if (migracoesPendentes.Count() > 0)
+            //{
+            //    dbContext.Database.Migrate();
+            //}
 
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
 
@@ -122,7 +122,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
+            ConfigurarListagem(controladores["ControladorParceiro"]);
 
             ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
         }
@@ -144,7 +144,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void automoveisMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(controladores["ControladorGrupoAutomovel"]);
+            ConfigurarListagem(controladores["ControladorGrupoAutomovel"]);
 
             ConfigurarTelaPrincipal(controladores["ControladorAutomovel"]);
         }
@@ -156,7 +156,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void condutoresMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(controladores["ControladorCliente"]);
+            ConfigurarListagem(controladores["ControladorCliente"]);
 
             ConfigurarTelaPrincipal(controladores["ControladorCondutor"]);
         }
