@@ -53,7 +53,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
             foreach (Cupom cupom in cupons)
             {
-                grid.Rows.Add(cupom.id, cupom.nome, cupom.valor, cupom.validade, cupom.parceiro);
+                grid.Rows.Add(cupom.id, 
+                              cupom.nome, 
+                              cupom.valor, 
+                              cupom.validade.ToString("dd/MM/yyyy"), 
+                              cupom.parceiro);
             }
         }
     }
