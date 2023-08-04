@@ -145,7 +145,28 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<Guid>("id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("bairro")
+                    b.Property<string>("nome")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("telefone")
+                        .IsRequired()
+                        .HasColumnType("varchar(200");
+
+                    b.Property<string>("TipodePessoa")
+                        .HasColumnType("varchar(200");
+
+                    b.Property<string>("cpf")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("cnpj")
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("estado")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
@@ -153,34 +174,19 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
-                    b.Property<string>("cnpj")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("cpf")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("edereco")
+                    b.Property<string>("rua")
                         .IsRequired()
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("estado")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("nome")
+                    b.Property<string>("bairro")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
                     b.Property<int>("numero")
-                        .HasColumnType("int");
+                        .HasColumnType("varchar(200)");
 
-                    b.Property<string>("rua")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("cep")
+                        .HasColumnType("varchar(200)");
 
                     b.HasKey("id");
 
