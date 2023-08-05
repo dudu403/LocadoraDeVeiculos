@@ -26,7 +26,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
         public Automovel ObterAutomovel()
         {
-            automovel.foto = ConverterEmBinario(image);
+            automovel.foto = ConverterEmBinario(pctBoxFoto.Image);
             automovel.quilometragem = Convert.ToDouble(txtKm.Text);
             automovel.grupoAutomovel = (GrupoAutomovel)cmbGrpAutomovel.SelectedItem;
             automovel.modelo = txtModelo.Text;
@@ -67,11 +67,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
         private void CarregarGruposAutomoveis(List<GrupoAutomovel> gruposAutomoveis)
         {
-            cmbTipoCombustivel.Items.Clear();
+            cmbGrpAutomovel.Items.Clear();
 
             foreach (GrupoAutomovel grupo in gruposAutomoveis)
             {
-                cmbTipoCombustivel.Items.Add(grupo);
+                cmbGrpAutomovel.Items.Add(grupo);
             }
         }
 
@@ -112,7 +112,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             OpenFileDialog file = new();
-
+            
             //file.Filter = "*.jpg;*.jpeg;*.png;*.gif;*.bmp";
             file.Filter = "Bitmaps|*.bmp|jpeg|*.jpg";
 
@@ -124,8 +124,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
                 pctBoxFoto.Image = image;
             }
-            //else
-            //    return;
 
             DialogResult = DialogResult.None;
         }

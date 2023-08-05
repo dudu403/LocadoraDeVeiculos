@@ -158,7 +158,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void automoveisMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(controladores["ControladorGrupoAutomovel"]);
+            ConfigurarListagem(controladores["ControladorGrupoAutomovel"]);
 
             ConfigurarTelaPrincipal(controladores["ControladorAutomovel"]);
         }
