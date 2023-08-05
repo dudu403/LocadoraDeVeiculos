@@ -1,4 +1,6 @@
 ﻿
+using LocadoraDeVeiculos.Dominio.ModuloAluguel;
+
 namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 {
     public partial class TabelaAluguelControl : UserControl
@@ -32,14 +34,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             return grid.SelecionarId();
         }
 
-        //public void AtualizarRegistros(List<var> vars)
-        //{
-        //    grid.Rows.Clear();
+        public void AtualizarRegistros(List<Aluguel> aluguels)
+        {
+            grid.Rows.Clear();
 
-        //    foreach (var var in vars)
-        //    {
-        //        grid.Rows.Add(var.id, var.nome,...................);
-        //    }
-        //}
+            foreach (Aluguel aluguel in aluguels)
+            {
+                grid.Rows.Add(aluguel.id);
+            }
+        }
     }
 }

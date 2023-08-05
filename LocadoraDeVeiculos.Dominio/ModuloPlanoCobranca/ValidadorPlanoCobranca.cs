@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,12 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca
              .NotEmpty()
              .NotNull();
 
+            //EXEMPLO
+            //    When(customer => customer.IsPreferred, () => {
+            //    RuleFor(customer => customer.CustomerDiscount).GreaterThan(0);
+            //    RuleFor(customer => customer.CreditCardNumber).NotNull();
+            //});
+
             //RuleFor(x => x.precoPorKmExtrapolado)
             //.NotEmpty()
             //.NotNull();
@@ -21,6 +28,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca
             //RuleFor(x => x.precoPorKm)
             //.NotEmpty()
             //.NotNull();
+
+            //RuleFor(x => x.kmDisponiveis)
+            //    .NotEmpty()
+            //    .NotNull();
 
             RuleFor(x => x.tipoPlano)
               .NotEmpty()

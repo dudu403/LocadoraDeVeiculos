@@ -29,6 +29,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAluguel
         public Cliente cliente { get; set; }
         public Cupom? cupom { get; set; }
 
+        public Aluguel()
+        {
+
+        }
         public override void AtualizarInformacoes(Aluguel registroAtualizado)
         {
             throw new NotImplementedException();
