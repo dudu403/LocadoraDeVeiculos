@@ -22,8 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dominio\" />
     <Folder Include="Aplicacao\" />
+    <Folder Include="Dominio\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
+  </ItemGroup>
+
 
 </Project>

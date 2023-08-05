@@ -40,7 +40,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
             foreach (Aluguel aluguel in aluguels)
             {
-                grid.Rows.Add(aluguel.id);
+                grid.Rows.Add(aluguel.id,aluguel.condutor,
+                            aluguel.automovel,aluguel.dataLocacao,
+                            aluguel.dataPrevistaDevolucao,aluguel.dataDevolucao,
+                            aluguel.valorTotalFinal);
+                //Aqui falta o tipo de plano, tem que arrumar na entidade ou ver como foi pensada a entidade
             }
         }
     }

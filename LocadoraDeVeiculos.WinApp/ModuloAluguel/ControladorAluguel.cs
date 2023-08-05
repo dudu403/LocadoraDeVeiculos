@@ -8,6 +8,7 @@ using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
+using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAluguel;
 using LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
@@ -21,6 +22,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         private IRepositorioCondutor repositorioCondutor;
         private IRepositorioAutomovel repositorioAutomovel;
         private IRepositorioGrupoAutomovel repositorioGrupoAutomovel;
+        private IRepositorioPlanoCobranca repositorioPlanoCobranca;
 
         private IRepositorioAluguel repositorioAluguel;
 
@@ -34,7 +36,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                                    IRepositorioCliente repositorioCliente,
                                    IRepositorioCondutor repositorioCondutor,
                                    IRepositorioAutomovel repositorioAutomovel,
-                                   IRepositorioGrupoAutomovel repositorioGrupoAutomovel)
+                                   IRepositorioGrupoAutomovel repositorioGrupoAutomovel,
+                                   IRepositorioPlanoCobranca repositorioPlanoCobranca)
         {
             this.repositorioAluguel = repositorioAluguel;
             this.repositorioFuncionario = repositorioFuncionario;
@@ -42,6 +45,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             this.repositorioCondutor = repositorioCondutor;
             this.repositorioAutomovel = repositorioAutomovel;
             this.repositorioGrupoAutomovel = repositorioGrupoAutomovel;
+            this.repositorioPlanoCobranca = repositorioPlanoCobranca;
     }
 
 

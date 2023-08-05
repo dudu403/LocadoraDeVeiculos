@@ -7,6 +7,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
         public DateTime dataAdmissao { get; set; }
         public decimal salario { get; set; }
 
+
         public Funcionario() 
         {
             dataAdmissao = DateTime.Now;
