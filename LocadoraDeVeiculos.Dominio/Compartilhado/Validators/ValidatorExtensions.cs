@@ -41,5 +41,10 @@
         {
             return ruleBuilder.SetValidator(new NaoPodeValoresNegativosValidator2<T>());
         }
+
+        public static IRuleBuilderOptions<T, byte[]> VerificaTamanhoMax2MB<T>(this IRuleBuilder<T, byte[]> ruleBuilder)
+        {
+            return ruleBuilder.SetValidator(new NaoPodeMaiorQue2MB<T>());
+        }
     }
 }

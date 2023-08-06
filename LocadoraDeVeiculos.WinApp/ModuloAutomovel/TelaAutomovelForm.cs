@@ -9,7 +9,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
     public partial class TelaAutomovelForm : Form
     {
         private Automovel automovel { set; get; }
-        private Image image { set; get; }   
+        private Image image { set; get; }
 
         public event GravarRegistroDelegate<Automovel> onGravarRegistro;
 
@@ -26,7 +26,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
         public Automovel ObterAutomovel()
         {
-            automovel.foto = ConverterEmBinario(pctBoxFoto.Image);
+            if (image != null)
+                automovel.foto = ConverterEmBinario(pctBoxFoto.Image);
+
             automovel.quilometragem = Convert.ToDouble(txtKm.Text);
             automovel.grupoAutomovel = (GrupoAutomovel)cmbGrpAutomovel.SelectedItem;
             automovel.modelo = txtModelo.Text;
@@ -80,6 +82,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
             image = Image.FromFile(file.FileName);
 
             double largura = image.Width;
+
             double altura = image.Height;
 
             int novaAltura = 120;

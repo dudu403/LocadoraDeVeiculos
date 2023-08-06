@@ -6,22 +6,29 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
     {
         public ValidadorAutomovel()
         {
+            RuleFor(x => x.foto)
+                .NotEmpty() 
+                .NotNull()
+                .VerificaTamanhoMax2MB();
+
             RuleFor(x => x.quilometragem)
                 .NotEmpty()
                 .NotNull()
                 .SemValoresNegativosDouble();
 
-            RuleFor(x => x.marca)
-                .NotEmpty()
-                .NotNull()
-                .MinimumLength(3)
-                .PodeApenasLetras();
+            RuleFor(x => x.grupoAutomovel)
+               .NotEmpty()
+               .NotNull();
 
             RuleFor(x => x.modelo)
                 .NotEmpty()
                 .NotNull()
-                .MinimumLength(3)
-                .PodeApenasLetras();
+                .MinimumLength(3);
+
+            RuleFor(x => x.marca)
+                .NotEmpty()
+                .NotNull()
+                .MinimumLength(3);
 
             RuleFor(x => x.cor)
                 .NotEmpty()

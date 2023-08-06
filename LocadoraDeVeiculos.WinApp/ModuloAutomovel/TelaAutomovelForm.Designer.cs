@@ -91,11 +91,11 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(52, 224);
+            label7.Location = new Point(96, 219);
             label7.Name = "label7";
-            label7.Size = new Size(203, 21);
+            label7.Size = new Size(159, 21);
             label7.TabIndex = 99;
-            label7.Text = "Grupo do GrupoAutomovel:";
+            label7.Text = "Grupo do Automovel:";
             // 
             // label4
             // 
@@ -212,7 +212,7 @@
             btnGravar.DialogResult = DialogResult.OK;
             btnGravar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnGravar.ImageAlign = ContentAlignment.BottomRight;
-            btnGravar.Location = new Point(487, 517);
+            btnGravar.Location = new Point(500, 517);
             btnGravar.Margin = new Padding(4);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(94, 41);
@@ -226,7 +226,7 @@
             // 
             pctBoxFoto.Location = new Point(274, 24);
             pctBoxFoto.Name = "pctBoxFoto";
-            pctBoxFoto.Size = new Size(300, 120);
+            pctBoxFoto.Size = new Size(321, 120);
             pctBoxFoto.TabIndex = 0;
             pctBoxFoto.TabStop = false;
             // 
