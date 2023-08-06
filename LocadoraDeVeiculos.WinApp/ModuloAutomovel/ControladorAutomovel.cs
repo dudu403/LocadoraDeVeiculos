@@ -112,7 +112,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
             tabelaAutomovel.AtualizarRegistros(automoveis);
 
-            mensagemRodape = string.Format("Visualizando {0} automove", automoveis.Count, automoveis.Count == 1 ? "l" : "is");
+            mensagemRodape = string.Format("Visualizando {0} automove{1}", automoveis.Count, automoveis.Count == 1 ? "l" : "is");
 
             TelaPrincipalForm.Tela.AtualizarRodape(mensagemRodape);
         }

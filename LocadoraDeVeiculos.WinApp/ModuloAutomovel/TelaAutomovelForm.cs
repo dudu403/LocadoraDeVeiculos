@@ -75,18 +75,18 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
             }
         }
 
-        private Bitmap RedimensionarImagem(string path)
+        private Bitmap RedimensionarImagem(OpenFileDialog file)
         {
-            image = Image.FromFile(path);
+            image = Image.FromFile(file.FileName);
 
             double largura = image.Width;
             double altura = image.Height;
 
-            int novaLargura = 300;
+            int novaAltura = 120;
 
-            double proporcao = novaLargura / largura;
+            double proporcao = novaAltura / altura;
 
-            int novaAltura = (int)(proporcao * altura);
+            int novaLargura = (int)(proporcao * largura);
 
             var size = new Size(novaLargura, novaAltura);
 
@@ -112,15 +112,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             OpenFileDialog file = new();
-            
-            //file.Filter = "*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-            file.Filter = "Bitmaps|*.bmp|jpeg|*.jpg";
+
+            file.Filter = "jpg|*.jpg|Bitmaps|*.bmp|png|*.png|jpeg|*.jpeg|Gif|*.gif ";
 
             if (file.ShowDialog() == DialogResult.OK)
             {
-                image = Bitmap.FromFile(file.FileName);
-                    
-                RedimensionarImagem(file.FileName);
+                image = RedimensionarImagem(file);
 
                 pctBoxFoto.Image = image;
             }
