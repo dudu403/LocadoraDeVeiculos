@@ -7,6 +7,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloCliente
         public RepositorioClienteEmOrm(LocadoraDeVeiculosDbContext dbContext) : base(dbContext)
         {           
         
-        }     
+        }
+
+        public Cliente SelecionarPorNome(string nome)
+        {
+            return registros.FirstOrDefault(x => x.nome == nome);
+        }
     }
 }

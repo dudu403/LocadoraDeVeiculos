@@ -32,6 +32,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCliente;
+using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
+using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
 using LocadoraDeVeiculos.Infra.Orm.ModuloTaxaEServico;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxaEServico;
@@ -130,6 +134,18 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoFuncionario servicoFuncionario = new(repositorioFuncionario, validadorFuncionario);
 
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
+
+            IRepositorioCliente repositorioCliente = new RepositorioClienteEmOrm(dbContext);
+
+            ValidadorCliente validadorCliente = new();
+
+            ServicoCliente servicoCliente = new(repositorioCliente, validadorCliente);
+
+            controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente));
+
+
+
+
         }
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)

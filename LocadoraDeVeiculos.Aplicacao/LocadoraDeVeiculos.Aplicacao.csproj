@@ -15,6 +15,7 @@
 	
   <ItemGroup>
     <Folder Include="Compartilhado\" />
+    <Folder Include="ModuloAutomovel\" />
     <Folder Include="ModuloCliente\" />
     <Folder Include="ModuloCondutor\" />
     <Folder Include="ModuloCupomEParceiro\" />

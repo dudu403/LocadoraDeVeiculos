@@ -153,6 +153,10 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
+                    b.Property<string>("cep")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
                     b.Property<string>("cidade")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
@@ -162,10 +166,6 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 
                     b.Property<string>("cpf")
                         .HasColumnType("varchar(200)");
-
-                    b.Property<string>("edereco")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("email")
                         .IsRequired()
@@ -185,6 +185,14 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<string>("rua")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("telefone")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("tipoPessoa")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
 
                     b.HasKey("id");
 
