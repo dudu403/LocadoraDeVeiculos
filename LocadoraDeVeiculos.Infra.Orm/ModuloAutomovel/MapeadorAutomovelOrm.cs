@@ -10,6 +10,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloAutomovel
 
             builder.Property(d => d.id).IsRequired().ValueGeneratedNever();
 
+            builder.Property(d => d.foto).HasConversion<byte[]>().IsRequired();
+
             builder.Property(d => d.modelo).HasColumnType("varchar(100)").IsRequired();
 
             builder.Property(d => d.marca).HasColumnType("varchar(100)").IsRequired();
@@ -18,7 +20,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloAutomovel
 
             builder.Property(d => d.tipoCombustivel).HasConversion<int>().IsRequired();
 
-            builder.Property(d => d.kilometragem).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.quilometragem).HasConversion<double>().IsRequired();
 
             builder.Property(d => d.capacidadeTanqueLitros).HasConversion<decimal>().IsRequired();
 

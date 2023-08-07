@@ -2,5 +2,6 @@
 {
     public interface IRepositorioCupom : IRepositorio<Cupom>
     {
+        Cupom SelecionarPorNome(string nome);
     }
 }

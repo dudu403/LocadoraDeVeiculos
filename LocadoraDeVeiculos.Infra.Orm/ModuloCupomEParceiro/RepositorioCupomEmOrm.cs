@@ -7,6 +7,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloConfigPreco
         public RepositorioCupomEmOrm(LocadoraDeVeiculosDbContext dbContext) : base(dbContext)
         {           
         
-        }     
+        }
+
+        public Cupom SelecionarPorNome(string nome)
+        {
+            return registros.SingleOrDefault(x => x.nome == nome);
+        }
     }
 }

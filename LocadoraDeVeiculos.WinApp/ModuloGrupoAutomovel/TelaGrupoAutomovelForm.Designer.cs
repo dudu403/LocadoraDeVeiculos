@@ -95,7 +95,7 @@
             Name = "TelaGrupoAutomovelForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Grupo de Automovel";
+            Text = "Grupo de GrupoAutomovel";
             ResumeLayout(false);
             PerformLayout();
         }

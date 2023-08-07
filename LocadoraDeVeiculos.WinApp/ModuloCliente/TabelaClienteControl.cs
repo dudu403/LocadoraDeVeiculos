@@ -1,4 +1,6 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloCliente
+﻿using LocadoraDeVeiculos.Dominio.ModuloCliente;
+
+namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 {
     public partial class TabelaClienteControl : UserControl
     {
@@ -19,9 +21,19 @@
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Visible = false},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
 
+                new DataGridViewTextBoxColumn { DataPropertyName = "CEP", HeaderText = "CEP"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Telefone", HeaderText = "Telefone"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Tipo de Cliente", HeaderText = "Tipo de Cliente"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "CPF/CNPJ", HeaderText = "CPF/CNPJ"}
             };
+
 
             return colunas;
         }
@@ -31,14 +43,20 @@
             return grid.SelecionarId();
         }
 
-        //public void AtualizarRegistros(List<var> vars)
-        //{
-        //    grid.Rows.Clear();
+        public void AtualizarRegistros(List<Cliente> clientes)
+        {
+            grid.Rows.Clear();
 
-        //    foreach (var var in vars)
-        //    {
-        //        grid.Rows.Add(var.id, var.nome,...................);
-        //    }
-        //}
+            foreach (var cliente in clientes)
+            {
+                grid.Rows.Add(cliente.id,
+                              cliente.nome,
+                              cliente.cep,
+                              cliente.telefone,
+                              cliente.email,
+                              cliente.tipoPessoa,
+                              cliente.tipoPessoa == "Pessoa Física" ? cliente.cpf : cliente.cnpj);
+            }
+        }
     }
 }

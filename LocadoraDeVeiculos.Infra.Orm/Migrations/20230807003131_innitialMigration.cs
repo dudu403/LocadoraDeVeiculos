@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 {
     /// <inheritdoc />
-    public partial class ConfigTabelasGuid : Migration
+    public partial class innitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,16 +16,18 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    edereco = table.Column<string>(type: "varchar(500)", nullable: false),
+                    nome = table.Column<string>(type: "varchar(200)", nullable: false),
+                    email = table.Column<string>(type: "varchar(200)", nullable: false),
+                    telefone = table.Column<string>(type: "varchar(200)", nullable: false),
+                    tipoPessoa = table.Column<string>(type: "varchar(200)", nullable: false),
+                    cpf = table.Column<string>(type: "varchar(200)", nullable: true),
+                    cnpj = table.Column<string>(type: "varchar(200)", nullable: true),
                     estado = table.Column<string>(type: "varchar(200)", nullable: false),
                     cidade = table.Column<string>(type: "varchar(200)", nullable: false),
                     bairro = table.Column<string>(type: "varchar(200)", nullable: false),
-                    cnpj = table.Column<string>(type: "varchar(200)", nullable: true),
-                    email = table.Column<string>(type: "varchar(200)", nullable: false),
-                    nome = table.Column<string>(type: "varchar(200)", nullable: false),
-                    cpf = table.Column<string>(type: "varchar(200)", nullable: true),
+                    rua = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     numero = table.Column<int>(type: "int", nullable: false),
-                    rua = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    cep = table.Column<string>(type: "varchar(200)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,7 +40,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     nome = table.Column<string>(type: "varchar(100)", nullable: false),
-                    dataAdmissao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    dataAdmissao = table.Column<DateTime>(type: "datetime", nullable: false),
                     salario = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
@@ -101,9 +103,10 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     tipoCombustivel = table.Column<int>(type: "int", nullable: false),
                     capacidadeTanqueLitros = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     grupoAutomovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    kilometragem = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    quilometragem = table.Column<double>(type: "float", nullable: false),
                     modelo = table.Column<string>(type: "varchar(100)", nullable: false),
                     marca = table.Column<string>(type: "varchar(100)", nullable: false),
+                    foto = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     cor = table.Column<string>(type: "varchar(100)", nullable: false)
                 },
                 constraints: table =>

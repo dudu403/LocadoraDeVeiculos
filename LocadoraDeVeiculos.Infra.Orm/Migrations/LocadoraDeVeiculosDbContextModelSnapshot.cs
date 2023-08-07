@@ -116,11 +116,12 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
+                    b.Property<byte[]>("foto")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<Guid>("grupoAutomovelid")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("kilometragem")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("marca")
                         .IsRequired()
@@ -129,6 +130,9 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<string>("modelo")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
+
+                    b.Property<double>("quilometragem")
+                        .HasColumnType("float");
 
                     b.Property<int>("tipoCombustivel")
                         .HasColumnType("int");
@@ -149,6 +153,10 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
+                    b.Property<string>("cep")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
                     b.Property<string>("cidade")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
@@ -158,10 +166,6 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 
                     b.Property<string>("cpf")
                         .HasColumnType("varchar(200)");
-
-                    b.Property<string>("edereco")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("email")
                         .IsRequired()
@@ -181,6 +185,14 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     b.Property<string>("rua")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("telefone")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("tipoPessoa")
+                        .IsRequired()
+                        .HasColumnType("varchar(200)");
 
                     b.HasKey("id");
 
@@ -270,7 +282,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("dataAdmissao")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("nome")
                         .IsRequired()

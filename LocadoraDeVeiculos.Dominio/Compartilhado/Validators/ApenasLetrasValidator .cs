@@ -1,17 +1,17 @@
 ﻿using FluentValidation;
 using FluentValidation.Validators;
 
-namespace LocadoraDeVeiculos.Dominio.Compartilhado
+namespace LocadoraDeVeiculos.Dominio.Compartilhado.Validators
 {
-    public class NaoPodeCaracteresEspeciaisValidator<T> : PropertyValidator<T, string>
+    public class PodeApenasLetrasValidator<T> : PropertyValidator<T, string>
     {
-        public override string Name => "NaoPodeCaracteresEspeciaisValidator";
+        public override string Name => "PodeApenasLetrasValidator";
 
         private string nomePropriedade;
 
         protected override string GetDefaultMessageTemplate(string errorCode)
-        {            
-            return $"'{nomePropriedade}' deve ser composto por letras e números.";
+        {
+            return $"'{nomePropriedade}' deve ser composto por apenas letras.";
         }
 
         public override bool IsValid(ValidationContext<T> contextoValidacao, string texto)
@@ -28,14 +28,14 @@ namespace LocadoraDeVeiculos.Dominio.Compartilhado
                 if (letra == ' ')
                     continue;
 
-                if (char.IsLetterOrDigit(letra) == false)
+                if (char.IsLetter(letra) == false)
                 {
-                    estaValido = false;                    
+                    estaValido = false;
                     break;
                 }
             }
 
             return estaValido;
-        }        
+        }
     }
 }

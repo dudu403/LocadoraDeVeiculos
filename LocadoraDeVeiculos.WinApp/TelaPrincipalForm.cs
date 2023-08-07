@@ -1,6 +1,7 @@
 using LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Aplicacao.ModuloConfigPreco;
 using LocadoraDeVeiculos.Aplicacao.ModuloGrupoAutomovel;
+using LocadoraDeVeiculos.Aplicacao.ModuloAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloAluguel;
 using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
@@ -20,6 +21,7 @@ using LocadoraDeVeiculos.WinApp.ModuloAluguel;
 using LocadoraDeVeiculos.WinApp.ModuloConfigPreco;
 using LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel;
+using LocadoraDeVeiculos.WinApp.ModuloAutomovel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
@@ -30,6 +32,10 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 using LocadoraDeVeiculos.WinApp.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCliente;
+using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
+using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
 using LocadoraDeVeiculos.Infra.Orm.ModuloTaxaEServico;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxaEServico;
@@ -60,7 +66,7 @@ namespace LocadoraDeVeiculos.WinApp
         }
 
         private void ConfigurarControladores()
-        {          
+        {
             var configuracao = new ConfigurationBuilder()
               .SetBasePath(Directory.GetCurrentDirectory())
               .AddJsonFile("appsettings.json")
@@ -88,6 +94,14 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoGrupoAutomovel servicoGrupoAutomovel = new(repositorioGrupoAutomovel, validadorGrupoAutomovel);
 
             controladores.Add("ControladorGrupoAutomovel", new ControladorGrupoAutomovel(repositorioGrupoAutomovel, servicoGrupoAutomovel));
+
+            IRepositorioAutomovel repositorioAutomovel = new RepositorioAutomovelEmOrm(dbContext);
+
+            ValidadorAutomovel validadorAutomovel = new();
+
+            ServicoAutomovel servicoAutomovel = new(repositorioAutomovel, validadorAutomovel);
+
+            controladores.Add("ControladorAutomovel", new ControladorAutomovel(repositorioAutomovel, repositorioGrupoAutomovel, servicoAutomovel));
 
             IRepositorioConfiguracaoPreco repositorioConfiguracaoPreco = new RepositorioConfigPrecoEmJson(carregarDados: true);
 
@@ -120,10 +134,28 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoFuncionario servicoFuncionario = new(repositorioFuncionario, validadorFuncionario);
 
             controladores.Add("ControladorFuncionario", new ControladorFuncionario(repositorioFuncionario, servicoFuncionario));
+
+            IRepositorioCliente repositorioCliente = new RepositorioClienteEmOrm(dbContext);
+
+            ValidadorCliente validadorCliente = new();
+
+            ServicoCliente servicoCliente = new(repositorioCliente, validadorCliente);
+
+            controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente));
+
+            IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
+
+            ValidadorCupom validadorCupom = new();
+
+            ServicoCupom servicoCupom = new(repositorioCupom, validadorCupom);
+
+            controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, servicoCupom, repositorioParceiro));
         }
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)
         {
+            ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
+
             ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
         }
 
@@ -139,11 +171,15 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void planosDeCobrancaMenuItem_Click(object sender, EventArgs e)
         {
+            ConfigurarTelaPrincipal(controladores["ControladorGrupoAutomovel"]);
+
             ConfigurarTelaPrincipal(controladores["ControladorPlanoCobranca"]);
         }
 
         private void automoveisMenuItem_Click(object sender, EventArgs e)
         {
+            ConfigurarListagem(controladores["ControladorGrupoAutomovel"]);
+
             ConfigurarTelaPrincipal(controladores["ControladorAutomovel"]);
         }
 
@@ -154,6 +190,8 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void condutoresMenuItem_Click(object sender, EventArgs e)
         {
+            ConfigurarTelaPrincipal(controladores["ControladorCliente"]);
+
             ConfigurarTelaPrincipal(controladores["ControladorCondutor"]);
         }
 

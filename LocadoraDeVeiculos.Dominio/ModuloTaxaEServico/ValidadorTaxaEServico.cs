@@ -1,4 +1,6 @@
-﻿namespace LocadoraDeVeiculos.Dominio.ModuloTaxaEServico
+﻿using LocadoraDeVeiculos.Dominio.Compartilhado.Validators;
+
+namespace LocadoraDeVeiculos.Dominio.ModuloTaxaEServico
 {
     public class ValidadorTaxaEServico : AbstractValidator<TaxaEServico>, IValidadorTaxaEServico
     {
@@ -14,7 +16,7 @@
             RuleFor(x => x.preco)
                .NotEmpty()
                .NotNull()
-               .SemValoresNegativos();
+               .SemValoresNegativosDecimal();
 
             RuleFor(x => x.tipoDoCusto)
                .NotEmpty()
