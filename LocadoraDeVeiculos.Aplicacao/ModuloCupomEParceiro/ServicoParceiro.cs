@@ -70,6 +70,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro
         public Result Excluir(Parceiro parceiro)
         {
             Log.Debug("Tentando excluir um parceiro...{@d}", parceiro);
+
             try
             {
                 bool ParceiroExiste = repositorioParceiro.Existe(parceiro);

@@ -66,7 +66,7 @@ namespace LocadoraDeVeiculos.WinApp
         }
 
         private void ConfigurarControladores()
-        {          
+        {
             var configuracao = new ConfigurationBuilder()
               .SetBasePath(Directory.GetCurrentDirectory())
               .AddJsonFile("appsettings.json")
@@ -80,12 +80,12 @@ namespace LocadoraDeVeiculos.WinApp
 
             var dbContext = new LocadoraDeVeiculosDbContext(optionsBuilder.Options);
 
-            var migracoesPendentes = dbContext.Database.GetPendingMigrations();
+            //var migracoesPendentes = dbContext.Database.GetPendingMigrations();
 
-            if (migracoesPendentes.Count() > 0)
-            {
-                dbContext.Database.Migrate();
-            }
+            //if (migracoesPendentes.Count() > 0)
+            //{
+            //    dbContext.Database.Migrate();
+            //}
 
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
 
@@ -146,6 +146,15 @@ namespace LocadoraDeVeiculos.WinApp
 
 
 
+
+
+            IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
+
+            ValidadorCupom validadorCupom = new();
+
+            ServicoCupom servicoCupom = new(repositorioCupom, validadorCupom);
+
+            controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, servicoCupom, repositorioParceiro));
         }
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)
