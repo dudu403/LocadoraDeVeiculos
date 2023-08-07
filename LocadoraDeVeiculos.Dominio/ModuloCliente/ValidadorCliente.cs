@@ -1,9 +1,4 @@
-﻿using LocadoraDeVeiculos.Dominio.Compartilhado;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LocadoraDeVeiculos.Dominio.Compartilhado.Validators;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloCliente
 {
@@ -17,26 +12,24 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
                 .MinimumLength(3)
                 .NaoPodeCaracteresEspeciais();
 
-            RuleFor(x => x.cep)
-                .NotEmpty()
-                .NotNull()
-                .MinimumLength(8);
-
             RuleFor(x => x.email)
                 .NotEmpty()
-                .NotNull();
+                .NotNull()
+                .VerificaFormatoEmail();
 
             RuleFor(x => x.telefone)
+                .VerificaFormatoTelefone();
+
+            RuleFor(x => x.tipoPessoa)
                 .NotEmpty()
-                .NotNull()
-                .MinimumLength(8);
+                .NotNull();
 
             When(x => x.tipoPessoa == "Pessoa Física", () =>
             {
                 RuleFor(x => x.cpf)
                     .NotEmpty()
                     .NotNull()
-                    .MinimumLength(8);
+                    .VerificaFormatoCpf();
 
                 RuleFor(x => x.cnpj)
                     .Empty(); 
@@ -47,31 +40,19 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCliente
                 RuleFor(x => x.cnpj)
                     .NotEmpty()
                     .NotNull()
-                    .MinimumLength(5);
+                    .VerificaFormatoCnpj();
 
                 RuleFor(x => x.cpf)
                     .Empty(); 
             });
 
+            RuleFor(x => x.cep)
+                .NotEmpty()
+                .NotNull()
+                .VerificaFormatoCep();
+
             RuleFor(x => x.estado)
-                .NotEmpty()
-                .NotNull()
-                .NaoPodeCaracteresEspeciais();
-
-            RuleFor(x => x.cidade)
-                .NotEmpty()
-                .NotNull()
-                .NaoPodeCaracteresEspeciais();
-
-            RuleFor(x => x.bairro)
-                .NotEmpty()
-                .NotNull()
-                .NaoPodeCaracteresEspeciais();
-
-            RuleFor(x => x.rua)
-                .NotEmpty()
-                .NotNull()
-                .NaoPodeCaracteresEspeciais();
+                .VerificaSePreencheu();
 
             RuleFor(x => x.numero)
                 .NotEmpty()

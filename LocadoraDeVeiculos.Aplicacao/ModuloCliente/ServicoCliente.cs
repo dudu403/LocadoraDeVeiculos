@@ -1,10 +1,4 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloCliente;
-using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 {
@@ -112,8 +106,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             }
         }
 
-
-
         private List<string> ValidarCliente(Cliente cliente)
         {
             var resultadoValidacao = validadorCliente.Validate(cliente);
@@ -125,15 +117,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 
             if (NomeDuplicado(cliente))
                 erros.Add($"Este nome '{cliente.nome}' já está sendo utilizado");
-
-            if (cliente.tipoPessoa == "Pessoa Física" && string.IsNullOrWhiteSpace(cliente.cpf))
-                erros.Add("O CPF é obrigatório para Pessoa Física");
-
-            if (cliente.tipoPessoa == "Pessoa Jurídica" && string.IsNullOrWhiteSpace(cliente.cnpj))
-                erros.Add("O CNPJ é obrigatório para Pessoa Jurídica");
-
-            if (string.IsNullOrWhiteSpace(cliente.telefone?.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")))
-                erros.Add("O telefone é obrigatório");
 
             foreach (string erro in erros)
             {
@@ -154,8 +137,5 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 
             return false;
         }
-
-
-
     }
 }

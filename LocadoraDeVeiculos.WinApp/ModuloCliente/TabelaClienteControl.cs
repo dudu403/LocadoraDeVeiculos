@@ -31,9 +31,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Tipo de Cliente", HeaderText = "Tipo de Cliente"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "CPF", HeaderText = "CPF"},
-
-                new DataGridViewTextBoxColumn { DataPropertyName = "CNPJ", HeaderText = "CNPJ"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "CPF/CNPJ", HeaderText = "CPF/CNPJ"}
             };
 
 
@@ -57,8 +55,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                               cliente.telefone,
                               cliente.email,
                               cliente.tipoPessoa,
-                              cliente.cpf,
-                              cliente.cnpj);
+                              cliente.tipoPessoa == "Pessoa Física" ? cliente.cpf : cliente.cnpj);
             }
         }
     }

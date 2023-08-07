@@ -22,6 +22,16 @@
             return ruleBuilder.SetValidator(new FormatoCpfValidator<T>());
         }
 
+        public static IRuleBuilderOptions<T, string> VerificaFormatoCep<T>(this IRuleBuilder<T, string> ruleBuilder)
+        {
+            return ruleBuilder.SetValidator(new FormatoCepValidator<T>());
+        }
+
+        public static IRuleBuilderOptions<T, string> VerificaSePreencheu<T>(this IRuleBuilder<T, string> ruleBuilder)
+        {
+            return ruleBuilder.SetValidator(new ClickBtnBuscaValidator<T>());
+        }
+
         public static IRuleBuilderOptions<T, string> VerificaFormatoCnpj<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.SetValidator(new FormatoCnpjValidator<T>());

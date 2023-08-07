@@ -11,14 +11,14 @@ namespace LocadoraDeVeiculos.Dominio.Compartilhado.Validators
 
         protected override string GetDefaultMessageTemplate(string errorCode)
         {
-            return $"'{nomePropriedade}' deve estar no formato 'xxxxxxxx@xxxxx.xxx' ";
+            return $"'{nomePropriedade}' deve estar no formato '00.000.000/0000-00' ";
         }
 
         public override bool IsValid(ValidationContext<T> contextoValidacao, string texto)
         {
             nomePropriedade = contextoValidacao.DisplayName;
 
-            Regex rgx = new(@"^[^\s@]+@[^\s@]+\.[^\s@]+$");
+            Regex rgx = new Regex(@"^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$");
 
             if (rgx.IsMatch(texto))
                 return true;

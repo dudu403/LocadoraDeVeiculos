@@ -1,26 +1,21 @@
-﻿using FluentResults;
+﻿using Correios.NET.Models;
+using FluentResults;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
-using Correios;
-using Correios.NET.Models;
+using System.Text.RegularExpressions;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 {
     public partial class TelaClienteForm : Form
     {
-
         private Cliente cliente { get; set; }
 
         public event GravarRegistroDelegate<Cliente> onGravarRegistro;
+
         public TelaClienteForm()
         {
             InitializeComponent();
 
             this.ConfigurarDialog();
-
-            ConfigurarTxt();
-
-            txtCpf.Enabled = false;
-            txtCnpj.Enabled = false;
         }
 
         public void ConfigurarTela(Cliente clienteSelecionado)
@@ -69,16 +64,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             cliente.cidade = txtCidade.Text;
             cliente.bairro = txtBairro.Text;
             cliente.rua = txtRua.Text;
-
-            int numero;
-            if (int.TryParse(txtNumero.Text, out numero))
-            {
-                cliente.numero = numero;
-            }
-            else
-            {
-                cliente.numero = 0;
-            }
+            cliente.numero = Convert.ToInt32(txtNumero.Text);
 
             return cliente;
         }
@@ -97,7 +83,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
                 DialogResult = DialogResult.None;
             }
-
         }
 
         private void txtRadioPessoaFisica_CheckedChanged(object sender, EventArgs e)
@@ -106,6 +91,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
             {
                 txtCpf.Enabled = true;
                 txtCnpj.Enabled = false;
+                txtCnpj.Text = null;
             }
             else
             {
@@ -117,19 +103,24 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
         {
             if (txtRadioPessoaJuridica.Checked)
             {
-                txtCpf.Enabled = false;
                 txtCnpj.Enabled = true;
+                txtCpf.Enabled = false;
+                txtCpf.Text = null;
             }
             else
             {
                 txtCnpj.Enabled = false;
             }
         }
+
         private async void btnConsultar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtCep.Text))
             {
-                MessageBox.Show("O campo de CEP está vazio", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("O campo de CEP está vazio",
+                    "Atenção!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
             }
             else
             {
@@ -139,10 +130,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
                 Address endereco = retorno.FirstOrDefault();
 
-
                 if (endereco is null)
                 {
-                    MessageBox.Show("CEP não encontrado", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("CEP não encontrado",
+                        "Atenção!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Exclamation);
+
                     return;
                 }
 
@@ -152,12 +146,27 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
                 txtBairro.Text = endereco.District;
             }
         }
-        private void ConfigurarTxt()
+
+        private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
         {
-            txtEstado.Enabled = false;
-            txtCidade.Enabled = false;
-            txtRua.Enabled = false;
-            txtBairro.Enabled = false;
+            if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
+            {
+                TextBox t = (TextBox)sender;
+                string s = Regex.Replace(t.Text, "[^0-9]", string.Empty);
+
+                if (s == string.Empty)
+                    s = "0";
+
+                if (e.KeyChar.Equals((char)Keys.Back))
+                    s = s.Substring(0, s.Length - 1);
+                else
+                    s += e.KeyChar;
+
+                t.Text = string.Format("{0:#,##0}", double.Parse(s));
+
+                t.Select(t.Text.Length, 0);
+            }
+            e.Handled = true;
         }
     }
 }
