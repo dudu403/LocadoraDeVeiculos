@@ -25,12 +25,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
                 .VerificaFormatoEmail();
 
             RuleFor(x => x.cpf)
-                .Empty();
+                .VerificaFormatoCpf();
 
             RuleFor(x => x.cnh)
                 .NotNull()
-                .NaoPodeCaracteresEspeciais()
-                .Empty();
+                .NaoPodeCaracteresEspeciais();
 
             RuleFor(x => x.validadeCnh)
                .NotEmpty()

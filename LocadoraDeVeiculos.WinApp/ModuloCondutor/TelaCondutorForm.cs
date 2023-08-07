@@ -30,6 +30,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             }
         }
 
+
         public void ConfigurarTela(Condutor condutorSelecionado)
         {
             this.condutor = condutorSelecionado;
@@ -46,6 +47,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             condutor.cliente = (Cliente)cmbCliente.SelectedItem;
             condutor.nome = txtNome.Text;
             condutor.email = txtEmail.Text;
+            condutor.telefone = txtTelefone.Text;
             condutor.cpf = txtCpf.Text;
             condutor.cnh = txtCnh.Text;
             condutor.validadeCnh = (txtData.Value);
@@ -86,25 +88,45 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                     }
                     else if (clienteSelecionado.tipoPessoa == "Pessoa Jurídica")
                     {
-                        if (string.IsNullOrEmpty(txtCpf.Text))
-                        {
-                            LimparCampos(); 
-                            HabilitarCampos();
-                        }
-                        else
-                        {
-                            DesabilitarCampos();
-                        }
+                        TelaPrincipalForm.Tela.AtualizarRodape("Pessoa Jurídica não pode ser condutora, selecione uma Pessoa Física");
+                        checkClienteCondutor.Checked = false;
+                        LimparCampos();
+                        HabilitarCampos();
                     }
                 }
                 else
                 {
-                    DesabilitarCampos();
+                    LimparCampos();
+                    HabilitarCampos();
                 }
             }
             else
             {
-                DesabilitarCampos();
+                //DesabilitarCampos();
+            }
+        }
+        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCliente.SelectedItem is Cliente clienteSelecionado)
+            {
+                if (checkClienteCondutor.Checked && clienteSelecionado.tipoPessoa == "Pessoa Física")
+                {
+                    DesabilitarCampos();
+
+                    txtNome.Text = clienteSelecionado.nome;
+                    txtEmail.Text = clienteSelecionado.email;
+                    txtCpf.Text = clienteSelecionado.cpf;
+                    txtTelefone.Text = clienteSelecionado.telefone;
+
+                    checkClienteCondutor.Checked = true;
+                }
+                else if (checkClienteCondutor.Checked == true && clienteSelecionado.tipoPessoa == "Pessoa Jurídica")
+                {
+                    
+                    checkClienteCondutor.Checked = false;
+                    LimparCampos();
+                    HabilitarCampos();
+                }
             }
         }
 
@@ -132,37 +154,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             txtCpf.Enabled = true;
             txtTelefone.Enabled = true;
 
-        }
-
-        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbCliente.SelectedItem is Cliente clienteSelecionado)
-            {
-                if (checkClienteCondutor.Checked)
-                {
-                    if (clienteSelecionado.tipoPessoa == "Pessoa Física")
-                    {
-                        DesabilitarCampos();
-
-                        txtNome.Text = clienteSelecionado.nome;
-                        txtEmail.Text = clienteSelecionado.email;
-                        txtCpf.Text = clienteSelecionado.cpf;
-                        txtTelefone.Text = clienteSelecionado.telefone;
-                    }
-                    else if (clienteSelecionado.tipoPessoa == "Pessoa Jurídica")
-                    {
-                        HabilitarCampos();
-                    }
-                }
-                else
-                {
-                    DesabilitarCampos();
-                }
-            }
-            else
-            {
-                DesabilitarCampos();
-            }
         }
     }
 }

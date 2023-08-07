@@ -22,7 +22,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Visible = false},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Condutor", HeaderText = "Condutor"},
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Cliente", HeaderText = "Cliente"},
 
@@ -49,10 +49,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 grid.Rows.Add(condutor.id,
                               condutor.nome,
                               condutor.cliente,
-                              condutor.validadeCnh.ToString("dd/MM/yyyy"),
                               condutor.cpf,
                               condutor.cnh,
-                              condutor.email);
+                              condutor.validadeCnh.ToString("dd/MM/yyyy"));
             }
         }
     }

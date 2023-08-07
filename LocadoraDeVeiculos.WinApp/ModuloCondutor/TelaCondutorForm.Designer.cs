@@ -59,6 +59,7 @@
             // 
             // cmbCliente
             // 
+            cmbCliente.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCliente.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbCliente.FormattingEnabled = true;
             cmbCliente.Location = new Point(132, 29);
