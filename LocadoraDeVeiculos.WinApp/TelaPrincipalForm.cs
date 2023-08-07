@@ -80,12 +80,12 @@ namespace LocadoraDeVeiculos.WinApp
 
             var dbContext = new LocadoraDeVeiculosDbContext(optionsBuilder.Options);
 
-            //var migracoesPendentes = dbContext.Database.GetPendingMigrations();
+            var migracoesPendentes = dbContext.Database.GetPendingMigrations();
 
-            //if (migracoesPendentes.Count() > 0)
-            //{
-            //    dbContext.Database.Migrate();
-            //}
+            if (migracoesPendentes.Count() > 0)
+            {
+                dbContext.Database.Migrate();
+            }
 
             IRepositorioGrupoAutomovel repositorioGrupoAutomovel = new RepositorioGrupoAutomovelEmOrm(dbContext);
 
@@ -142,11 +142,6 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoCliente servicoCliente = new(repositorioCliente, validadorCliente);
 
             controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente));
-
-
-
-
-
 
             IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
 

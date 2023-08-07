@@ -42,7 +42,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
         private void CarregarParceiros(List<Parceiro> parceiros)
         {
             cmbParceiro.Items.Clear();
-            
+
             foreach (Parceiro parceiro in parceiros)
             {
                 cmbParceiro.Items.Add(parceiro);
