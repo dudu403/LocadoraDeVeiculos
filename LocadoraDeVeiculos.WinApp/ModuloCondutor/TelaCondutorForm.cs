@@ -122,7 +122,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
                 }
                 else if (checkClienteCondutor.Checked == true && clienteSelecionado.tipoPessoa == "Pessoa Jurídica")
                 {
-                    
+
                     checkClienteCondutor.Checked = false;
                     LimparCampos();
                     HabilitarCampos();

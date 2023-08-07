@@ -85,7 +85,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             }
 
             DialogResult opcaoEscolhida =
-               MessageBox.Show($"Deseja realmente excluir um cupom \"{condutorSelecionado}\"?",
+               MessageBox.Show($"Deseja realmente excluir um condutor \"{condutorSelecionado}\"?",
                "Exclusão de Cupom",
                MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question);

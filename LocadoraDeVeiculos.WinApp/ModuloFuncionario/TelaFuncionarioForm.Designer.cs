@@ -108,7 +108,7 @@
             label3.Name = "label3";
             label3.Size = new Size(61, 21);
             label3.TabIndex = 68;
-            label3.Text = "Salario:";
+            label3.Text = "Salário:";
             // 
             // label2
             // 

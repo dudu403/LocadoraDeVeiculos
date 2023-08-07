@@ -84,9 +84,9 @@
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(86, 66);
             label2.Name = "label2";
-            label2.Size = new Size(51, 21);
+            label2.Size = new Size(57, 21);
             label2.TabIndex = 71;
-            label2.Text = "Email:";
+            label2.Text = "E-mail:";
             // 
             // txtEmail
             // 
