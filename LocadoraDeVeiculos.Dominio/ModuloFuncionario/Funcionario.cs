@@ -26,5 +26,12 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
             salario = registroAtualizado.salario;
             dataAdmissao = registroAtualizado.dataAdmissao;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Funcionario funcionario &&
+                   id == funcionario.id &&
+                   nome == funcionario.nome;
+        }
     }
 }
