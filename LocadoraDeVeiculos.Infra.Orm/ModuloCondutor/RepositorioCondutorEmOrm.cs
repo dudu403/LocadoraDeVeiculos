@@ -7,6 +7,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloCondutor
         public RepositorioCondutorEmOrm(LocadoraDeVeiculosDbContext dbContext) : base(dbContext)
         {           
         
-        }     
+        }  
+        
+        public Condutor SelecionarPorNome(string nome)
+        {
+            return registros.SingleOrDefault(x => x.nome == nome);
+        }
     }
 }

@@ -2,5 +2,6 @@
 {
     public interface IRepositorioCondutor : IRepositorio<Condutor>
     {
+        Condutor SelecionarPorNome(string nome);
     }
 }

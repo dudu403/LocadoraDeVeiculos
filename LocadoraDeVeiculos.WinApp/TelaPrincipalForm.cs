@@ -39,6 +39,10 @@ using LocadoraDeVeiculos.WinApp.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
 using LocadoraDeVeiculos.Infra.Orm.ModuloTaxaEServico;
 using LocadoraDeVeiculos.Aplicacao.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Infra.Orm.ModuloCondutor;
+using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
+using LocadoraDeVeiculos.WinApp.ModuloCondutor;
 
 namespace LocadoraDeVeiculos.WinApp
 {
@@ -150,6 +154,16 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoCupom servicoCupom = new(repositorioCupom, validadorCupom);
 
             controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, servicoCupom, repositorioParceiro));
+
+            IRepositorioCondutor repositorioCondutor = new RepositorioCondutorEmOrm(dbContext);
+
+            ValidadorCondutor validadorCondutor = new();
+
+            ServicoCondutor servicoCondutor = new(repositorioCondutor, validadorCondutor);
+
+            controladores.Add("ControladorCondutor", new ControladorCondutor(repositorioCondutor, servicoCondutor, repositorioCliente));
+
+
         }
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)
