@@ -1,4 +1,7 @@
-﻿namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
+﻿using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
+
+namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
     public partial class TabelaCondutorControl : UserControl
     {
@@ -19,8 +22,15 @@
             {
                 new DataGridViewTextBoxColumn { DataPropertyName = "Id", HeaderText = "Id", Visible = false},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Nome", HeaderText = "Nome"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Condutor", HeaderText = "Condutor"},
 
+                new DataGridViewTextBoxColumn { DataPropertyName = "Cliente", HeaderText = "Cliente"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "CPF", HeaderText = "CPF"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "CNH", HeaderText = "CNH"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Validade", HeaderText = "Validade"}
             };
 
             return colunas;
@@ -30,15 +40,19 @@
         {
             return grid.SelecionarId();
         }
+        public void AtualizarRegistros(List<Condutor> condutores)
+        {
+            grid.Rows.Clear();
 
-        //public void AtualizarRegistros(List<var> vars)
-        //{
-        //    grid.Rows.Clear();
-
-        //    foreach (var var in vars)
-        //    {
-        //        grid.Rows.Add(var.id, var.nome,...................);
-        //    }
-        //}
+            foreach (Condutor condutor in condutores)
+            {
+                grid.Rows.Add(condutor.id,
+                              condutor.nome,
+                              condutor.cliente,
+                              condutor.cpf,
+                              condutor.cnh,
+                              condutor.validadeCnh.ToString("dd/MM/yyyy"));
+            }
+        }
     }
 }
