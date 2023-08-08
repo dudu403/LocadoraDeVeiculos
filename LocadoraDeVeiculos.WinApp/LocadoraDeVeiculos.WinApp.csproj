@@ -28,7 +28,7 @@
   	  <PackageReference Include="Serilog.Sinks.Seq" Version="5.2.2" />
   	  <PackageReference Include="System.ServiceModel.Primitives" Version="6.0.0" />
   </ItemGroup>
-		
+
   <ItemGroup>
     <ProjectReference Include="..\LocadoraDeVeiculos.Aplicacao\LocadoraDeVeiculos.Aplicacao.csproj" />
     <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
@@ -37,53 +37,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ModuloAutomovel\TelaAutomovelForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ModuloAutomovel\TabelaAutomovelControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ModuloCliente\TelaClienteForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ModuloCliente\TabelaClienteControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ModuloCondutor\TelaCondutorForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ModuloCondutor\TabelaCondutorControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ModuloConfigPreco\TelaConfigPrecoForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ModuloConfigPreco\TabelaConfigPrecoControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ModuloCupomEParceiro\TelaParceiroForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="ModuloAutomovel\TelaAutomovelForm.cs" />
+    <Compile Update="ModuloAutomovel\TabelaAutomovelControl.cs" />
+    <Compile Update="ModuloCliente\TelaClienteForm.cs" />
+    <Compile Update="ModuloCliente\TabelaClienteControl.cs" />
+    <Compile Update="ModuloCondutor\TelaCondutorForm.cs" />
+    <Compile Update="ModuloCondutor\TabelaCondutorControl.cs" />
+    <Compile Update="ModuloConfigPreco\TelaConfigPrecoForm.cs" />
+    <Compile Update="ModuloConfigPreco\TabelaConfigPrecoControl.cs" />
+    <Compile Update="ModuloCupomEParceiro\TelaParceiroForm.cs" />
     <Compile Update="ModuloCupomEParceiro\TelaCupomForm.cs" />
-    <Compile Update="ModuloCupomEParceiro\TabelaParceiroControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="ModuloCupomEParceiro\TabelaParceiroControl.cs" />
     <Compile Update="ModuloFuncionario\TelaFuncionarioForm.cs" />
-    <Compile Update="ModuloFuncionario\TabelaFuncionarioControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ModuloGrupoAutomovel\TabelaGrupoAutomovelControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ModuloGrupoAutomovel\TelaGrupoAutomovelForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ModuloPlanoCobranca\TabelaPlanoCobrancaControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="ModuloTaxaEServico\TabelaTaxaEServicoControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="ModuloFuncionario\TabelaFuncionarioControl.cs" />
+    <Compile Update="ModuloGrupoAutomovel\TabelaGrupoAutomovelControl.cs" />
+    <Compile Update="ModuloGrupoAutomovel\TelaGrupoAutomovelForm.cs" />
+    <Compile Update="ModuloPlanoCobranca\TabelaPlanoCobrancaControl.cs" />
+    <Compile Update="ModuloTaxaEServico\TabelaTaxaEServicoControl.cs" />
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
