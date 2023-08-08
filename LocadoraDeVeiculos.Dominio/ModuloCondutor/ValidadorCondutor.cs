@@ -1,9 +1,4 @@
 ﻿using LocadoraDeVeiculos.Dominio.Compartilhado.Validators;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
 {
@@ -11,31 +6,33 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
     {
         public ValidadorCondutor()
         {
+            RuleFor(x => x.cliente)
+                .NotEmpty()
+                .NotNull();
+
             RuleFor(x => x.nome)
                 .NotEmpty()
                 .NotNull()
                 .MinimumLength(3);
-
-            RuleFor(x => x.telefone)
-                .VerificaFormatoTelefone();
 
             RuleFor(x => x.email)
                 .NotEmpty()
                 .NotNull()
                 .VerificaFormatoEmail();
 
+            RuleFor(x => x.telefone)
+                .VerificaFormatoTelefone();
+
             RuleFor(x => x.cpf)
                 .VerificaFormatoCpf();
 
             RuleFor(x => x.cnh)
-                .NotNull()
-                .NaoPodeCaracteresEspeciais();
+                .VerificaFormatoCnh();
 
             RuleFor(x => x.validadeCnh)
                .NotEmpty()
                .NotNull()
-               .GreaterThan(DateTime.Today);
+               .GreaterThan(DateTime.Today.AddDays(15));
         }
-
     }
 }

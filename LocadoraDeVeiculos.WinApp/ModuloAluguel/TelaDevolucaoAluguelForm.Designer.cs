@@ -301,7 +301,7 @@
             txtCupom.Location = new Point(183, 182);
             txtCupom.Name = "txtCupom";
             txtCupom.ReadOnly = true;
-            txtCupom.Size = new Size(100, 23);
+            txtCupom.Size = new Size(200, 23);
             txtCupom.TabIndex = 121;
             // 
             // tabControl1
@@ -339,7 +339,7 @@
             txtData.Format = DateTimePickerFormat.Short;
             txtData.Location = new Point(183, 147);
             txtData.Name = "txtData";
-            txtData.Size = new Size(195, 29);
+            txtData.Size = new Size(200, 29);
             txtData.TabIndex = 116;
             txtData.Value = new DateTime(2023, 8, 1, 22, 0, 14, 0);
             // 
@@ -399,7 +399,7 @@
             dateTimePicker2.Format = DateTimePickerFormat.Short;
             dateTimePicker2.Location = new Point(183, 211);
             dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(195, 29);
+            dateTimePicker2.Size = new Size(200, 29);
             dateTimePicker2.TabIndex = 139;
             dateTimePicker2.Value = new DateTime(2023, 8, 1, 22, 0, 14, 0);
             // 

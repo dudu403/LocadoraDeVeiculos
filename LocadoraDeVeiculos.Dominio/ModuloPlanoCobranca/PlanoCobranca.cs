@@ -26,5 +26,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca
             kmDisponiveis = registroAtualizado.kmDisponiveis;
                 
         }
+
+        public override string ToString()
+        {
+            return $"{tipoPlano} do Grupo de Automovel {grupoAutomovel}";
+        }
     }
 }

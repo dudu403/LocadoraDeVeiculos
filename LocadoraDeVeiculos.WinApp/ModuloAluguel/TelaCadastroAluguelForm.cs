@@ -24,7 +24,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
         public event GravarRegistroDelegate<Cupom> onGravarRegistro;
 
-        public TelaCadastroAluguelForm(List<Funcionario>funcionarios,
+        public TelaCadastroAluguelForm(List<Funcionario> funcionarios,
                                        List<Cliente> clientes,
                                        List<GrupoAutomovel> grupoAutomovels,
                                        List<PlanoCobranca> planoCobrancas,
@@ -55,7 +55,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             cmbFuncionario.SelectedItem = aluguel.funcionario;
             cmbCliente.SelectedItem = aluguel.cliente;
             cmbGAutomovel.SelectedItem = aluguel.grupoAutomovel;
-          //  cmbPCobranca.SelectedItem = aluguel.planoCobranca;
+            //  cmbPCobranca.SelectedItem = aluguel.planoCobranca;
             cmbCondutor.SelectedItem = aluguel.condutor;
             cmbAutomovel.SelectedItem = aluguel.automovel;
 
@@ -73,7 +73,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             aluguel.funcionario = (Funcionario)cmbFuncionario.SelectedItem;
             aluguel.cliente = (Cliente)cmbCliente.SelectedItem;
             aluguel.grupoAutomovel = (GrupoAutomovel)cmbAutomovel.SelectedItem;
-        //    aluguel.planoCobranca = (PlanoCobranca)cmbPCobranca.SelectedItem;
+            //    aluguel.planoCobranca = (PlanoCobranca)cmbPCobranca.SelectedItem;
             aluguel.condutor = (Condutor)cmbCondutor.SelectedItem;
             aluguel.automovel = (Automovel)cmbAutomovel.SelectedItem;
 

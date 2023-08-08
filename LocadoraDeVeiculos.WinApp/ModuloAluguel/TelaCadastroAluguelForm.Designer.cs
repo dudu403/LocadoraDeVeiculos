@@ -80,7 +80,7 @@
             txtData.Format = DateTimePickerFormat.Short;
             txtData.Location = new Point(188, 155);
             txtData.Name = "txtData";
-            txtData.Size = new Size(195, 29);
+            txtData.Size = new Size(200, 29);
             txtData.TabIndex = 89;
             txtData.Value = new DateTime(2023, 8, 1, 22, 0, 14, 0);
             // 
@@ -215,9 +215,9 @@
             // 
             // btnCupom
             // 
-            btnCupom.Location = new Point(294, 196);
+            btnCupom.Location = new Point(269, 226);
             btnCupom.Name = "btnCupom";
-            btnCupom.Size = new Size(145, 23);
+            btnCupom.Size = new Size(119, 23);
             btnCupom.TabIndex = 93;
             btnCupom.Text = "Aplicar Cupom";
             btnCupom.UseVisualStyleBackColor = true;
@@ -226,7 +226,7 @@
             // 
             txtCupom.Location = new Point(188, 197);
             txtCupom.Name = "txtCupom";
-            txtCupom.Size = new Size(100, 23);
+            txtCupom.Size = new Size(200, 23);
             txtCupom.TabIndex = 94;
             // 
             // label2
@@ -363,9 +363,9 @@
             // 
             dateTimePicker1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(538, 155);
+            dateTimePicker1.Location = new Point(537, 155);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(195, 29);
+            dateTimePicker1.Size = new Size(200, 29);
             dateTimePicker1.TabIndex = 110;
             dateTimePicker1.Value = new DateTime(2023, 8, 1, 22, 0, 14, 0);
             // 
@@ -380,11 +380,11 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(125, 203);
+            label11.Location = new Point(47, 198);
             label11.Name = "label11";
-            label11.Size = new Size(53, 17);
+            label11.Size = new Size(131, 17);
             label11.TabIndex = 112;
-            label11.Text = "Cupom:";
+            label11.Text = "Cupom de Desconto:";
             // 
             // TelaCadastroAluguelForm
             // 
