@@ -1,18 +1,7 @@
 ﻿using FluentResults;
-using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
-using LocadoraDeVeiculos.WinApp.ModuloConfigPreco;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
 {
@@ -21,6 +10,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
         private PlanoCobranca planoCobranca { get; set; }
 
         public event GravarRegistroDelegate<PlanoCobranca> onGravarRegistro;
+
         public TelaPlanoCobrancaForm(List<GrupoAutomovel> grupoAutomovels)
         {
             InitializeComponent();
@@ -29,60 +19,91 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
 
             CarregarGrupoAutomoveis(grupoAutomovels);
 
-            carregarOpcoesDePlano();
+            CarregarOpcoesDePlano();
 
-            cbmTipoPlano.Enabled = txtPrecoDiaria.Enabled = txtKm.Enabled = txtKmExcedente.Enabled = txtKmDisponivel.Enabled = false;
-
-            cmbGAutomoveis.Focus();
+            cmbGrpAutomoveis.Focus();
         }
 
         public void ConfigurarTela(PlanoCobranca planoCobranca)
         {
             this.planoCobranca = planoCobranca;
 
-            cmbGAutomoveis.SelectedItem = planoCobranca.grupoAutomovel;
-            cbmTipoPlano.SelectedItem = planoCobranca.tipoPlano;
-            txtPrecoDiaria.Text = planoCobranca.precoDiaria.ToString();
-            txtKm.Text = planoCobranca?.precoPorKm.ToString();
-            txtKmExcedente.Text = planoCobranca?.precoPorKmExtrapolado.ToString();
-            txtKmDisponivel.Text = planoCobranca?.kmDisponiveis.ToString();
+            cmbGrpAutomoveis.SelectedItem = planoCobranca.grupoAutomovel;
+            cmbTipoPlano.SelectedItem = planoCobranca.tipoPlano;
+
+            ConfigurarAparicaoTextBoxes();
+
+            if ((TipoPlanoEnum)cmbTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Diária)
+            {
+                txtKmDisponivel.Text = "";
+                txtKmExcedente.Text = "";
+                txtKm.Text = planoCobranca?.precoPorKm.ToString();
+                txtPrecoDiaria.Text = planoCobranca.precoDiaria.ToString();
+            }
+
+            if ((TipoPlanoEnum)cmbTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Controlada)
+            {
+                txtKm.Text = "";
+                txtPrecoDiaria.Text = planoCobranca.precoDiaria.ToString();
+                txtKmDisponivel.Text = planoCobranca?.kmDisponiveis.ToString();
+                txtKmExcedente.Text = planoCobranca?.precoPorKmExtrapolado.ToString();
+            }
+
+            if ((TipoPlanoEnum)cmbTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Km_Livre)
+            {
+                txtKm.Text = "";
+                txtKmDisponivel.Text = "";
+                txtKmExcedente.Text = "";
+                txtPrecoDiaria.Text = planoCobranca.precoDiaria.ToString();
+            }
         }
 
         public PlanoCobranca ObterPlanoCobranca()
         {
-            planoCobranca.grupoAutomovel = (GrupoAutomovel)cmbGAutomoveis.SelectedItem;
-            planoCobranca.tipoPlano = (TipoPlanoEnum)cbmTipoPlano.SelectedItem;
-            planoCobranca.precoDiaria = Convert.ToDecimal(txtPrecoDiaria.Text);
-            
-            if(planoCobranca.precoPorKm != null)    
+            planoCobranca.grupoAutomovel = (GrupoAutomovel)cmbGrpAutomoveis.SelectedItem;
+            planoCobranca.tipoPlano = (TipoPlanoEnum)cmbTipoPlano.SelectedItem;
+
+            if (txtPrecoDiaria.Text != "")
+                planoCobranca.precoDiaria = Convert.ToDecimal(txtPrecoDiaria.Text);
+            if (txtKm.Text != "")
                 planoCobranca.precoPorKm = Convert.ToDecimal(txtKm.Text);
-            if(planoCobranca.precoPorKmExtrapolado != null)
+            if (txtKmExcedente.Text != "")
                 planoCobranca.precoPorKmExtrapolado = Convert.ToDecimal(txtKmExcedente.Text);
-            if(planoCobranca.kmDisponiveis != null)
+            if (txtKmDisponivel.Text != "")
                 planoCobranca.kmDisponiveis = Convert.ToDecimal(txtKmDisponivel.Text);
+
+            if (txtPrecoDiaria.Text == "")
+                planoCobranca.precoDiaria = 0;
+            if (txtKm.Text == "")
+                planoCobranca.precoPorKm = null;
+            if (txtKmExcedente.Text == "")
+                planoCobranca.precoPorKmExtrapolado = null;
+            if (txtKmDisponivel.Text == "")
+                planoCobranca.kmDisponiveis = null;
 
             return planoCobranca;
         }
 
-        private void CarregarGrupoAutomoveis(List<GrupoAutomovel> grupoAutomovels)
+        private void CarregarGrupoAutomoveis(List<GrupoAutomovel> grupoAutomoveis)
         {
-            cmbGAutomoveis.Items.Clear();
+            cmbGrpAutomoveis.Items.Clear();
 
-            foreach (GrupoAutomovel grupoAutomovel in grupoAutomovels)
+            foreach (GrupoAutomovel grupoAutomovel in grupoAutomoveis)
             {
-                cmbGAutomoveis.Items.Add(grupoAutomovel);
+                cmbGrpAutomoveis.Items.Add(grupoAutomovel);
             }
         }
 
-        private void carregarOpcoesDePlano()
+        private void CarregarOpcoesDePlano()
         {
             TipoPlanoEnum[] plano = Enum.GetValues<TipoPlanoEnum>();
 
             foreach (TipoPlanoEnum opcaoPlano in plano)
             {
-                cbmTipoPlano.Items.Add(opcaoPlano);
+                cmbTipoPlano.Items.Add(opcaoPlano);
             }
-            cbmTipoPlano.SelectedIndex = 0;
+
+            cmbTipoPlano.SelectedIndex = 0;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -106,37 +127,101 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
             TelaPrincipalForm.Tela.AtualizarRodape("");
         }
 
+        private void cmbGrpAutomoveis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbGrpAutomoveis.SelectedItem != null)
+                cmbTipoPlano.Enabled = true;
+        }
+
         private void cbmTipoPlano_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbmTipoPlano.Enabled = true;
-            cbmTipoPlano.Focus();
+            cmbTipoPlano.Focus();
 
-            if ((TipoPlanoEnum)cbmTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Diária)
+            ConfigurarAparicaoTextBoxes();
+        }
+
+        private void ConfigurarAparicaoTextBoxes()
+        {
+            if ((TipoPlanoEnum)cmbTipoPlano.SelectedItem == TipoPlanoEnum.Nenhum)
             {
-                txtPrecoDiaria.Enabled = true;
+                lblPrecoPorKm.Visible = false;
+                lblPrecoDiaria.Visible = false;
+                lblKmDisponiveis.Visible = false;
+                lblPrecoKmExedente.Visible = false;
+
+                txtKm.Enabled = false;
+                txtKm.Visible = false;
+                txtKm.Text = string.Empty;
+                txtPrecoDiaria.Enabled = false;
+                txtPrecoDiaria.Visible = false;
+                txtPrecoDiaria.Text = string.Empty;
+                txtKmExcedente.Enabled = false;
+                txtKmExcedente.Visible = false;
+                txtKmExcedente.Text = string.Empty;
+                txtKmDisponivel.Enabled = false;
+                txtKmDisponivel.Visible = false;
+                txtKmDisponivel.Text = string.Empty;
+            }
+
+            if ((TipoPlanoEnum)cmbTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Diária)
+            {
+                lblPrecoPorKm.Visible = true;
+                lblPrecoDiaria.Visible = true;
+                lblKmDisponiveis.Visible = false;
+                lblPrecoKmExedente.Visible = false;
+
                 txtKm.Enabled = true;
+                txtKm.Visible = true;
+                txtPrecoDiaria.Enabled = true;
+                txtPrecoDiaria.Visible = true;
                 txtKmExcedente.Enabled = false;
+                txtKmExcedente.Visible = false;
+                txtKmExcedente.Text = string.Empty;
                 txtKmDisponivel.Enabled = false;
+                txtKmDisponivel.Visible = false;
+                txtKmDisponivel.Text = string.Empty;
             }
 
-            if ((TipoPlanoEnum)cbmTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Controlada)
+            if ((TipoPlanoEnum)cmbTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Controlada)
             {
-                txtPrecoDiaria.Enabled = true;
+                lblPrecoPorKm.Visible = false;
+                lblPrecoDiaria.Visible = true;
+                lblKmDisponiveis.Visible = true;
+                lblPrecoKmExedente.Visible = true;
+
                 txtKm.Enabled = false;
+                txtKm.Visible = false;
+                txtKm.Text = string.Empty;
+                txtPrecoDiaria.Enabled = true;
+                txtPrecoDiaria.Visible = true;
                 txtKmExcedente.Enabled = true;
+                txtKmExcedente.Visible = true;
                 txtKmDisponivel.Enabled = true;
+                txtKmDisponivel.Visible = true;
             }
 
-            if ((TipoPlanoEnum)cbmTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Km_Livre)
+            if ((TipoPlanoEnum)cmbTipoPlano.SelectedItem == TipoPlanoEnum.Cobrança_Km_Livre)
             {
-                txtPrecoDiaria.Enabled = true;
+                lblPrecoPorKm.Visible = false;
+                lblPrecoDiaria.Visible = true;
+                lblKmDisponiveis.Visible = false;
+                lblPrecoKmExedente.Visible = false;
+
                 txtKm.Enabled = false;
+                txtKm.Visible = false;
+                txtKm.Text = string.Empty;
+                txtPrecoDiaria.Enabled = true;
+                txtPrecoDiaria.Visible = true;
                 txtKmExcedente.Enabled = false;
+                txtKmExcedente.Visible = false;
+                txtKmExcedente.Text = string.Empty;
                 txtKmDisponivel.Enabled = false;
+                txtKmDisponivel.Visible = false;
+                txtKmDisponivel.Text = string.Empty;
             }
         }
 
-        private void txtPrecoLocacao_KeyPress(object sender, KeyPressEventArgs e)
+        private void txtPrecosLocacao_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar) || e.KeyChar.Equals((char)Keys.Back))
             {

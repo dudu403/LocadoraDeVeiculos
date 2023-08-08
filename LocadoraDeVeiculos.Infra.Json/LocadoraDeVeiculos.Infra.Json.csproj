@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Correios-Api" Version="1.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
   </ItemGroup>
 

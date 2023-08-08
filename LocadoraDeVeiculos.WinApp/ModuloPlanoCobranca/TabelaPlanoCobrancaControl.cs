@@ -1,4 +1,5 @@
-﻿using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
+﻿using LocadoraDeVeiculos.Dominio.ModuloCliente;
+using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
 {
@@ -25,11 +26,13 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Tipo do Plano", HeaderText = "Tipo do Plano"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Valor por dia", HeaderText = "Valor por dia"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Valor da Diária", HeaderText = "Valor da Diária"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Km livre", HeaderText = "Km livre"},
+                new DataGridViewTextBoxColumn { DataPropertyName = "Valor por Km", HeaderText = "Valor por Km"},
 
-                new DataGridViewTextBoxColumn { DataPropertyName = "Valor km rodado", HeaderText = "Valor km rodado"}
+                new DataGridViewTextBoxColumn { DataPropertyName = "Valor por Km Extrapolado", HeaderText = "Valor por Km Extrapolado"},
+
+                new DataGridViewTextBoxColumn { DataPropertyName = "Quilometragem Disponível", HeaderText = "Quilometragem Disponível"}
             };
 
             return colunas;
@@ -50,8 +53,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
                               var.grupoAutomovel,
                               var.tipoPlano,
                       "R$ " + var.precoDiaria,
-                      "R$ " + var?.precoPorKmExtrapolado,
-                      "R$ " + var?.precoPorKm);
+                              var?.precoPorKm == null ? "R$ 0,00" : "R$ " + var?.precoPorKm,
+                              var?.precoPorKmExtrapolado == null ? "R$ 0,00" : "R$ " + var?.precoPorKmExtrapolado,
+                              var?.kmDisponiveis == null ? "  -  " : var?.kmDisponiveis);
             }
         }
     }
