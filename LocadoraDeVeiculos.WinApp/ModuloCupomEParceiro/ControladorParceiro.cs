@@ -105,7 +105,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
-            return new ConfiguracaoToolboxCupomEParceiro();
+            return new ConfiguracaoToolboxParceiro();
         }
 
         public override UserControl ObterListagem()

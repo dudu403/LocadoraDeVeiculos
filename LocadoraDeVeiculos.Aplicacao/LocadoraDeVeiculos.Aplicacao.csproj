@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
@@ -17,14 +16,14 @@
     <Folder Include="Compartilhado\" />
     <Folder Include="ModuloAutomovel\" />
     <Folder Include="ModuloCliente\" />
-    <Folder Include="ModuloCondutor\" />
     <Folder Include="ModuloCupomEParceiro\" />
     <Folder Include="ModuloConfigPreco\" />
     <Folder Include="ModuloFuncionario\" />
     <Folder Include="ModuloGrupoAutomovel\" />
     <Folder Include="ModuloPlanoCobranca\" />
+    <Folder Include="ModuloTaxaEServico\" />
   </ItemGroup>
-
+	
   <ItemGroup>
     <ProjectReference Include="..\LocadoraDeVeiculos.Dominio\LocadoraDeVeiculos.Dominio.csproj" />
   </ItemGroup>

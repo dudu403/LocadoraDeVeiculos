@@ -7,6 +7,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
         public DateTime dataAdmissao { get; set; }
         public decimal salario { get; set; }
 
+
         public Funcionario() 
         {
             dataAdmissao = DateTime.Now;
@@ -24,6 +25,13 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
             nome = registroAtualizado.nome;
             salario = registroAtualizado.salario;
             dataAdmissao = registroAtualizado.dataAdmissao;
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Funcionario funcionario &&
+                   id == funcionario.id &&
+                   nome == funcionario.nome;
         }
     }
 }

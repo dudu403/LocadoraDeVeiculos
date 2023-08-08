@@ -11,9 +11,25 @@ namespace LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca
         public decimal ?precoPorKmExtrapolado { get; set; }
         public decimal ?kmDisponiveis { get; set; }
 
+        public PlanoCobranca()
+        {
+          
+        }
+
         public override void AtualizarInformacoes(PlanoCobranca registroAtualizado)
         {
-            throw new NotImplementedException();
+            grupoAutomovel = registroAtualizado.grupoAutomovel;
+            tipoPlano = registroAtualizado.tipoPlano;
+            precoDiaria = registroAtualizado.precoDiaria;
+            precoPorKm = registroAtualizado.precoPorKm;
+            precoPorKmExtrapolado = registroAtualizado.precoPorKmExtrapolado;
+            kmDisponiveis = registroAtualizado.kmDisponiveis;
+                
+        }
+
+        public override string ToString()
+        {
+            return $"{tipoPlano} do Grupo de Automovel {grupoAutomovel}";
         }
     }
 }

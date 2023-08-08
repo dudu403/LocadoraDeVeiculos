@@ -1,14 +1,25 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using LocadoraDeVeiculos.Dominio.Compartilhado;
+using Microsoft.Extensions.Logging;
 using Serilog;
 using System.Reflection;
 
 namespace LocadoraDeVeiculos.Infra.Orm.Compartilhado
 {
-    public class LocadoraDeVeiculosDbContext : DbContext
+    public class LocadoraDeVeiculosDbContext : DbContext, IContextoPersistencia
     {
         public LocadoraDeVeiculosDbContext(DbContextOptions options) : base(options)
         {
 
+        }
+
+        public void DesfazerAlteracoes()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GravarDados()
+        {
+            throw new NotImplementedException();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

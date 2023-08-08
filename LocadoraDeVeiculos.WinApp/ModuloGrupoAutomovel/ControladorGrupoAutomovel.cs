@@ -7,23 +7,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 {
     public class ControladorGrupoAutomovel : ControladorBase
     {
-        private IRepositorioGrupoAutomovel repositorioTaxaEServico;
+        private IRepositorioGrupoAutomovel repositorioGrupoAutomoveis;
 
         private TabelaGrupoAutomovelControl tabelaGrupoAutomovel;
 
-        private ServicoGrupoAutomovel servicoTaxaEServico;
+        private ServicoGrupoAutomovel servicoGrupoAutomoveis;
 
-        public ControladorGrupoAutomovel(IRepositorioGrupoAutomovel repositorioTaxaEServico, ServicoGrupoAutomovel servicoTaxaEServico)
+        public ControladorGrupoAutomovel(IRepositorioGrupoAutomovel repositorioGrupoAutomoveis, ServicoGrupoAutomovel servicoGrupoAutomoveis)
         {
-            this.repositorioTaxaEServico = repositorioTaxaEServico;
-            this.servicoTaxaEServico = servicoTaxaEServico;
+            this.repositorioGrupoAutomoveis = repositorioGrupoAutomoveis;
+            this.servicoGrupoAutomoveis = servicoGrupoAutomoveis;
         }
 
         public override void Inserir()
         {
             TelaGrupoAutomovelForm tela = new();
 
-            tela.onGravarRegistro += servicoTaxaEServico.Inserir;
+            tela.onGravarRegistro += servicoGrupoAutomoveis.Inserir;
 
             tela.ConfigurarGrupoAutomovel(new GrupoAutomovel());
 
@@ -39,12 +39,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
         {
             Guid id = tabelaGrupoAutomovel.ObterIdSelecionado();
 
-            GrupoAutomovel grupoAutomovelSelecionado = repositorioTaxaEServico.SelecionarPorId(id);
+            GrupoAutomovel grupoAutomovelSelecionado = repositorioGrupoAutomoveis.SelecionarPorId(id);
 
             if (grupoAutomovelSelecionado == null)
             {
                 MessageBox.Show("Selecione um grupo de automovel primeiro",
-                "Edição de Grupo De Automovel", 
+                "Edição de Grupo De GrupoAutomovel", 
                 MessageBoxButtons.OK, 
                 MessageBoxIcon.Exclamation);
                 return;
@@ -52,7 +52,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
             TelaGrupoAutomovelForm tela = new TelaGrupoAutomovelForm();
 
-            tela.onGravarRegistro += servicoTaxaEServico.Editar;
+            tela.onGravarRegistro += servicoGrupoAutomoveis.Editar;
 
             tela.ConfigurarGrupoAutomovel(grupoAutomovelSelecionado);
 
@@ -68,12 +68,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
         {
             Guid id = tabelaGrupoAutomovel.ObterIdSelecionado();
 
-            GrupoAutomovel grupoAutomovelSelecionado = repositorioTaxaEServico.SelecionarPorId(id);
+            GrupoAutomovel grupoAutomovelSelecionado = repositorioGrupoAutomoveis.SelecionarPorId(id);
 
             if (grupoAutomovelSelecionado == null)
             {
                 MessageBox.Show("Selecione um grupo de automovel primeiro",
-                "Exclusão de Grupo de Automovel", 
+                "Exclusão de Grupo de GrupoAutomovel", 
                 MessageBoxButtons.OK, 
                 MessageBoxIcon.Exclamation);
                 return;
@@ -81,18 +81,18 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
             DialogResult opcaoEscolhida = 
                MessageBox.Show($"Deseja realmente excluir o grupo de automovel \"{grupoAutomovelSelecionado}\"?",
-               "Exclusão de Grupo de Automovel",
+               "Exclusão de Grupo de GrupoAutomovel",
                MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Result resultado = servicoTaxaEServico.Excluir(grupoAutomovelSelecionado);
+                Result resultado = servicoGrupoAutomoveis.Excluir(grupoAutomovelSelecionado);
 
                 if (resultado.IsFailed)
                 {
                     MessageBox.Show(resultado.Errors[0].Message,
-                        "Exclusão de Grupo de Automovel",
+                        "Exclusão de Grupo de GrupoAutomovel",
                         MessageBoxButtons.OK, 
                         MessageBoxIcon.Error);
 
@@ -120,7 +120,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloGrupoAutomovel
 
         private void CarregarGrupoAutomoveis()
         {
-            List<GrupoAutomovel> grupoAutomoveis = repositorioTaxaEServico.SelecionarTodos();
+            List<GrupoAutomovel> grupoAutomoveis = repositorioGrupoAutomoveis.SelecionarTodos();
 
             tabelaGrupoAutomovel.AtualizarRegistros(grupoAutomoveis);
 
