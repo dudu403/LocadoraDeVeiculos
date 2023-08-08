@@ -103,9 +103,9 @@
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(70, 133);
             label3.Name = "label3";
-            label3.Size = new Size(51, 21);
+            label3.Size = new Size(57, 21);
             label3.TabIndex = 88;
-            label3.Text = "Email:";
+            label3.Text = "E-mail:";
             // 
             // txtEmail
             // 

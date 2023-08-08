@@ -9,6 +9,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
     {
         private Cliente cliente { get; set; }
 
+        private bool permitirDigitar = false;
+
         public event GravarRegistroDelegate<Cliente> onGravarRegistro;
 
         public TelaClienteForm()

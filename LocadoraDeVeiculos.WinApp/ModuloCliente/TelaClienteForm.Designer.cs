@@ -84,9 +84,9 @@
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(86, 66);
             label2.Name = "label2";
-            label2.Size = new Size(51, 21);
+            label2.Size = new Size(57, 21);
             label2.TabIndex = 71;
-            label2.Text = "Email:";
+            label2.Text = "E-mail:";
             // 
             // txtEmail
             // 
@@ -191,7 +191,7 @@
             txtCep.Mask = "00000-000";
             txtCep.Name = "txtCep";
             txtCep.Size = new Size(163, 29);
-            txtCep.TabIndex = 84;
+            txtCep.TabIndex = 7;
             // 
             // btnConsultar
             // 
@@ -224,7 +224,7 @@
             txtNumero.Location = new Point(120, 198);
             txtNumero.Name = "txtNumero";
             txtNumero.Size = new Size(166, 29);
-            txtNumero.TabIndex = 9;
+            txtNumero.TabIndex = 12;
             txtNumero.KeyPress += txtNumero_KeyPress;
             // 
             // txtRua
@@ -234,7 +234,7 @@
             txtRua.Location = new Point(120, 163);
             txtRua.Name = "txtRua";
             txtRua.Size = new Size(407, 29);
-            txtRua.TabIndex = 13;
+            txtRua.TabIndex = 11;
             // 
             // label11
             // 
@@ -263,7 +263,7 @@
             txtBairro.Location = new Point(120, 128);
             txtBairro.Name = "txtBairro";
             txtBairro.Size = new Size(407, 29);
-            txtBairro.TabIndex = 12;
+            txtBairro.TabIndex = 10;
             // 
             // label9
             // 
@@ -292,7 +292,7 @@
             txtCidade.Location = new Point(120, 93);
             txtCidade.Name = "txtCidade";
             txtCidade.Size = new Size(407, 29);
-            txtCidade.TabIndex = 11;
+            txtCidade.TabIndex = 9;
             // 
             // txtEstado
             // 
@@ -301,7 +301,7 @@
             txtEstado.Location = new Point(120, 58);
             txtEstado.Name = "txtEstado";
             txtEstado.Size = new Size(407, 29);
-            txtEstado.TabIndex = 10;
+            txtEstado.TabIndex = 8;
             // 
             // label7
             // 
@@ -324,7 +324,7 @@
             btnGravar.MinimumSize = new Size(94, 41);
             btnGravar.Name = "btnGravar";
             btnGravar.Size = new Size(107, 41);
-            btnGravar.TabIndex = 10;
+            btnGravar.TabIndex = 13;
             btnGravar.Text = "Gravar";
             btnGravar.TextImageRelation = TextImageRelation.TextAboveImage;
             btnGravar.UseVisualStyleBackColor = true;
@@ -341,7 +341,7 @@
             btnCancelar.MinimumSize = new Size(94, 41);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(107, 41);
-            btnCancelar.TabIndex = 11;
+            btnCancelar.TabIndex = 14;
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextImageRelation = TextImageRelation.TextAboveImage;
             btnCancelar.UseVisualStyleBackColor = true;
@@ -373,7 +373,7 @@
             txtCnpj.Mask = "00,000,000/0000-00";
             txtCnpj.Name = "txtCnpj";
             txtCnpj.Size = new Size(163, 29);
-            txtCnpj.TabIndex = 83;
+            txtCnpj.TabIndex = 6;
             // 
             // TelaClienteForm
             // 
