@@ -24,6 +24,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
 
         public override void Inserir()
         {
+            if (repositorioGrupoAutomovel.SelecionarTodos().Count() == 0)
+            {
+                MessageBox.Show("Você deve cadastrar ao menos um Grupo de Automovel para poder inserir o cadastro de um automovel.",
+                "Inserção de Automovel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+
             TelaAutomovelForm tela = new(repositorioGrupoAutomovel.SelecionarTodos());
 
             tela.onGravarRegistro += servicoAutomovel.Inserir;

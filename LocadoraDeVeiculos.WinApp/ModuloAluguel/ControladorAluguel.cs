@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using LocadoraDeVeiculos.Aplicacao.ModuloAluguel;
 using LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro;
+using LocadoraDeVeiculos.Aplicacao.ModuloTaxaEServico;
 using LocadoraDeVeiculos.Dominio.ModuloAluguel;
 using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
@@ -9,6 +10,7 @@ using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
 using LocadoraDeVeiculos.Infra.Orm.ModuloAluguel;
 using LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
@@ -18,7 +20,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
     public class ControladorAluguel : ControladorBase
     {
         private IRepositorioFuncionario repositorioFuncionario;
-        private IRepositorioCliente repositorioCliente;
+        private IRepositorioTaxaEServico repositorioTaxaEServico
         private IRepositorioCondutor repositorioCondutor;
         private IRepositorioAutomovel repositorioAutomovel;
         private IRepositorioGrupoAutomovel repositorioGrupoAutomovel;
@@ -31,36 +33,81 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         private ServicoAluguel servicoAluguel;
 
 
-        public ControladorAluguel(IRepositorioAluguel repositorioAluguel,
-                                   IRepositorioFuncionario repositorioFuncionario,
-                                   IRepositorioCliente repositorioCliente,
+        public ControladorAluguel( IRepositorioFuncionario repositorioFuncionario,
+                                   IRepositorioTaxaEServico repositorioTaxaEServico,
                                    IRepositorioCondutor repositorioCondutor,
                                    IRepositorioAutomovel repositorioAutomovel,
                                    IRepositorioGrupoAutomovel repositorioGrupoAutomovel,
-                                   IRepositorioPlanoCobranca repositorioPlanoCobranca)
+                                   IRepositorioPlanoCobranca repositorioPlanoCobranca,
+                                   IRepositorioAluguel repositorioAluguel,
+                                   ServicoAluguel servicoAluguel)
         {
             this.repositorioAluguel = repositorioAluguel;
             this.repositorioFuncionario = repositorioFuncionario;
-            this.repositorioCliente = repositorioCliente;
+            this.repositorioTaxaEServico = repositorioTaxaEServico;
             this.repositorioCondutor = repositorioCondutor;
             this.repositorioAutomovel = repositorioAutomovel;
             this.repositorioGrupoAutomovel = repositorioGrupoAutomovel;
             this.repositorioPlanoCobranca = repositorioPlanoCobranca;
+            this.servicoAluguel = servicoAluguel;
     }
 
 
         public override void Inserir()
         {
-            //TelaCupomForm tela = new();
-            //tela.onGravarRegistro += servicoAluguel.Inserir;
-            //tela.ConfigurarTela(new Aluguel());
+            if (repositorioFuncionario.SelecionarTodos().Count() == 0)
+            {
+                MessageBox.Show("Você deve cadastrar ao menos um Funcionario para poder cadastrar um Auguel.",
+                "Cadastro de Aluguel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (repositorioCondutor.SelecionarTodos().Count() == 0)
+            {
+                MessageBox.Show("Você deve cadastrar ao menos um Condutor para poder cadastrar um Auguel.",
+                "Cadastro de Aluguel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (repositorioAutomovel.SelecionarTodos().Count() == 0)
+            {
+                MessageBox.Show("Você deve cadastrar ao menos um Automovel para poder cadastrar um Auguel.",
+                "Cadastro de Aluguel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+            if (repositorioTaxaEServico.SelecionarTodos().Count() == 0)
+            {
+                MessageBox.Show("Você deve cadastrar ao menos um Condutor para poder cadastrar um Auguel.",
+                "Cadastro de Aluguel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+            //if (repositorioPlanoCobranca.SelecionarTodos().All(p => p.grupoAutomovel) == 0)
+            //{
+            //    MessageBox.Show("Você deve cadastrar ao menos um Condutor para poder cadastrar um Auguel.",
+            //    "Cadastro de Aluguel",
+            //    MessageBoxButtons.OK,
+            //    MessageBoxIcon.Exclamation);
+            //    return;
+            //}
+
+            //TelaCadastroAluguelForm tela = new();
+
+            //tela.onGravarRegistro += servicoTaxaEServico.Inserir;
+
+            //tela.ConfigurarTaxaEServico(new TaxaEServico());
+
             //DialogResult resultado = tela.ShowDialog();
 
             //if (resultado == DialogResult.OK)
             //{
-            //    CarregarAluguel();
+            //    carregarAlugueis();
             //}
-
         }
 
         public override void Editar()
@@ -88,7 +135,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
             //if (resultado == DialogResult.OK)
             //{
-            //    CarregarAluguel();
+            //    CarregarAlugueis();
             //}
         }
 
@@ -108,7 +155,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             }
 
             DialogResult opcaoEscolhida =
-               MessageBox.Show($"Deseja realmente excluir um aluguel \"{aluguelSelecionado}\"?",
+               MessageBox.Show($"Deseja realmente excluir o aluguel \"{aluguelSelecionado}\"?",
                "Exclusão de Aluguel",
                MessageBoxButtons.OKCancel,
             MessageBoxIcon.Question);
@@ -127,7 +174,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             //        return;
             //    }
 
-            //    CarregarAluguel();
+            //    CarregarAlugueis();
             //}
         }
 
@@ -141,16 +188,18 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             if (tabelaAluguel == null)
                 tabelaAluguel = new TabelaAluguelControl();
 
-            CarregarAluguel();
+            CarregarAlugueis();
 
             return tabelaAluguel;
         }
     
-        public void CarregarAluguel()
+        public void CarregarAlugueis()
         {
             List<Aluguel> aluguels = repositorioAluguel.SelecionarTodos();
+
             tabelaAluguel.AtualizarRegistros(aluguels);
-            mensagemRodape = string.Format("Visualizando {0} alugueis{1}", aluguels.Count, aluguels.Count == 1 ? "" : "s");
+
+            mensagemRodape = string.Format("Visualizando {0} alugue{1}", aluguels.Count, aluguels.Count == 1 ? "l" : "is");
 
             TelaPrincipalForm.Tela.AtualizarRodape(mensagemRodape);
         }

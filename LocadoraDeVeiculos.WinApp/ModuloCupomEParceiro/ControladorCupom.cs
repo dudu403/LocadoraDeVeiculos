@@ -1,9 +1,6 @@
 ﻿using FluentResults;
 using LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro;
-using LocadoraDeVeiculos.Aplicacao.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
-using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
-using LocadoraDeVeiculos.WinApp.ModuloFuncionario;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 {
@@ -28,6 +25,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
         public override void Inserir()
         {
+            if (repositorioParceiro.SelecionarTodos().Count() == 0)
+            {
+                MessageBox.Show("Você deve cadastrar ao menos um Parceiro para poder inserir o cadastro de um Cupom.",
+                "Inserção de Cupom",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+
             TelaCupomForm tela = new(repositorioParceiro.SelecionarTodos());
 
             tela.onGravarRegistro += servicoCupom.Inserir;
@@ -131,7 +137,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
             tabelaCupom.AtualizarRegistros(cupom);
 
-            mensagemRodape = string.Format("Visualizando {0} cupons{1}", cupom.Count, cupom.Count == 1 ? "" : "s");
+            mensagemRodape = string.Format("Visualizando {0} cupo{1}", cupom.Count, cupom.Count == 1 ? "m" : "ns");
 
             TelaPrincipalForm.Tela.AtualizarRodape(mensagemRodape);
         }
