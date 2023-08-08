@@ -78,10 +78,7 @@
     <Compile Update="ModuloGrupoAutomovel\TelaGrupoAutomovelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ModuloPlanoCobranca\TelaPlanoCobrancaForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ModuloPlanoCobranca\TabelaPlanoCobrancaForm.cs">
+    <Compile Update="ModuloPlanoCobranca\TabelaPlanoCobrancaControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="ModuloTaxaEServico\TabelaTaxaEServicoControl.cs">

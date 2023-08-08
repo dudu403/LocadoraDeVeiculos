@@ -1,4 +1,6 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
+using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +40,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
                 new DataGridViewTextBoxColumn { DataPropertyName = "Parceiro", HeaderText = "Parceiro"}
 
+                
             };
             return colunas;
         }
@@ -53,11 +56,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro
 
             foreach (Cupom cupom in cupons)
             {
-                grid.Rows.Add(cupom.id, 
-                              cupom.nome, 
-                              cupom.valor, 
-                              cupom.validade.ToString("dd/MM/yyyy"), 
+                grid.Rows.Add(cupom.id,
+                              cupom.nome,
+                      "R$ " + cupom.valor,
+                              cupom.validade.ToString("dd/MM/yyyy"),
                               cupom.parceiro);
+
             }
         }
     }

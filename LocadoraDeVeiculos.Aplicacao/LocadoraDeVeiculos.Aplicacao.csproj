@@ -22,6 +22,7 @@
     <Folder Include="ModuloFuncionario\" />
     <Folder Include="ModuloGrupoAutomovel\" />
     <Folder Include="ModuloPlanoCobranca\" />
+    <Folder Include="ModuloTaxaEServico\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
 {
-    partial class TabelaPlanoCobrancaForm
+    partial class TabelaPlanoCobrancaControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -36,18 +36,20 @@
             // 
             grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             grid.Location = new Point(0, 0);
+            grid.MaximumSize = new Size(2560, 1709);
+            grid.MinimumSize = new Size(2560, 1709);
             grid.Name = "grid";
             grid.RowHeadersVisible = false;
             grid.RowTemplate.Height = 25;
-            grid.Size = new Size(150, 150);
+            grid.Size = new Size(2560, 1709);
             grid.TabIndex = 1;
             // 
-            // TabelaPlanoCobrancaForm
+            // TabelaPlanoCobrancaControl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(grid);
-            Name = "TabelaPlanoCobrancaForm";
+            Name = "TabelaPlanoCobrancaControl";
             ((System.ComponentModel.ISupportInitialize)grid).EndInit();
             ResumeLayout(false);
         }

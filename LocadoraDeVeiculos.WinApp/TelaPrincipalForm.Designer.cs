@@ -437,7 +437,6 @@
             ShowIcon = false;
             Text = "Locadora De Veículos";
             panelRegistros.ResumeLayout(false);
-            panelRegistros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
@@ -453,7 +452,6 @@
 
         private ToolStripStatusLabel lableRodape;
         private Panel panelRegistros;
-        private PictureBox pictureBox1;
         private ToolStrip toolStrip1;
         private ToolStripButton btnHome;
         private ToolStripSeparator toolStripSeparator0;
@@ -489,5 +487,6 @@
         private ToolStripMenuItem serviçosToolStripMenuItem;
         private ToolStripMenuItem aluguéisToolStripMenuItem;
         private ToolStripMenuItem parceirosToolStripMenuItem;
+        private PictureBox pictureBox1;
     }
 }
