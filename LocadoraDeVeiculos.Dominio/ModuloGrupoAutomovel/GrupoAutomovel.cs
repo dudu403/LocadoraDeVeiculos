@@ -3,7 +3,7 @@
     public class GrupoAutomovel : EntidadeBase<GrupoAutomovel>
     {
         public string nome { get; set; }
-
+   
         public GrupoAutomovel()
         {
             

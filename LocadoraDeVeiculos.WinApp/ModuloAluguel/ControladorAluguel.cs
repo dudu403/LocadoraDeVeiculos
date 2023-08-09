@@ -20,7 +20,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
     public class ControladorAluguel : ControladorBase
     {
         private IRepositorioFuncionario repositorioFuncionario;
-        private IRepositorioTaxaEServico repositorioTaxaEServico
+        private IRepositorioTaxaEServico repositorioTaxaEServico;
         private IRepositorioCondutor repositorioCondutor;
         private IRepositorioAutomovel repositorioAutomovel;
         private IRepositorioGrupoAutomovel repositorioGrupoAutomovel;
@@ -31,7 +31,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         private TabelaAluguelControl tabelaAluguel;
 
         private ServicoAluguel servicoAluguel;
-
 
         public ControladorAluguel( IRepositorioFuncionario repositorioFuncionario,
                                    IRepositorioTaxaEServico repositorioTaxaEServico,

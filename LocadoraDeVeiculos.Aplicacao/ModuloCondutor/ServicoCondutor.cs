@@ -1,14 +1,7 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloCondutor;
-using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
 {
-
     public class ServicoCondutor
     {
         private IRepositorioCondutor repositorioCondutor;
@@ -112,6 +105,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
                 return Result.Fail(msgErro);
             }
         }
+
         private List<string> ValidarCondutor(Condutor condutor)
         {
             var resultadoValidacao = validadorCondutor.Validate(condutor);
@@ -122,7 +116,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
                 erros.AddRange(resultadoValidacao.Errors.Select(x => x.ErrorMessage));
 
             if (NomeDuplicado(condutor))
-                erros.Add($"Este nome '{condutor.nome}' já está sendo utilizado");
+                erros.Add($"Este cliente já possuí um condutor cadastrado com esse nome '{condutor.nome}'");
 
             foreach (string erro in erros)
             {
@@ -131,17 +125,17 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
 
             return erros;
         }
+
         private bool NomeDuplicado(Condutor condutor)
         {
             Condutor condutorEncontrado = repositorioCondutor.SelecionarPorNome(condutor.nome);
 
             if (condutorEncontrado != null &&
                 condutorEncontrado.id != condutor.id &&
-                condutorEncontrado.nome == condutor.nome)
+                condutorEncontrado.nome == condutor.cliente.nome)
                 return true;
 
             return false;
         }
-
     }
 }
