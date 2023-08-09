@@ -10,7 +10,9 @@
 
             RuleFor(x => x.tipoPlano)
               .NotEmpty()
-              .NotNull();
+              .NotNull()
+              .Must((x, tipoPlano) => !x.grupoAutomovel.tiposPlano.Contains(tipoPlano))
+              .WithMessage("Esse tipo de plano já está cadastrado para este grupo de automovel.");
 
             When(x => x.tipoPlano == TipoPlanoEnum.Cobrança_Km_Livre, () => {
 

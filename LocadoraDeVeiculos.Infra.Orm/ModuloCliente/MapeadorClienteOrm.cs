@@ -31,8 +31,6 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloCliente
             builder.Property(d => d.numero).HasConversion<int>().IsRequired();
 
             builder.Property(d => d.cep).HasColumnType("varchar(200)").IsRequired();
-
-
         }
     }
 }

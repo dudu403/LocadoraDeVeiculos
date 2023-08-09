@@ -19,15 +19,33 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloAluguel
 
         //    //.....
         //}
-        
+
         //public Result Editar(Aluguel aluguel)
         //{
         //    Log.Debug("Tentando editar aluguel...{@d}", aluguel);
-            
+
         //    //.........
         //}
 
         //public Result Excluir(Aluguel aluguel)
+        //{
+        //    Log.Debug("Tentando excluir aluguel...{@d}", aluguel);
+
+        //    try
+        //    {
+        //        //............
+
+        //        return Result.Ok();
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        //..........
+
+        //        //return Result.Fail(erros);
+        //    }
+        //}
+
+        //public Result Devolver(Aluguel aluguel)
         //{
         //    Log.Debug("Tentando excluir aluguel...{@d}", aluguel);
 

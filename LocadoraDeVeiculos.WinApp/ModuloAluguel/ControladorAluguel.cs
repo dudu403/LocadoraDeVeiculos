@@ -177,6 +177,23 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             //}
         }
 
+        public override void Devolver()
+        {
+            Guid id = tabelaAluguel.ObterIdSelecionado();
+
+            Aluguel aluguelSelecionado = repositorioAluguel.SelecionarPorId(id);
+
+            if (aluguelSelecionado == null)
+            {
+                MessageBox.Show("Selecione um aluguel primeiro",
+                "Edição de Alguel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+
+        }
+
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolboxAluguel();

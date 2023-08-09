@@ -1,12 +1,4 @@
-﻿using LocadoraDeVeiculos.Dominio.Compartilhado;
-using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
-using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
-using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoCobranca
 {
@@ -31,6 +23,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoCobranca
                 return Result.Fail(erros);
             try
             {
+                registro.grupoAutomovel.tiposPlano.Add(registro.tipoPlano);
+
                 repositorioPlanoCobranca.Inserir(registro);
 
                 Log.Debug("Plano {PlanoCobrancaId} inserido com sucesso.", registro.id);
