@@ -140,11 +140,13 @@ namespace LocadoraDeVeiculos.WinApp
 
             IRepositorioCliente repositorioCliente = new RepositorioClienteEmOrm(dbContext);
 
+            IRepositorioCondutor repositorioCondutor = new RepositorioCondutorEmOrm(dbContext);
+
             ValidadorCliente validadorCliente = new();
 
             ServicoCliente servicoCliente = new(repositorioCliente, validadorCliente);
 
-            controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente));
+            controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente, repositorioCondutor));
 
             IRepositorioCupom repositorioCupom = new RepositorioCupomEmOrm(dbContext);
 
@@ -153,8 +155,6 @@ namespace LocadoraDeVeiculos.WinApp
             ServicoCupom servicoCupom = new(repositorioCupom, validadorCupom);
 
             controladores.Add("ControladorCupom", new ControladorCupom(repositorioCupom, servicoCupom, repositorioParceiro));
-
-            IRepositorioCondutor repositorioCondutor = new RepositorioCondutorEmOrm(dbContext);
 
             ValidadorCondutor validadorCondutor = new();
 

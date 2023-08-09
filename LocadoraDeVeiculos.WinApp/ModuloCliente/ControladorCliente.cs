@@ -1,21 +1,24 @@
 ﻿using FluentResults;
 using LocadoraDeVeiculos.Aplicacao.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
+using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 {
     public class ControladorCliente : ControladorBase
     {
         private IRepositorioCliente repositorioCliente;
+        private IRepositorioCondutor repositorioCondutor;
 
         private TabelaClienteControl tabelaCliente;
 
         private ServicoCliente servicoCliente;
 
-        public ControladorCliente(IRepositorioCliente repositorioCliente, ServicoCliente servicoCliente)
+        public ControladorCliente(IRepositorioCliente repositorioCliente, ServicoCliente servicoCliente, IRepositorioCondutor repositorioCondutor)
         {
             this.repositorioCliente = repositorioCliente;
             this.servicoCliente = servicoCliente;
+            this.repositorioCondutor = repositorioCondutor;
         }
         public override void Inserir()
         {
@@ -77,6 +80,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
                 return;
             }
+            if (repositorioCondutor.SelecionarTodos().Any(x => x.cliente == cliente))
+            {
+                MessageBox.Show("Você não pode excluir um Cliente relacionado a um Condutor.",
+                "Exclusão de clientes",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
 
             DialogResult opcaoEscolhida =
                 MessageBox.Show($"Deseja excluir o cliente {cliente.nome}?",
@@ -112,6 +123,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
             TelaPrincipalForm.Tela.AtualizarRodape(mensagemRodape);
         }
+
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
             return new ConfiguracaoToolboxCliente();

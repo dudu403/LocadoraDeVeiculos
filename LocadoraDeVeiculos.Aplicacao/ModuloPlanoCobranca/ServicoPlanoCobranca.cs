@@ -23,7 +23,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoCobranca
                 return Result.Fail(erros);
             try
             {
-                registro.grupoAutomovel.tiposPlano.Add(registro.tipoPlano);
+                //registro.grupoAutomovel.tiposPlano.Add(registro.tipoPlano);
 
                 repositorioPlanoCobranca.Inserir(registro);
 

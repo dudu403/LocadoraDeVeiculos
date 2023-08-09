@@ -12,7 +12,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloGrupoAutomovel
 
             builder.Property(d => d.nome).HasColumnType("varchar(100)").IsRequired();
 
-            builder.Property(d => d.tiposPlano).HasColumnType("varchar(max)").IsRequired(false);
+     //       builder.Property(d => d.tiposPlano).HasColumnType("varchar(max)").IsRequired(false);
         }
     }
 }
