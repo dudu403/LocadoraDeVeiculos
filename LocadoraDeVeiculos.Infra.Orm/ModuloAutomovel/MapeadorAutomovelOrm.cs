@@ -22,9 +22,9 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloAutomovel
 
             builder.Property(d => d.tipoCombustivel).HasConversion<int>().IsRequired();
 
-            builder.Property(d => d.quilometragem).HasConversion<decimal>().HasPrecision(5,2).IsRequired();
+            builder.Property(d => d.quilometragem).HasConversion<decimal>().HasPrecision(25,2).IsRequired();
 
-            builder.Property(d => d.capacidadeTanqueLitros).HasConversion<decimal>().HasPrecision(5,2).IsRequired();
+            builder.Property(d => d.capacidadeTanqueLitros).HasConversion<decimal>().HasPrecision(25,2).IsRequired();
 
             builder.HasOne(m => m.grupoAutomovel)
                    .WithMany(g => g.automoveis)

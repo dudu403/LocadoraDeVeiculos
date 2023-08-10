@@ -22,8 +22,11 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloFuncionario
             List<string> erros = ValidarFuncionario(funcionario);
 
             if (erros.Count() > 0)
-                return Result.Fail(erros); //cenário 2
+            {
+                repositorioFuncionario.Inserir(funcionario);
 
+                return Result.Fail(erros); //cenário 2
+            }
             try
             {
                 repositorioFuncionario.Inserir(funcionario);

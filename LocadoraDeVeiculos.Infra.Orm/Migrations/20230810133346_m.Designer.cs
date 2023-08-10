@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 {
     [DbContext(typeof(LocadoraDeVeiculosDbContext))]
-    [Migration("20230810090536_mig")]
-    partial class mig
+    [Migration("20230810133346_m")]
+    partial class m
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,16 +73,16 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("kmFinal")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<decimal>("kmInicial")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<decimal?>("kmPercorrido")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<int>("nivelTanque")
                         .HasColumnType("int");
@@ -91,12 +91,12 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("valorTotalFinal")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<decimal>("valorTotalPrevisto")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.HasKey("id");
 
@@ -123,8 +123,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal>("capacidadeTanqueLitros")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<string>("cor")
                         .IsRequired()
@@ -150,8 +150,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<decimal>("quilometragem")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<int>("tipoCombustivel")
                         .HasColumnType("int");
@@ -272,8 +272,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("valor")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.HasKey("id");
 
@@ -309,8 +309,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<decimal>("salario")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.HasKey("id");
 
@@ -340,20 +340,20 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<decimal?>("kmDisponiveis")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<decimal>("precoDiaria")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<decimal?>("precoPorKm")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<decimal?>("precoPorKmExtrapolado")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<int>("tipoPlano")
                         .HasColumnType("int");
@@ -375,8 +375,8 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<decimal>("preco")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
+                        .HasPrecision(25, 2)
+                        .HasColumnType("decimal(25,2)");
 
                     b.Property<int>("tipoDoCusto")
                         .HasColumnType("int");

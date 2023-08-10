@@ -12,9 +12,9 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloAluguel
 
             builder.Property(d => d.dataPrevistaDevolucao).IsRequired();
 
-            builder.Property(d => d.valorTotalPrevisto).HasConversion<decimal>().HasPrecision(5,2).IsRequired();
+            builder.Property(d => d.valorTotalPrevisto).HasConversion<decimal>().HasPrecision(25,2).IsRequired();
 
-            builder.Property(d => d.valorTotalFinal).HasConversion<decimal>().HasPrecision(5,2).IsRequired(false);
+            builder.Property(d => d.valorTotalFinal).HasConversion<decimal>().HasPrecision(25,2).IsRequired(false);
 
             builder.Property(d => d.dataDevolucao).IsRequired(false);
 
@@ -22,11 +22,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloAluguel
 
             builder.Property(d => d.dataLocacao).IsRequired();
 
-            builder.Property(d => d.kmPercorrido).HasConversion<decimal>().HasPrecision(5,2).IsRequired(false);
+            builder.Property(d => d.kmPercorrido).HasConversion<decimal>().HasPrecision(25,2).IsRequired(false);
 
-            builder.Property(d => d.kmInicial).HasConversion<decimal>().HasPrecision(5,2).IsRequired();
+            builder.Property(d => d.kmInicial).HasConversion<decimal>().HasPrecision(25,2).IsRequired();
 
-            builder.Property(d => d.kmFinal).HasConversion<decimal>().HasPrecision(5,2).IsRequired(false);
+            builder.Property(d => d.kmFinal).HasConversion<decimal>().HasPrecision(25,2).IsRequired(false);
 
             builder.HasOne(m => m.grupoAutomovel)
                    .WithMany()

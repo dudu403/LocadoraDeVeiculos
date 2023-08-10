@@ -22,6 +22,11 @@
             return ruleBuilder.SetValidator(new FormatoCpfValidator<T>());
         }
 
+        public static IRuleBuilderOptions<T, string> VerificaFormatoPlaca<T>(this IRuleBuilder<T, string> ruleBuilder)
+        {
+            return ruleBuilder.SetValidator(new FormatoPlacaValidator<T>());
+        }
+
         public static IRuleBuilderOptions<T, string> VerificaFormatoCnh<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.SetValidator(new FormatoCnhValidator<T>());

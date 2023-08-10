@@ -1,4 +1,4 @@
-﻿using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+﻿ using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloCondutor
 {

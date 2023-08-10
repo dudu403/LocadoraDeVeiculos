@@ -1,19 +1,30 @@
 ﻿using FluentResults;
-using LocadoraDeVeiculos.Aplicacao.ModuloAluguel;
-using LocadoraDeVeiculos.Dominio.ModuloAluguel;
-using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
-using LocadoraDeVeiculos.Dominio.ModuloCliente;
-using LocadoraDeVeiculos.Dominio.ModuloCondutor;
-using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
-using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
-using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
-using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
-using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Draw;
 using iText.Layout;
 using iText.Layout.Element;
 using iText.Layout.Properties;
+using LocadoraDeVeiculos.Aplicacao.ModuloAluguel;
+using LocadoraDeVeiculos.Dominio.ModuloAluguel;
+using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
+using LocadoraDeVeiculos.Dominio.ModuloCliente;
+using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
+using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
+using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
+using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
+using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
+using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
+using LocadoraDeVeiculos.Infra.Json.ModuloConfigPreco;
+//using MimeKit;
+//using System.Net.Mail;
+//using System.Net.Mime;
+//using MailKit.Net.Smtp;
+//using MailKit.Security;
+
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using MimeKit;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 {
@@ -26,6 +37,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         private IRepositorioCupom repositorioCupom;
         private IRepositorioAutomovel repositorioAutomovel;
         private IRepositorioGrupoAutomovel repositorioGrupoAutomovel;
+        private IRepositorioConfiguracaoPreco repositorioConfigPreco;
         private IRepositorioPlanoCobranca repositorioPlanoCobranca;
 
         private IRepositorioAluguel repositorioAluguel;
@@ -43,7 +55,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                                    IRepositorioGrupoAutomovel repositorioGrupoAutomovel,
                                    IRepositorioPlanoCobranca repositorioPlanoCobranca,
                                    IRepositorioAluguel repositorioAluguel,
-                                   ServicoAluguel servicoAluguel)
+                                   ServicoAluguel servicoAluguel,
+                                   IRepositorioConfiguracaoPreco repositorioConfigPreco)
         {
             this.repositorioAluguel = repositorioAluguel;
             this.repositorioFuncionario = repositorioFuncionario;
@@ -55,11 +68,25 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             this.repositorioGrupoAutomovel = repositorioGrupoAutomovel;
             this.repositorioPlanoCobranca = repositorioPlanoCobranca;
             this.servicoAluguel = servicoAluguel;
-    }
+            this.repositorioConfigPreco = repositorioConfigPreco;
+        }
 
 
         public override void Inserir()
         {
+            var configuracaoPreco = repositorioConfigPreco.ObterConfiguracaoPreco();
+
+            if (configuracaoPreco.precoGasolina != 0 &&
+            configuracaoPreco.precoAlcool != 0 &&
+            configuracaoPreco.precoDisel != 0 &&
+            configuracaoPreco.precoGas != 0)
+            {
+                MessageBox.Show("Você deve configurar todos os preços de combustíveis para poder cadastrar um Auguel.",
+                "Cadastro de Aluguel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
             if (repositorioFuncionario.SelecionarTodos().Count() == 0)
             {
                 MessageBox.Show("Você deve cadastrar ao menos um Funcionario para poder cadastrar um Auguel.",
@@ -92,20 +119,20 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 MessageBoxIcon.Exclamation);
                 return;
             }
-            //if (repositorioPlanoCobranca.SelecionarTodos().All(p => p.grupoAutomovel) == 0)
-            //{
-            //    MessageBox.Show("Você deve cadastrar ao menos um Condutor para poder cadastrar um Auguel.",
-            //    "Cadastro de Aluguel",
-            //    MessageBoxButtons.OK,
-            //    MessageBoxIcon.Exclamation);
-            //    return;
-            //}
+            if (repositorioGrupoAutomovel.SelecionarTodos().Any(p => p.planosCobranca.Count() != 3))
+            {
+                MessageBox.Show("Você deve cadastrar ao menos um Condutor para poder cadastrar um Auguel.",
+                "Cadastro de Aluguel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
 
             TelaAluguelForm tela = new(repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
                                            repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
                                            repositorioTaxaEServico.SelecionarTodos());
 
-            //tela.onGravarRegistro += servicoAluguel.Inserir;
+            tela.onGravarRegistro += servicoAluguel.Inserir;
 
             tela.ConfigurarTela(new Aluguel());
 
@@ -136,7 +163,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                                            repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
                                            repositorioTaxaEServico.SelecionarTodos());
 
-            //tela.onGravarRegistro += servicoAluguel.Editar;
+            tela.onGravarRegistro += servicoAluguel.Editar;
 
             tela.ConfigurarTela(aluguelSelecionado);
 
@@ -162,6 +189,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 MessageBoxIcon.Exclamation);
                 return;
             }
+            if (aluguelSelecionado.dataDevolucao == null)
+            {
+                MessageBox.Show("Esse Aluguel ainda não foi encerrado, logo, não pode ser excluido",
+                "Exclusão de Aluguel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
 
             DialogResult opcaoEscolhida =
                MessageBox.Show($"Deseja realmente excluir o aluguel \"{aluguelSelecionado}\"?",
@@ -169,22 +204,22 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                MessageBoxButtons.OKCancel,
             MessageBoxIcon.Question);
 
-            //if (opcaoEscolhida == DialogResult.OK)
-            //{
-            //    Result resultado = servicoAluguel.Excluir(aluguelSelecionado);
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Result resultado = servicoAluguel.Excluir(aluguelSelecionado);
 
-            //    if (resultado.IsFailed)
-            //    {
-            //        MessageBox.Show(resultado.Errors[0].Message,
-            //            "Exclusão de Aluguel",
-            //            MessageBoxButtons.OK,
-            //            MessageBoxIcon.Error);
+                if (resultado.IsFailed)
+                {
+                    MessageBox.Show(resultado.Errors[0].Message,
+                        "Exclusão de Aluguel",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
 
-            //        return;
-            //    }
+                    return;
+                }
 
-            //    CarregarAlugueis();
-            //}
+                CarregarAlugueis();
+            }
         }
 
         public override void Devolver()
@@ -200,6 +235,30 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
                 return;
+            }
+            if (aluguelSelecionado.dataDevolucao != null)
+            {
+                MessageBox.Show("Esse Aluguel ja foi encerrado, logo, não pode ser encerrado novamente.",
+                "Exclusão de Aluguel",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            TelaAluguelForm tela = new(repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
+                                           repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
+                                           repositorioTaxaEServico.SelecionarTodos());
+
+
+            tela.onGravarRegistro += servicoAluguel.Inserir;
+
+            tela.ConfigurarTela(new Aluguel());
+
+            DialogResult resultado = tela.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                CarregarAlugueis();
             }
 
         }
@@ -230,10 +289,59 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             TelaPrincipalForm.Tela.AtualizarRodape(mensagemRodape);
         }
 
+        private void EnviarEmailComPdf(Aluguel aluguel, string pathPdf)
+        {
+            try
+            {
+                var message = new MimeMessage();
+
+                message.From.Add(new MailboxAddress("Bugless Squad - Locadora de Veículos", "buglessquad@gmail.com"));
+
+                message.To.Add(new MailboxAddress(aluguel.cliente.nome, aluguel.cliente.email));
+
+                message.Subject = "Detalhes da sua Locação";
+
+                var bodyBuilder = new BodyBuilder();
+
+                if (aluguel.dataDevolucao != null)
+                    bodyBuilder.TextBody = "Obrigada pela confiança. Seque em anexo os detalhes da conclusão do seu Aluguel.";
+                else
+                    bodyBuilder.TextBody = "Detalhes do seu Aluguel!";
+
+                var pdfAttachment = new MimePart("application", "pdf")
+                {
+                    Content = new MimeContent(File.OpenRead(pathPdf)),
+                    ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                    ContentTransferEncoding = ContentEncoding.Base64,
+                    FileName = Path.GetFileName(pathPdf)
+                };
+
+                bodyBuilder.Attachments.Add(pdfAttachment);
+                message.Body = bodyBuilder.ToMessageBody();
+
+                using (var scl = new SmtpClient())
+                {
+                    scl.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+
+                    scl.Authenticate("buglesssquad@gmail.com", "qxfuczutqfdldgqo");
+
+                    scl.Send(message);
+
+                    scl.Disconnect(true);
+                }
+
+                MessageBox.Show("E-mail enviado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao enviar o e-mail: " + ex.Message);
+            }
+        }
+
         private void GerarPdfAluguel(Aluguel aluguel)
         {
-            PdfWriter localizacao = new(Path.GetTempFileName());
-            PdfDocument pdf = new(localizacao);
+            PdfWriter pathPdf = new(Path.GetTempFileName());
+            PdfDocument pdf = new(pathPdf);
             Document doc = new(pdf);
 
             Paragraph header = new Paragraph("Bugless Squad - Locadora de Veículos")

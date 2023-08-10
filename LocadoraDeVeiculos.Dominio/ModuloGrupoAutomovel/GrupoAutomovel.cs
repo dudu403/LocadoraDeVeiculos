@@ -11,7 +11,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel
 
         public GrupoAutomovel()
         {
-            
+            planosCobranca = new();
         }
 
         public GrupoAutomovel(string nome) 

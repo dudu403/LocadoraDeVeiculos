@@ -176,7 +176,9 @@ namespace LocadoraDeVeiculos.WinApp
 
             ServicoAluguel servicoAluguel = new(repositorioAluguel, validadorAluguel);
 
-            //controladores.Add("ControladorAluguel", new ControladorAluguel(repositorioAluguel, servicoAluguel));
+            controladores.Add("ControladorAluguel", new ControladorAluguel(repositorioFuncionario, repositorioTaxaEServico, repositorioCliente,
+                repositorioCondutor, repositorioCupom, repositorioAutomovel, repositorioGrupoAutomovel, repositorioPlanoCobranca,
+                repositorioAluguel, servicoAluguel, repositorioConfiguracaoPreco));
         }
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)

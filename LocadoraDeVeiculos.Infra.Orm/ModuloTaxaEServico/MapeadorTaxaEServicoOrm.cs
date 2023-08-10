@@ -12,7 +12,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloTaxaEServico
 
             builder.Property(d => d.nome).HasColumnType("varchar(200)").IsRequired();
 
-            builder.Property(d => d.preco).HasConversion<decimal>().HasPrecision(5,2).IsRequired();
+            builder.Property(d => d.preco).HasConversion<decimal>().HasPrecision(25,2).IsRequired();
 
             builder.Property(d => d.tipoDoCusto).HasConversion<int>().IsRequired();
         }
