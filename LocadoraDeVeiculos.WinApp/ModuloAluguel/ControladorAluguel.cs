@@ -123,7 +123,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             }
             Aluguel aulguel = new();
 
-            TelaAluguelForm tela = new(configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
+            TelaAluguelForm tela = new(false, configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
                                            repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
                                            repositorioTaxaEServico.SelecionarTodos());  
 
@@ -158,7 +158,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 return;
             }
 
-            TelaAluguelForm tela = new(configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
+            TelaAluguelForm tela = new(false, configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
                                            repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
                                            repositorioTaxaEServico.SelecionarTodos());
 
@@ -248,7 +248,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 return;
             }
 
-            TelaAluguelForm tela = new(configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
+            TelaAluguelForm tela = new(true, configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
                                            repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
                                            repositorioTaxaEServico.SelecionarTodos());
 

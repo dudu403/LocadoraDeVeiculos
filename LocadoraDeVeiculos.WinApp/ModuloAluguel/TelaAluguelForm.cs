@@ -15,6 +15,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 {
     public partial class TelaAluguelForm : Form
     {
+        private bool devolver { get; set; }
         private Aluguel aluguel { get; set; }
         private List<Cupom> todosCupons { get; set; }
         private ConfiguracaoPreco configPreco { get; set; }
@@ -22,7 +23,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
         public event GravarRegistroDelegate<Aluguel> onGravarRegistro;
 
-        public TelaAluguelForm(ConfiguracaoPreco configPreco, List<Funcionario> funcionarios, List<Cliente> clientes, List<GrupoAutomovel> gruposAutomovel, List<Cupom> cupons, List<TaxaEServico> taxasEServicos)
+        public TelaAluguelForm(bool devolver, ConfiguracaoPreco configPreco, List<Funcionario> funcionarios, List<Cliente> clientes, List<GrupoAutomovel> gruposAutomovel, List<Cupom> cupons, List<TaxaEServico> taxasEServicos)
         {
             InitializeComponent();
 
@@ -32,7 +33,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
             this.todosCupons = cupons;
 
-            this.configPreco = configPreco;
+            this.configPreco = configPreco;            
+            this.devolver = devolver;
 
             listBoxTaxasIniciais.DataSource = taxasEServicos;
 
@@ -65,7 +67,16 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             this.aluguel = aluguelSelecionado;
 
-            if(aluguel.cupom != null)
+            if (devolver)
+            {
+                CarregarListaTaxasExtras();
+                listBoxTaxasIniciais.Enabled = false;
+                ConfigurarVisibilidade();
+                ConfigurarDesabilitacao();
+                CarregarNivelTanqueEnum();
+            }
+
+            if (aluguel.cupom != null)
                 txtCupom.Text = aluguel.cupom.ToString();
 
             txtKmAutomovel.Text = aluguel.automovel.quilometragem.ToString();
@@ -79,7 +90,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             cmbGAutomovel.SelectedItem = aluguel.grupoAutomovel;
             txtDataPrevista.Value = aluguel.dataPrevistaDevolucao;
 
-            aObterDevolucaoAluguel();
             ConfigurarListaComCheck();
             CarregarListaTaxasExtras();
         }
@@ -123,7 +133,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             this.aluguel = ObterCadastroAluguel();
 
-            Result resultado = onGravarRegistro(aluguel);
+            if (devolver)
+                ObterDevolucaoAluguel();
+                Result resultado = onGravarRegistro(aluguel);
 
             if (resultado.IsFailed)
             {
@@ -153,11 +165,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
         public void ObterDevolucaoAluguel()
         {
-            listBoxTaxasIniciais.Enabled = false;
-            ConfigurarVisibilidade();
-            ConfigurarDesabilitacao();
-            CarregarNivelTanqueEnum();
-
             aluguel.kmPercorrido = Convert.ToDecimal(txtKmPercorrido.Text);
 
             aluguel.kmFinal = aluguel.kmPercorrido + aluguel.kmInicial;
@@ -248,8 +255,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             if (cmbAutomovel.SelectedItem != null)
             {
-                //if(cmbAutomovel.SelectedItem != Vazio)
-                    aluguel.automovel = (Automovel)cmbAutomovel.SelectedItem;
+                //uguel.automovel = (Automovel)cmbAutomovel.SelectedItem;
 
                 txtKmAutomovel.Text = aluguel.automovel.quilometragem.ToString();
             }
