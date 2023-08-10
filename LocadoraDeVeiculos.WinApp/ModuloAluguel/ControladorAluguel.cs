@@ -345,150 +345,159 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
         private void GerarPdfAluguelEEnviarEmail(Aluguel aluguel)
         {
-            PdfWriter pathPdf = new(Path.GetTempFileName());
-            PdfDocument pdf = new(pathPdf);
-            Document doc = new(pdf);
+            //    PdfWriter pathPdf = new(Path.GetTempFileName());
+            //    PdfDocument pdf = new(pathPdf);
+            //    Document doc = new(pdf);
 
-            Paragraph titulo = new Paragraph("Bugless Squad - Locadora de Veículos")
+            var diretorio = Path.GetTempPath();
+            var pathPdf = Path.Combine(diretorio, $"aluguel-{aluguel.id}.pdf");
+
+            using (var fileStream = new FileStream(pathPdf, FileMode.Create))
+            {
+                var pdfWriter = new PdfWriter(fileStream);
+                var pdfDocument = new PdfDocument(pdfWriter);
+                var doc = new Document(pdfDocument);
+
+                Paragraph titulo = new Paragraph("Bugless Squad - Locadora de Veículos")
                 .SetTextAlignment(TextAlignment.CENTER)
                 .SetFontSize(21);
 
-            Paragraph subheader = new Paragraph($"Veículo locado: {aluguel.automovel.modelo} - Placa: {aluguel.automovel.placa}. ")
-                .SetTextAlignment(TextAlignment.CENTER)
-                .SetFontSize(18)
+                Paragraph subheader = new Paragraph($"Veículo locado: {aluguel.automovel.modelo} - Placa: {aluguel.automovel.placa}. ")
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFontSize(18)
+                    .SetBold();
+
+                doc.Add(titulo);
+                doc.Add(subheader);
+
+                doc.Add(new LineSeparator(new SolidLine(1f)));
+                doc.Add(new Paragraph(""));
+
+                Paragraph detalhesAluguel = new Paragraph("Detalhes do Aluguel:")
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(12)
                 .SetBold();
 
-            doc.Add(titulo);
-            doc.Add(subheader);
+                Paragraph cliente = new Paragraph($" Cliente: {aluguel.cliente} - E-mail: {aluguel.cliente.email} ")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            doc.Add(new LineSeparator(new SolidLine(1f)));
-            doc.Add(new Paragraph(""));
+                Paragraph condutor = new Paragraph($" Condutor: {aluguel.condutor} - CNH: {aluguel.condutor.cnh}.")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph detalhesAluguel = new Paragraph("Detalhes do Aluguel:")
-            .SetTextAlignment(TextAlignment.LEFT)
-            .SetFontSize(12)
-            .SetBold();
+                Paragraph dataLocacao = new Paragraph($" Data da Locação: {aluguel.dataLocacao.ToString("dd/MM/yyyy")}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph cliente = new Paragraph($" Cliente: {aluguel.cliente} - E-mail: {aluguel.cliente.email} ")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                Paragraph planoCobranca = new Paragraph($" Cliente: {aluguel.planoCobranca.tipoPlano}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph condutor = new Paragraph($" Condutor: {aluguel.condutor} - CNH: {aluguel.condutor.cnh}.")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                doc.Add(detalhesAluguel);
+                doc.Add(cliente);
+                doc.Add(condutor);
+                doc.Add(dataLocacao);
+                doc.Add(planoCobranca);
 
-            Paragraph dataLocacao = new Paragraph($" Data da Locação: {aluguel.dataLocacao.ToString("dd/MM/yyyy")}")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                doc.Add(new LineSeparator(new SolidLine(1f)));
+                doc.Add(new Paragraph(""));
 
-            Paragraph planoCobranca = new Paragraph($" Cliente: {aluguel.planoCobranca.tipoPlano}")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                Paragraph detalhesAutomovel = new Paragraph("Detalhes do Automovel:")
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(12)
+                .SetBold();
 
-            doc.Add(detalhesAluguel);
-            doc.Add(cliente);
-            doc.Add(condutor);
-            doc.Add(dataLocacao);
-            doc.Add(planoCobranca);
+                Paragraph marca = new Paragraph($" Marca: {aluguel.automovel.marca}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            doc.Add(new LineSeparator(new SolidLine(1f)));
-            doc.Add(new Paragraph(""));
+                Paragraph modelo = new Paragraph($" Modelo: {aluguel.automovel.modelo}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph detalhesAutomovel = new Paragraph("Detalhes do Automovel:")
-            .SetTextAlignment(TextAlignment.LEFT)
-            .SetFontSize(12)
-            .SetBold();
+                Paragraph cor = new Paragraph($" Cor: {aluguel.automovel.cor}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph marca = new Paragraph($" Marca: {aluguel.automovel.marca}")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                Paragraph placa = new Paragraph($" Placa: {aluguel.automovel.placa}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph modelo = new Paragraph($" Modelo: {aluguel.automovel.modelo}")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                Paragraph km = new Paragraph($" Quilometragem: {aluguel.automovel.quilometragem}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph cor = new Paragraph($" Cor: {aluguel.automovel.cor}")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                Paragraph capacidadeTanque = new Paragraph($" Capacidade do Tanque de Combustível(L): {aluguel.automovel.capacidadeTanqueLitros}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph placa = new Paragraph($" Placa: {aluguel.automovel.placa}")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                doc.Add(detalhesAutomovel);
+                doc.Add(marca);
+                doc.Add(modelo);
+                doc.Add(cor);
+                doc.Add(placa);
+                doc.Add(km);
+                doc.Add(capacidadeTanque);
 
-            Paragraph km = new Paragraph($" Quilometragem: {aluguel.automovel.quilometragem}")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                doc.Add(new LineSeparator(new SolidLine(1f)));
+                doc.Add(new Paragraph(""));
 
-            Paragraph capacidadeTanque = new Paragraph($" Capacidade do Tanque de Combustível(L): {aluguel.automovel.capacidadeTanqueLitros}")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                Paragraph taxasEServicos = new Paragraph("Taxas e Serviços:")
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(12)
+                .SetBold();
 
-            doc.Add(detalhesAutomovel);
-            doc.Add(marca);
-            doc.Add(modelo);
-            doc.Add(cor);
-            doc.Add(placa);
-            doc.Add(km);
-            doc.Add(capacidadeTanque);
+                Paragraph dataPrevista = new Paragraph($" Data Prevista Para Devolução: {aluguel.dataPrevistaDevolucao}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            doc.Add(new LineSeparator(new SolidLine(1f)));
-            doc.Add(new Paragraph(""));
+                Paragraph dataDevolucao = new Paragraph(" Data de Devolução: " + aluguel?.dataDevolucao == null ? "Em aberto." : aluguel?.dataDevolucao?.ToString("dd/MM/yyyy"))
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph taxasEServicos = new Paragraph("Taxas e Serviços:")
-            .SetTextAlignment(TextAlignment.LEFT)
-            .SetFontSize(12)
-            .SetBold();
+                doc.Add(taxasEServicos);
+                doc.Add(dataPrevista);
+                doc.Add(dataDevolucao);
 
-            Paragraph dataPrevista = new Paragraph($" Data Prevista Para Devolução: {aluguel.dataPrevistaDevolucao}")
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                doc.Add(new Paragraph(""));
+                doc.Add(new Paragraph(""));
 
-            Paragraph dataDevolucao = new Paragraph(" Data de Devolução: " + aluguel?.dataDevolucao == null ? "Em aberto." : aluguel?.dataDevolucao?.ToString("dd/MM/yyyy"))
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                Paragraph cupom = new Paragraph(" Cupom: " + aluguel.cupom.nome == "" ? "Nenhum." : aluguel.cupom.nome)
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            doc.Add(taxasEServicos);
-            doc.Add(dataPrevista);
-            doc.Add(dataDevolucao);
+                Paragraph valorParcial = new Paragraph(" Valor Total Parceial:  R$ " + aluguel.valorTotalPrevisto)
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            doc.Add(new Paragraph(""));
-            doc.Add(new Paragraph(""));
+                Paragraph valorTotal = new Paragraph(" Valor Total Final: " + aluguel.valorTotalFinal == null ? "Em aberto." : "R$ " + aluguel.cupom.nome)
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(11)
+                        .SetBold();
 
-            Paragraph cupom = new Paragraph(" Cupom: " + aluguel.cupom.nome == "" ? "Nenhum." : aluguel.cupom.nome)
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
+                doc.Add(cupom);
+                doc.Add(valorParcial);
+                doc.Add(valorTotal);
 
-            Paragraph valorParcial = new Paragraph(" Valor Total Parceial:  R$ " + aluguel.valorTotalPrevisto)
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
-
-            Paragraph valorTotal = new Paragraph(" Valor Total Final: " + aluguel.valorTotalFinal == null ? "Em aberto." : "R$ "+aluguel.cupom.nome)
-                    .SetTextAlignment(TextAlignment.LEFT)
-                    .SetFontSize(11)
-                    .SetBold();
-
-            doc.Add(cupom);
-            doc.Add(valorParcial);
-            doc.Add(valorTotal);
-
-            doc.Add(new Paragraph(""));
-            doc.Add(new LineSeparator(new SolidLine(1f)));
-            doc.Close();
-
+                doc.Add(new Paragraph(""));
+                doc.Add(new LineSeparator(new SolidLine(1f)));
+                doc.Close();
+            }
             EnviarEmailComPdf(aluguel, pathPdf.ToString());
         }
     }
