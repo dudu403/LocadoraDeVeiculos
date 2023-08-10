@@ -16,12 +16,6 @@ using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
 using LocadoraDeVeiculos.Dominio.ModuloTaxaEServico;
 using LocadoraDeVeiculos.Infra.Json.ModuloConfigPreco;
-//using MimeKit;
-//using System.Net.Mail;
-//using System.Net.Mime;
-//using MailKit.Net.Smtp;
-//using MailKit.Security;
-
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
@@ -76,10 +70,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             var configuracaoPreco = repositorioConfigPreco.ObterConfiguracaoPreco();
 
-            if (configuracaoPreco.precoGasolina != 0 &&
-            configuracaoPreco.precoAlcool != 0 &&
-            configuracaoPreco.precoDisel != 0 &&
-            configuracaoPreco.precoGas != 0)
+            if (configuracaoPreco.precoGasolina == 0 &&
+            configuracaoPreco.precoAlcool == 0 &&
+            configuracaoPreco.precoDisel == 0 &&
+            configuracaoPreco.precoGas == 0)
             {
                 MessageBox.Show("Você deve configurar todos os preços de combustíveis para poder cadastrar um Auguel.",
                 "Cadastro de Aluguel",
@@ -121,16 +115,16 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             }
             if (repositorioGrupoAutomovel.SelecionarTodos().Any(p => p.planosCobranca.Count() != 3))
             {
-                MessageBox.Show("Você deve cadastrar ao menos um Condutor para poder cadastrar um Auguel.",
+                MessageBox.Show("Você deve cadastrar os três tipos de planos para os seus grupos de automovel para poder cadastrar um Auguel.",
                 "Cadastro de Aluguel",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
                 return;
             }
 
-            TelaAluguelForm tela = new(repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
+            TelaAluguelForm tela = new(configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
                                            repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
-                                           repositorioTaxaEServico.SelecionarTodos());
+                                           repositorioTaxaEServico.SelecionarTodos());  
 
             tela.onGravarRegistro += servicoAluguel.Inserir;
 
@@ -146,6 +140,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
         public override void Editar()
         {
+            var configuracaoPreco = repositorioConfigPreco.ObterConfiguracaoPreco();
+
             Guid id = tabelaAluguel.ObterIdSelecionado();
 
             Aluguel aluguelSelecionado = repositorioAluguel.SelecionarPorId(id);
@@ -159,7 +155,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 return;
             }
 
-            TelaAluguelForm tela = new(repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
+            TelaAluguelForm tela = new(configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
                                            repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
                                            repositorioTaxaEServico.SelecionarTodos());
 
@@ -224,6 +220,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
         public override void Devolver()
         {
+            var configuracaoPreco = repositorioConfigPreco.ObterConfiguracaoPreco();
+
             Guid id = tabelaAluguel.ObterIdSelecionado();
 
             Aluguel aluguelSelecionado = repositorioAluguel.SelecionarPorId(id);
@@ -245,14 +243,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 return;
             }
 
-            TelaAluguelForm tela = new(repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
+            TelaAluguelForm tela = new(configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
                                            repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
                                            repositorioTaxaEServico.SelecionarTodos());
 
 
             tela.onGravarRegistro += servicoAluguel.Inserir;
 
-            tela.ConfigurarTela(new Aluguel());
+            tela.ConfigurarTelaDevolucao(aluguelSelecionado);
 
             DialogResult resultado = tela.ShowDialog();
 

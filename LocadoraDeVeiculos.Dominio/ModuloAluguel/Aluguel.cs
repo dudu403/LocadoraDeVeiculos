@@ -34,6 +34,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAluguel
         {
 
         }
+
         public override void AtualizarInformacoes(Aluguel registroAtualizado)
         {
             throw new NotImplementedException();

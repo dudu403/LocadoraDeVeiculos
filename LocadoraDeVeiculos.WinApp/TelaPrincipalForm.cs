@@ -183,7 +183,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void cuponsMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(controladores["ControladorParceiro"]);
+            ConfigurarListagem(controladores["ControladorParceiro"]);
 
             ConfigurarTelaPrincipal(controladores["ControladorCupom"]);
         }
@@ -200,7 +200,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void planosDeCobrancaMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(controladores["ControladorGrupoAutomovel"]);
+            ConfigurarListagem(controladores["ControladorGrupoAutomovel"]);
 
             ConfigurarTelaPrincipal(controladores["ControladorPlanoCobranca"]);
         }
@@ -219,7 +219,7 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void condutoresMenuItem_Click(object sender, EventArgs e)
         {
-            ConfigurarTelaPrincipal(controladores["ControladorCliente"]);
+            ConfigurarListagem(controladores["ControladorCliente"]);
 
             ConfigurarTelaPrincipal(controladores["ControladorCondutor"]);
         }
@@ -241,6 +241,28 @@ namespace LocadoraDeVeiculos.WinApp
 
         private void alugueisMenuItem_Click(object sender, EventArgs e)
         {
+            ConfigurarListagem(controladores["ControladorFuncionario"]);
+
+            ConfigurarListagem(controladores["ControladorParceiro"]);
+
+            ConfigurarListagem(controladores["ControladorCupom"]);
+
+            ConfigurarListagem(controladores["ControladorGrupoAutomovel"]);
+
+            ConfigurarListagem(controladores["ControladorAutomovel"]);
+
+            ConfigurarListagem(controladores["ControladorPlanoCobranca"]);
+
+            ConfigurarListagem(controladores["ControladorConfigPreco"]);
+
+            ConfigurarListagem(controladores["ControladorParceiro"]);
+
+            ConfigurarListagem(controladores["ControladorTaxaEServico"]);
+
+            ConfigurarListagem(controladores["ControladorCliente"]);
+
+            ConfigurarListagem(controladores["ControladorCondutor"]);
+
             ConfigurarTelaPrincipal(controladores["ControladorAluguel"]);
         }
 

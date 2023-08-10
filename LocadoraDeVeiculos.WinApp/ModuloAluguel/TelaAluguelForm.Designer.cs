@@ -468,7 +468,6 @@
             listBoxTaxasAdicionadas.Size = new Size(729, 231);
             listBoxTaxasAdicionadas.TabIndex = 155;
             listBoxTaxasAdicionadas.Tag = "";
-            listBoxTaxasAdicionadas.Visible = false;
             // 
             // Taxas_E_Serviços
             // 

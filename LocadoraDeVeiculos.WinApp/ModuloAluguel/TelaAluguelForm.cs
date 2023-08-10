@@ -3,6 +3,7 @@ using LocadoraDeVeiculos.Dominio.ModuloAluguel;
 using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Dominio.ModuloConfigPreco;
 using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Dominio.ModuloFuncionario;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
@@ -16,11 +17,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
     {
         private Aluguel aluguel { get; set; }
         private List<Cupom> todosCupons { get; set; }
+        private ConfiguracaoPreco configPreco { get; set; }
         private List<TaxaEServico> todasTaxasEServicos { get; set; }
 
         public event GravarRegistroDelegate<Aluguel> onGravarRegistro;
 
-        public TelaAluguelForm(List<Funcionario> funcionarios, List<Cliente> clientes, List<GrupoAutomovel> gruposAutomovel, List<Cupom> cupons, List<TaxaEServico> taxasEServicos)
+        public TelaAluguelForm(ConfiguracaoPreco configPreco, List<Funcionario> funcionarios, List<Cliente> clientes, List<GrupoAutomovel> gruposAutomovel, List<Cupom> cupons, List<TaxaEServico> taxasEServicos)
         {
             InitializeComponent();
 
@@ -30,6 +32,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
             this.todosCupons = cupons;
 
+            this.configPreco = configPreco;
+
             listBoxTaxasIniciais.DataSource = taxasEServicos;
 
             this.todasTaxasEServicos = taxasEServicos;
@@ -38,6 +42,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         public void ConfigurarTela(Aluguel aluguelSelecionado)
         {
             this.aluguel = aluguelSelecionado;
+
+            if (aluguel.grupoAutomovel == null)
+                return;
 
             txtCupom.Text = aluguel.cupom.ToString();
             txtKmAutomovel.Text = aluguel.ToString();
@@ -59,18 +66,18 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             this.aluguel = aluguelSelecionado;
 
             txtCupom.Text = aluguel.cupom.ToString();
-            txtKmAutomovel.Text = aluguel.ToString();
+            txtKmAutomovel.Text = aluguel.automovel.quilometragem.ToString();
             cmbCliente.SelectedItem = aluguel.cliente;
             txtDataLocacao.Value = aluguel.dataLocacao;
             cmbCondutor.SelectedItem = aluguel.condutor;
             cmbAutomovel.SelectedItem = aluguel.automovel;
-            txtValorTotalPrevisto.Text = aluguel.ToString();
+            txtValorTotalPrevisto.Text = CalcularValorTotal().ToString();
             cmbPCobranca.SelectedItem = aluguel.planoCobranca;
             cmbFuncionario.SelectedItem = aluguel.funcionario;
             cmbGAutomovel.SelectedItem = aluguel.grupoAutomovel;
             txtDataPrevista.Value = aluguel.dataPrevistaDevolucao;
 
-            ConfigurarListaComCheck(); 
+            ConfigurarListaComCheck();
             CarregarListaTaxasExtras();
         }
 
@@ -129,7 +136,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             {
                 aluguel.cupom = todosCupons.FirstOrDefault(c => c.nome == txtCupom.Text);
 
-                TelaPrincipalForm.Tela.AtualizarRodape("Seu cupom é valido e será alicado no valor final do aluguel.");
+                TelaPrincipalForm.Tela.AtualizarRodape($"Seu cupom é valido e o valor de R$ {aluguel.cupom.valor} será aplicado no valor final do aluguel.");
             }
             else
             {
@@ -165,7 +172,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
                 decimal valorComKm = Convert.ToDecimal(aluguel.planoCobranca.precoPorKm * aluguel.kmPercorrido);
 
-                return (timeSpam * aluguel.planoCobranca.precoDiaria) + valorComKm;
+                decimal valorgasolina = 0;
+
+                return (timeSpam * aluguel.planoCobranca.precoDiaria) + valorComKm - aluguel.cupom.valor + valorgasolina;
             }
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Controlada)
             {
@@ -178,13 +187,17 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                     valorExtrapolado = Convert.ToDecimal(aluguel.planoCobranca.precoPorKmExtrapolado * (aluguel.planoCobranca.kmDisponiveis - aluguel.kmPercorrido));
                 }
 
-                return (timeSpam * aluguel.planoCobranca.precoDiaria) + valorExtrapolado;
+                decimal valorgasolina = 0;
+
+                return (timeSpam * aluguel.planoCobranca.precoDiaria) + valorExtrapolado - aluguel.cupom.valor + valorgasolina;
             }
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Km_Livre)
             {
                 int timeSpam = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
 
-                return (timeSpam * aluguel.planoCobranca.precoDiaria);
+                decimal valorgasolina = 0;
+
+                return (timeSpam * aluguel.planoCobranca.precoDiaria) - aluguel.cupom.valor + valorgasolina;
             }
 
             return 0;
@@ -238,9 +251,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
         private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbCliente.SelectedItem != null)
+            if (cmbCliente.SelectedItem != null && aluguel != null)
             {
                 aluguel.cliente = (Cliente)cmbCliente.SelectedItem;
+
+                cmbCondutor.Enabled = true;
 
                 CarregarCondutores(aluguel.cliente.condutores);
             }
@@ -248,11 +263,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
         private void cmbGAutomovel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbGAutomovel.SelectedItem != null)
+            if (cmbGAutomovel.SelectedItem != null && aluguel != null)
             {
                 aluguel.grupoAutomovel = (GrupoAutomovel)cmbGAutomovel.SelectedItem;
 
+                cmbAutomovel.Enabled = true;
+
                 CarregarAutomoveis(aluguel.grupoAutomovel.automoveis);
+
+                cmbPCobranca.Enabled = true;
 
                 CarregarPlanosCobranca(aluguel.grupoAutomovel.planosCobranca);
             }
@@ -279,36 +298,43 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         private void CarregarNivelTanqueEnum()
         {
             cmbAutomovel.DataSource = Enum.GetValues<NivelTanqueEnum>();
+            cmbAutomovel.SelectedItem = null;
         }
 
         private void CarregarAutomoveis(List<Automovel> automoveis)
         {
             cmbAutomovel.DataSource = automoveis;
+            cmbAutomovel.SelectedItem = null;
         }
 
         private void CarregarCondutores(List<Condutor> condutores)
         {
             cmbCondutor.DataSource = condutores;
+            cmbCondutor.SelectedItem = null;
         }
 
         private void CarregarPlanosCobranca(List<PlanoCobranca> planosCobranca)
         {
             cmbPCobranca.DataSource = planosCobranca;
+            cmbPCobranca.SelectedItem = null;
         }
 
         private void CarregarGruposAutomovel(List<GrupoAutomovel> gruposAuto)
         {
             cmbGAutomovel.DataSource = gruposAuto;
+            cmbGAutomovel.SelectedItem = null;
         }
 
         private void CarregarClientes(List<Cliente> clientes)
         {
             cmbCliente.DataSource = clientes;
+            cmbCliente.SelectedItem = null;
         }
 
         private void CarregarFuncionarios(List<Funcionario> funcionarios)
         {
             cmbFuncionario.DataSource = funcionarios;
+            cmbFuncionario.SelectedItem = null;
         }
 
         private void txtCupom_TextChanged(object sender, EventArgs e)

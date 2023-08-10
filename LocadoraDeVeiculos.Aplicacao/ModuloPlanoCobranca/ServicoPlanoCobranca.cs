@@ -1,4 +1,5 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
+using Microsoft.Win32;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoCobranca
 {
@@ -23,7 +24,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoCobranca
                 return Result.Fail(erros);
             try
             {
-                //registro.grupoAutomovel.tiposPlano.Add(registro.tipoPlano);
+                registro.grupoAutomovel.planosCobranca.Add(registro);
 
                 repositorioPlanoCobranca.Inserir(registro);
 
@@ -51,6 +52,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoCobranca
                 return Result.Fail(erros);
             try
             {
+                //registro.grupoAutomovel.planosCobranca.FirstOrDefault(registro);
+
                 repositorioPlanoCobranca.Editar(registro);
 
                 Log.Debug("Plano {planoCobrancaId} editado com sucesso", registro.id);
@@ -80,6 +83,8 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoCobranca
 
                     return Result.Fail("Parceiro não encontrado");
                 }
+
+                planoCobrancaSelecionado.grupoAutomovel.planosCobranca.Remove(planoCobrancaSelecionado);
 
                 repositorioPlanoCobranca.Excluir(planoCobrancaSelecionado);
 
@@ -121,7 +126,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloPlanoCobranca
             }
 
             return erros;
-
         }
 
     }
