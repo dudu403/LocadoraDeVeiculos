@@ -14,13 +14,13 @@ namespace LocadoraDeVeiculos.Dominio.Compartilhado.Validators
             return $"'{nomePropriedade}' deve estar no formato '000.000.000-00' ";
         }
 
-        public override bool IsValid(ValidationContext<T> contextoValidacao, string cpf)
+        public override bool IsValid(ValidationContext<T> contextoValidacao, string placa)
         {
             nomePropriedade = contextoValidacao.DisplayName;
 
             Regex rgx = new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$");
 
-            if (rgx.IsMatch(cpf))
+            if (rgx.IsMatch(placa))
                 return true;
             else
                 return false;

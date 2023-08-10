@@ -86,24 +86,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
 
         private void CarregarGrupoAutomoveis(List<GrupoAutomovel> grupoAutomoveis)
         {
-            cmbGrpAutomoveis.Items.Clear();
-
-            foreach (GrupoAutomovel grupoAutomovel in grupoAutomoveis)
-            {
-                cmbGrpAutomoveis.Items.Add(grupoAutomovel);
-            }
+            cmbGrpAutomoveis.DataSource = grupoAutomoveis;
         }
 
         private void CarregarOpcoesDePlano()
         {
-            TipoPlanoEnum[] plano = Enum.GetValues<TipoPlanoEnum>();
-
-            foreach (TipoPlanoEnum opcaoPlano in plano)
-            {
-                cmbTipoPlano.Items.Add(opcaoPlano);
-            }
-
-            cmbTipoPlano.SelectedIndex = 0;
+            cmbTipoPlano.DataSource = Enum.GetValues<TipoPlanoEnum>();
         }
 
         private void btnGravar_Click(object sender, EventArgs e)

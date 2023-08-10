@@ -23,7 +23,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloCondutor
             builder.Property(d => d.validadeCnh).IsRequired();
 
             builder.HasOne(m => m.cliente)
-                   .WithMany()
+                   .WithMany(x => x.condutores)
                    .IsRequired()
                    .HasConstraintName("FK_TBCondutor_TBCliente")
                    .OnDelete(DeleteBehavior.NoAction);

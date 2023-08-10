@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
             RuleFor(x => x.quilometragem)
                 .NotEmpty()
                 .NotNull()
-                .SemValoresNegativosDouble();
+                .SemValoresNegativosDecimal();
 
             RuleFor(x => x.grupoAutomovel)
                .NotEmpty()

@@ -28,6 +28,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
 
         public override void Inserir()
         {
+            if (repositorioGrupoAutomovel.SelecionarTodos().Count() == 0)
+            {
+                MessageBox.Show("Você deve cadastrar ao menos um Grupo de Automovel para poder inserir seus planos de cobrança.",
+                "Inserção de Plano de Cobrança",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+
             TelaPlanoCobrancaForm tela = new(repositorioGrupoAutomovel.SelecionarTodos());
 
             tela.onGravarRegistro += servicoPlanoCobranca.Inserir;
@@ -80,7 +89,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloPlanoCobranca
             if (planoCobrancaSelecionado == null)
             {
                 MessageBox.Show("Selecione um plano primeiro",
-                "Exclusão de plano",
+                "Exclusão de Plano de Cobrança",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Exclamation);
                 return;

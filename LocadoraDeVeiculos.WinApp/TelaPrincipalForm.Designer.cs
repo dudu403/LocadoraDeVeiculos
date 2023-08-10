@@ -67,6 +67,7 @@
             configuraçãoDePreçosToolStripMenuItem = new ToolStripMenuItem();
             serviçosToolStripMenuItem = new ToolStripMenuItem();
             aluguéisToolStripMenuItem = new ToolStripMenuItem();
+            btnDevolucao = new ToolStripButton();
             panelRegistros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             toolStrip1.SuspendLayout();
@@ -86,17 +87,17 @@
             panelRegistros.BorderStyle = BorderStyle.FixedSingle;
             panelRegistros.Controls.Add(pictureBox1);
             panelRegistros.Dock = DockStyle.Fill;
-            panelRegistros.Location = new Point(0, 50);
+            panelRegistros.Location = new Point(0, 60);
             panelRegistros.Margin = new Padding(4);
             panelRegistros.Name = "panelRegistros";
-            panelRegistros.Size = new Size(1188, 589);
+            panelRegistros.Size = new Size(1188, 579);
             panelRegistros.TabIndex = 11;
             // 
-            // pctBoxFoto
+            // pictureBox1
             // 
             pictureBox1.Location = new Point(-1, -1);
             pictureBox1.Margin = new Padding(4);
-            pictureBox1.Name = "pctBoxFoto";
+            pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(1184, 586);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox1.TabIndex = 0;
@@ -104,10 +105,10 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigurar, toolStripSeparator1, btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, btnVisualizar, btnVisualizarGabarito, toolStripSeparator4, btnGerarPdf, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnHome, toolStripSeparator0, btnConfigurar, toolStripSeparator1, btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnDevolucao, btnAdicionarItens, btnRemoverItens, toolStripSeparator3, btnFinalizarPgto, btnVisualizar, btnVisualizarGabarito, toolStripSeparator4, btnGerarPdf, btnFiltrar, toolStripSeparator5, labelTipoDoCadastro });
             toolStrip1.Location = new Point(0, 25);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1188, 25);
+            toolStrip1.Size = new Size(1188, 35);
             toolStrip1.TabIndex = 10;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -302,13 +303,13 @@
             // toolStripSeparator5
             // 
             toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(6, 25);
+            toolStripSeparator5.Size = new Size(6, 35);
             toolStripSeparator5.Visible = false;
             // 
             // labelTipoDoCadastro
             // 
             labelTipoDoCadastro.Name = "labelTipoDoCadastro";
-            labelTipoDoCadastro.Size = new Size(76, 22);
+            labelTipoDoCadastro.Size = new Size(76, 32);
             labelTipoDoCadastro.Text = "                       ";
             // 
             // rodape
@@ -424,6 +425,19 @@
             aluguéisToolStripMenuItem.Text = "Aluguéis ";
             aluguéisToolStripMenuItem.Click += alugueisMenuItem_Click;
             // 
+            // btnDevolucao
+            // 
+            btnDevolucao.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnDevolucao.Enabled = false;
+            btnDevolucao.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDevolucao.Image = (Image)resources.GetObject("btnDevolucao.Image");
+            btnDevolucao.ImageTransparentColor = Color.Magenta;
+            btnDevolucao.Name = "btnDevolucao";
+            btnDevolucao.Padding = new Padding(6);
+            btnDevolucao.Size = new Size(32, 32);
+            btnDevolucao.Visible = false;
+            btnDevolucao.Click += btnDevolucao_Click;
+            // 
             // TelaPrincipalForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -437,6 +451,7 @@
             ShowIcon = false;
             Text = "Locadora De Veículos";
             panelRegistros.ResumeLayout(false);
+            panelRegistros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             toolStrip1.ResumeLayout(false);
             toolStrip1.PerformLayout();
@@ -488,5 +503,6 @@
         private ToolStripMenuItem aluguéisToolStripMenuItem;
         private ToolStripMenuItem parceirosToolStripMenuItem;
         private PictureBox pictureBox1;
+        private ToolStripButton btnDevolucao;
     }
 }

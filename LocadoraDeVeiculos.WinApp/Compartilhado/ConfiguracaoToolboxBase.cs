@@ -30,6 +30,8 @@
 
         public virtual string? ToolTipGerarPdf { get { return "Gerar PDF indisponível"; } }
 
+        public virtual string? ToolTipDevolver { get { return "Devolver indisponível"; } }
+
         #endregion
 
         #region estados dos botões
@@ -46,6 +48,7 @@
         public virtual bool VisualizarHabilitado { get { return false; } }
         public virtual bool VisualizarGabaritoHabilitado { get { return false; } }
         public virtual bool GerarPdfHabilitado { get { return false; } }
+        public virtual bool DevolverHabilitado { get { return false; } }
 
         #endregion
 
@@ -63,6 +66,7 @@
         public virtual bool VisualizarVisivel { get { return false; } }
         public virtual bool VisualizarGabaritoVisivel { get { return false; } }
         public virtual bool GerarPdfVisivel { get { return false; } }
+        public virtual bool DevolverVisivel { get { return false; } }
 
         public virtual bool SeparadorVisivel0 { get { return true; } }
         public virtual bool SeparadorVisivel1 { get { return false; } }

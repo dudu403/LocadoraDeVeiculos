@@ -1,10 +1,7 @@
 ﻿using FluentResults;
 using LocadoraDeVeiculos.Aplicacao.ModuloCondutor;
-using LocadoraDeVeiculos.Aplicacao.ModuloCupomEParceiro;
 using LocadoraDeVeiculos.Dominio.ModuloCliente;
 using LocadoraDeVeiculos.Dominio.ModuloCondutor;
-using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
-using LocadoraDeVeiculos.WinApp.ModuloCupomEParceiro;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 {
@@ -26,6 +23,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
         public override void Inserir()
         {
+            if (repositorioCliente.SelecionarTodos().Count() == 0)
+            {
+                MessageBox.Show("Você deve cadastrar ao menos um Cliente para poder inserir o cadastro de um Condutor.",
+                "Inserção de Condutor",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Exclamation);
+                return;
+            }
+
             TelaCondutorForm tela = new(repositorioCliente.SelecionarTodos());
 
             tela.onGravarRegistro += servicoCondutor.Inserir;
@@ -85,8 +91,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
             }
 
             DialogResult opcaoEscolhida =
-               MessageBox.Show($"Deseja realmente excluir um condutor \"{condutorSelecionado}\"?",
-               "Exclusão de Cupom",
+               MessageBox.Show($"Deseja realmente excluir o condutor \"{condutorSelecionado}\"?",
+               "Exclusão de Condutor",
                MessageBoxButtons.OKCancel,
                MessageBoxIcon.Question);
 
@@ -114,11 +120,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             tabelaCondutor.AtualizarRegistros(condutor);
 
-            mensagemRodape = string.Format("Visualizando {0} condutores{1}", condutor.Count, condutor.Count == 1 ? "" : "res");
+            mensagemRodape = string.Format("Visualizando {0} condutor{1}", condutor.Count, condutor.Count == 1 ? "" : "es");
 
             TelaPrincipalForm.Tela.AtualizarRodape(mensagemRodape);
         }
-
 
         public override ConfiguracaoToolboxBase ObtemConfiguracaoToolbox()
         {
@@ -132,8 +137,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
             CarregarCondutores();
 
-            return tabelaCondutor;
-            
+            return tabelaCondutor;            
         }
     }
 }

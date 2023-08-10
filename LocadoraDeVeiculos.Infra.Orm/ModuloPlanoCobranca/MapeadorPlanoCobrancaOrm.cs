@@ -10,18 +10,18 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloPlanoCobranca
 
             builder.Property(d => d.id).IsRequired().ValueGeneratedNever();
 
-            builder.Property(d => d.precoDiaria).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.precoDiaria).HasConversion<decimal>().HasPrecision(25,2).IsRequired();
 
             builder.Property(d => d.tipoPlano).HasConversion<int>().IsRequired();
 
-            builder.Property(d => d.precoPorKm).HasConversion<decimal>().IsRequired(false); 
+            builder.Property(d => d.precoPorKm).HasConversion<decimal>().HasPrecision(25,2).IsRequired(false); 
 
-            builder.Property(d => d.precoPorKmExtrapolado).HasConversion<decimal>().IsRequired(false); 
+            builder.Property(d => d.precoPorKmExtrapolado).HasConversion<decimal>().HasPrecision(25,2).IsRequired(false); 
 
-            builder.Property(d => d.kmDisponiveis).HasConversion<decimal>().IsRequired(false); 
+            builder.Property(d => d.kmDisponiveis).HasConversion<decimal>().HasPrecision(25,2).IsRequired(false); 
 
             builder.HasOne(m => m.grupoAutomovel)
-                   .WithMany()
+                   .WithMany(g => g.planosCobranca)
                    .IsRequired()
                    .HasConstraintName("FK_TBPlanoCobranca_TBGrupoAutomovel")
                    .OnDelete(DeleteBehavior.NoAction);

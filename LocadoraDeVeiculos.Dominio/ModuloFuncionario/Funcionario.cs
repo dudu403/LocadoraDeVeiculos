@@ -27,6 +27,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloFuncionario
             dataAdmissao = registroAtualizado.dataAdmissao;
         }
 
+        public override string ToString()
+        {
+            return nome;
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Funcionario funcionario &&

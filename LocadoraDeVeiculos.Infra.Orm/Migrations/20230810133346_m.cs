@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LocadoraDeVeiculos.Infra.Orm.Migrations
 {
     /// <inheritdoc />
-    public partial class innitialMigration : Migration
+    public partial class m : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,15 +16,15 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    nome = table.Column<string>(type: "varchar(200)", nullable: false),
-                    email = table.Column<string>(type: "varchar(200)", nullable: false),
-                    telefone = table.Column<string>(type: "varchar(200)", nullable: false),
                     tipoPessoa = table.Column<string>(type: "varchar(200)", nullable: false),
-                    cpf = table.Column<string>(type: "varchar(200)", nullable: true),
-                    cnpj = table.Column<string>(type: "varchar(200)", nullable: true),
+                    telefone = table.Column<string>(type: "varchar(200)", nullable: false),
                     estado = table.Column<string>(type: "varchar(200)", nullable: false),
                     cidade = table.Column<string>(type: "varchar(200)", nullable: false),
                     bairro = table.Column<string>(type: "varchar(200)", nullable: false),
+                    email = table.Column<string>(type: "varchar(200)", nullable: false),
+                    cnpj = table.Column<string>(type: "varchar(200)", nullable: true),
+                    nome = table.Column<string>(type: "varchar(200)", nullable: false),
+                    cpf = table.Column<string>(type: "varchar(200)", nullable: true),
                     rua = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     numero = table.Column<int>(type: "int", nullable: false),
                     cep = table.Column<string>(type: "varchar(200)", nullable: false)
@@ -41,7 +41,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     nome = table.Column<string>(type: "varchar(100)", nullable: false),
                     dataAdmissao = table.Column<DateTime>(type: "datetime", nullable: false),
-                    salario = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    salario = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,12 +73,26 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TBTaxaEServico",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    nome = table.Column<string>(type: "varchar(200)", nullable: false),
+                    preco = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: false),
+                    tipoDoCusto = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TBTaxaEServico", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TBCondutor",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    validadeCnh = table.Column<DateTime>(type: "datetime2", nullable: false),
                     clienteid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    validadeCnh = table.Column<DateTime>(type: "datetime2", nullable: false),
                     telefone = table.Column<string>(type: "varchar(20)", nullable: false),
                     nome = table.Column<string>(type: "varchar(200)", nullable: false),
                     email = table.Column<string>(type: "varchar(200)", nullable: false),
@@ -101,10 +115,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 {
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     tipoCombustivel = table.Column<int>(type: "int", nullable: false),
-                    capacidadeTanqueLitros = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    capacidadeTanqueLitros = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: false),
                     grupoAutomovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    quilometragem = table.Column<double>(type: "float", nullable: false),
+                    quilometragem = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: false),
                     modelo = table.Column<string>(type: "varchar(100)", nullable: false),
+                    placa = table.Column<string>(type: "varchar(100)", nullable: false),
                     marca = table.Column<string>(type: "varchar(100)", nullable: false),
                     foto = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     cor = table.Column<string>(type: "varchar(100)", nullable: false)
@@ -126,10 +141,10 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     grupoAutomovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     tipoPlano = table.Column<int>(type: "int", nullable: false),
-                    precoDiaria = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    precoPorKm = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    precoPorKmExtrapolado = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    kmDisponiveis = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    precoDiaria = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: false),
+                    precoPorKm = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: true),
+                    precoPorKmExtrapolado = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: true),
+                    kmDisponiveis = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -148,7 +163,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     parceiroid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     validade = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    valor = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    valor = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: false),
                     nome = table.Column<string>(type: "varchar(200)", nullable: false)
                 },
                 constraints: table =>
@@ -168,17 +183,18 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                     id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     dataPrevistaDevolucao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     grupoAutomovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    valorTotalPrevisto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    nivelTanqueLitros = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    planoCobrancaid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    nivelTanque = table.Column<int>(type: "int", nullable: false),
+                    valorTotalPrevisto = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: false),
+                    valorTotalFinal = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: true),
+                    dataDevolucao = table.Column<DateTime>(type: "datetime2", nullable: true),
                     funcionarioid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    valorTotalFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    dataDevolucao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    kmPercorrido = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: true),
                     dataLocacao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    kmPercorrido = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     automovelid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    kmInicial = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    kmInicial = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: false),
                     condutorid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    kmFinal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    kmFinal = table.Column<decimal>(type: "decimal(25,2)", precision: 25, scale: 2, nullable: true),
                     clienteid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     cupomid = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
@@ -215,31 +231,10 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                         column: x => x.grupoAutomovelid,
                         principalTable: "TBGrupoAutomovel",
                         principalColumn: "id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TBTaxaEServico",
-                columns: table => new
-                {
-                    id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    nome = table.Column<string>(type: "varchar(200)", nullable: false),
-                    preco = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    tipoDoCusto = table.Column<int>(type: "int", nullable: false),
-                    Aluguelid1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Aluguelid2 = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TBTaxaEServico", x => x.id);
                     table.ForeignKey(
-                        name: "FK_TBTaxaEServico_TBAluguel_Aluguelid1",
-                        column: x => x.Aluguelid1,
-                        principalTable: "TBAluguel",
-                        principalColumn: "id");
-                    table.ForeignKey(
-                        name: "FK_TBTaxaEServico_TBAluguel_Aluguelid2",
-                        column: x => x.Aluguelid2,
-                        principalTable: "TBAluguel",
+                        name: "FK_TBAluguel_TBPlanoCobranca",
+                        column: x => x.planoCobrancaid,
+                        principalTable: "TBPlanoCobranca",
                         principalColumn: "id");
                 });
 
@@ -298,6 +293,11 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 column: "grupoAutomovelid");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TBAluguel_planoCobrancaid",
+                table: "TBAluguel",
+                column: "planoCobrancaid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TBAluguel_TBTaxaEServico_taxasid",
                 table: "TBAluguel_TBTaxaEServico",
                 column: "taxasid");
@@ -321,16 +321,6 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "IX_TBPlanoCobranca_grupoAutomovelid",
                 table: "TBPlanoCobranca",
                 column: "grupoAutomovelid");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TBTaxaEServico_Aluguelid1",
-                table: "TBTaxaEServico",
-                column: "Aluguelid1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TBTaxaEServico_Aluguelid2",
-                table: "TBTaxaEServico",
-                column: "Aluguelid2");
         }
 
         /// <inheritdoc />
@@ -340,13 +330,10 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBAluguel_TBTaxaEServico");
 
             migrationBuilder.DropTable(
-                name: "TBPlanoCobranca");
+                name: "TBAluguel");
 
             migrationBuilder.DropTable(
                 name: "TBTaxaEServico");
-
-            migrationBuilder.DropTable(
-                name: "TBAluguel");
 
             migrationBuilder.DropTable(
                 name: "TBAutomovel");
@@ -361,13 +348,16 @@ namespace LocadoraDeVeiculos.Infra.Orm.Migrations
                 name: "TBFuncionario");
 
             migrationBuilder.DropTable(
-                name: "TBGrupoAutomovel");
+                name: "TBPlanoCobranca");
 
             migrationBuilder.DropTable(
                 name: "TBCliente");
 
             migrationBuilder.DropTable(
                 name: "TBParceiro");
+
+            migrationBuilder.DropTable(
+                name: "TBGrupoAutomovel");
         }
     }
 }

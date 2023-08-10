@@ -28,6 +28,8 @@
 
         public virtual void GerarPdf() { }
 
+        public virtual void Devolver() { }
+
         public virtual void Home() { }
 
         public abstract UserControl ObterListagem();

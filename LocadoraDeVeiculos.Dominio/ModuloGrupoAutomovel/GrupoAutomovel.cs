@@ -1,12 +1,17 @@
-﻿namespace LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel
+﻿using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
+using LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca;
+
+namespace LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel
 { 
     public class GrupoAutomovel : EntidadeBase<GrupoAutomovel>
     {
         public string nome { get; set; }
+        public List<PlanoCobranca> planosCobranca { get; set; }    
+        public List<Automovel> automoveis { get; set; }
 
         public GrupoAutomovel()
         {
-            
+            planosCobranca = new();
         }
 
         public GrupoAutomovel(string nome) 

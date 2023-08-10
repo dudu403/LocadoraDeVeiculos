@@ -1,9 +1,11 @@
-﻿using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
+﻿using LocadoraDeVeiculos.Dominio.ModuloCondutor;
+using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloCliente
 {
     public class Cliente : EntidadeBase<Cliente>
     {
+        public List<Condutor> condutores { get; set; }
         public string tipoPessoa { get; set; }
         public string telefone { get; set; }
         public string estado { get; set; }

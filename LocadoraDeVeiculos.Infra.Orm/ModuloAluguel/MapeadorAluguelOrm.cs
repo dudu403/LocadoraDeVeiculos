@@ -1,5 +1,4 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloAluguel;
-using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
 
 namespace LocadoraDeVeiculos.Infra.Orm.ModuloAluguel
 {
@@ -13,21 +12,21 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloAluguel
 
             builder.Property(d => d.dataPrevistaDevolucao).IsRequired();
 
-            builder.Property(d => d.valorTotalPrevisto).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.valorTotalPrevisto).HasConversion<decimal>().HasPrecision(25,2).IsRequired();
 
-            builder.Property(d => d.nivelTanqueLitros).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.valorTotalFinal).HasConversion<decimal>().HasPrecision(25,2).IsRequired(false);
 
-            builder.Property(d => d.valorTotalFinal).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.dataDevolucao).IsRequired(false);
 
-            builder.Property(d => d.dataDevolucao).IsRequired();
+            builder.Property(d => d.nivelTanque).HasConversion<int>().IsRequired(); 
 
             builder.Property(d => d.dataLocacao).IsRequired();
 
-            builder.Property(d => d.kmPercorrido).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.kmPercorrido).HasConversion<decimal>().HasPrecision(25,2).IsRequired(false);
 
-            builder.Property(d => d.kmInicial).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.kmInicial).HasConversion<decimal>().HasPrecision(25,2).IsRequired();
 
-            builder.Property(d => d.kmFinal).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.kmFinal).HasConversion<decimal>().HasPrecision(25,2).IsRequired(false);
 
             builder.HasOne(m => m.grupoAutomovel)
                    .WithMany()
@@ -63,6 +62,12 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloAluguel
                    .WithMany()
                    .IsRequired(false)
                    .HasConstraintName("FK_TBAluguel_TBCupom")
+                   .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(m => m.planoCobranca)
+                   .WithMany()
+                   .IsRequired()
+                   .HasConstraintName("FK_TBAluguel_TBPlanoCobranca")
                    .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasMany(t => t.taxas)

@@ -1,5 +1,5 @@
 ﻿namespace LocadoraDeVeiculos.Dominio.ModuloPlanoCobranca
-{ 
+{
     public enum TipoPlanoEnum
     {
         Nenhum,
