@@ -98,7 +98,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             aluguel.cliente = (Cliente)cmbCliente.SelectedItem;
             aluguel.condutor = (Condutor)cmbCondutor.SelectedItem;
-            aluguel.kmInicial = Convert.ToDecimal(txtKmAutomovel.Text);
             aluguel.automovel = (Automovel)cmbAutomovel.SelectedItem;
             aluguel.funcionario = (Funcionario)cmbFuncionario.SelectedItem;
             aluguel.planoCobranca = (PlanoCobranca)cmbPCobranca.SelectedItem;
@@ -174,7 +173,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
                 decimal valorgasolina = 0;
 
-                return (time * aluguel.planoCobranca.precoDiaria) + valorComKm - aluguel.cupom.valor + valorgasolina;
+                return (time * aluguel.planoCobranca.precoDiaria) + valorComKm  + valorgasolina;
             }
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Controlada)
             {
@@ -189,7 +188,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
                 decimal valorgasolina = 0;
 
-                return (time * aluguel.planoCobranca.precoDiaria) + valorExtrapolado - aluguel.cupom.valor + valorgasolina;
+                return (time * aluguel.planoCobranca.precoDiaria) + valorExtrapolado + valorgasolina;
             }
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Km_Livre)
             {
@@ -197,7 +196,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
                 decimal valorgasolina = 0;
 
-                return (time * aluguel.planoCobranca.precoDiaria) - aluguel.cupom.valor + valorgasolina;
+                return (time * aluguel.planoCobranca.precoDiaria) + valorgasolina;
             }
 
             return 0;

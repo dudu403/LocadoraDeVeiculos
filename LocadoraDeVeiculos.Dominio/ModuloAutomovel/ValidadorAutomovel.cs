@@ -36,7 +36,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
                 .MinimumLength(3)
                 .PodeApenasLetras();
 
-            RuleFor(x => x.cor)
+            RuleFor(x => x.placa)
                 .NotEmpty()
                 .NotNull()
                 .VerificaFormatoPlaca();
