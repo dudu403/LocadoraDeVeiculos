@@ -48,7 +48,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             if (aluguel.grupoAutomovel == null)
                 return;
 
-            txtCupom.Text = aluguel.cupom.ToString();
+            //txtCupom.Text = aluguel.cupom.ToString();
             txtKmAutomovel.Text = aluguel.ToString();
             cmbCliente.SelectedItem = aluguel.cliente;
             txtDataLocacao.Value = aluguel.dataLocacao;
@@ -178,6 +178,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
         private decimal CalcularValorTotal()
         {
+            if (aluguel.planoCobranca == null)
+                return 100;
+
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Diária)
             {
                 int time = 1;//Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
@@ -255,7 +258,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             if (cmbAutomovel.SelectedItem != null)
             {
-                //uguel.automovel = (Automovel)cmbAutomovel.SelectedItem;
+                aluguel.automovel = (Automovel)cmbAutomovel.SelectedItem;
 
                 txtKmAutomovel.Text = aluguel.automovel.quilometragem.ToString();
             }

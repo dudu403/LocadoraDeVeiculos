@@ -463,10 +463,10 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                         .SetFontSize(11)
                         .SetBold();
 
-                Paragraph dataDevolucao = new Paragraph(" Data de Devolução: " + aluguel?.dataDevolucao == null ? "Em aberto." : aluguel?.dataDevolucao?.ToString("dd/MM/yyyy"))
-                        .SetTextAlignment(TextAlignment.LEFT)
-                        .SetFontSize(11)
-                        .SetBold();
+                Paragraph dataDevolucao = new Paragraph(" Data de Devolução: " + (aluguel?.dataDevolucao == null ? "Em aberto." : aluguel?.dataDevolucao?.ToString("dd/MM/yyyy")))
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(11)
+                .SetBold();
 
                 doc.Add(taxasEServicos);
                 doc.Add(dataPrevista);
@@ -475,22 +475,22 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 doc.Add(new Paragraph(""));
                 doc.Add(new Paragraph(""));
 
-                Paragraph cupom = new Paragraph(" Cupom: " + aluguel.cupom.nome == "" ? "Nenhum." : aluguel.cupom.nome)
-                        .SetTextAlignment(TextAlignment.LEFT)
-                        .SetFontSize(11)
-                        .SetBold();
+                //Paragraph cupom = new Paragraph(" Cupom: " + aluguel.cupom == null ? "Nenhum." : aluguel.cupom.nome)
+                //        .SetTextAlignment(TextAlignment.LEFT)
+                //        .SetFontSize(11)
+                //        .SetBold();
 
                 Paragraph valorParcial = new Paragraph(" Valor Total Parceial:  R$ " + aluguel.valorTotalPrevisto)
                         .SetTextAlignment(TextAlignment.LEFT)
                         .SetFontSize(11)
                         .SetBold();
 
-                Paragraph valorTotal = new Paragraph(" Valor Total Final: " + aluguel.valorTotalFinal == null ? "Em aberto." : "R$ " + aluguel.cupom.nome)
+                Paragraph valorTotal = new Paragraph(" Valor Total Final: " + aluguel.valorTotalFinal == null ? "Em aberto." : "R$ " + aluguel.valorTotalFinal)
                         .SetTextAlignment(TextAlignment.LEFT)
                         .SetFontSize(11)
                         .SetBold();
 
-                doc.Add(cupom);
+                //doc.Add(cupom);
                 doc.Add(valorParcial);
                 doc.Add(valorTotal);
 
