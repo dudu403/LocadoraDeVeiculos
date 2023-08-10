@@ -36,7 +36,7 @@
             RuleFor(x => x.dataPrevistaDevolucao)
                 .NotEmpty()
                 .NotNull()
-                .GreaterThan(DateTime.Today.AddDays(1));
+                .GreaterThan(x => x.dataLocacao);
 
             RuleFor(x => x.nivelTanque)
                 .NotEmpty()
