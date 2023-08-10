@@ -23,5 +23,10 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
         {
 
         }
+
+        public override string ToString()
+        {
+            return modelo;
+        }
     }
 }

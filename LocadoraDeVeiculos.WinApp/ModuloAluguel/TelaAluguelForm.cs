@@ -168,7 +168,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Diária)
             {
-                int time = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
+                int time = 1;//Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
 
                 decimal valorComKm = Convert.ToDecimal(aluguel.planoCobranca.precoPorKm * aluguel.kmPercorrido);
 
@@ -178,7 +178,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             }
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Controlada)
             {
-                int time = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
+                int time = 1;//Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
 
                 decimal valorExtrapolado = 0;
 
@@ -193,7 +193,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             }
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Km_Livre)
             {
-                int time = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
+                int time = 1;//Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
 
                 decimal valorgasolina = 0;
 
