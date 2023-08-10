@@ -119,12 +119,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCondutor
 
         private void CarregarClientes(List<Cliente> clientes)
         {
-            cmbCliente.Items.Clear();
-
-            foreach (Cliente cliente in clientes)
-            {
-                cmbCliente.Items.Add(cliente);
-            }
+            cmbCliente.DataSource = clientes;
         }
 
         private void LimparCampos()

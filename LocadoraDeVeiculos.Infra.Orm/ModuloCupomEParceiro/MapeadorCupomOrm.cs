@@ -12,7 +12,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloCupomEParceiro
 
             builder.Property(d => d.nome).HasColumnType("varchar(200)").IsRequired();
 
-            builder.Property(d => d.valor).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.valor).HasConversion<decimal>().HasPrecision(5,2).IsRequired();
 
             builder.Property(d => d.validade).IsRequired();
 

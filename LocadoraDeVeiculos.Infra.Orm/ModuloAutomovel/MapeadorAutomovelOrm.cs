@@ -18,14 +18,16 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloAutomovel
 
             builder.Property(d => d.cor).HasColumnType("varchar(100)").IsRequired();
 
+            builder.Property(d => d.placa).HasColumnType("varchar(100)").IsRequired();
+
             builder.Property(d => d.tipoCombustivel).HasConversion<int>().IsRequired();
 
-            builder.Property(d => d.quilometragem).HasConversion<double>().IsRequired();
+            builder.Property(d => d.quilometragem).HasConversion<decimal>().HasPrecision(5,2).IsRequired();
 
-            builder.Property(d => d.capacidadeTanqueLitros).HasConversion<decimal>().IsRequired();
+            builder.Property(d => d.capacidadeTanqueLitros).HasConversion<decimal>().HasPrecision(5,2).IsRequired();
 
             builder.HasOne(m => m.grupoAutomovel)
-                   .WithMany()
+                   .WithMany(g => g.automoveis)
                    .IsRequired()
                    .HasConstraintName("FK_TBAutomovel_TBGrupoAutomovel")
                    .OnDelete(DeleteBehavior.NoAction);

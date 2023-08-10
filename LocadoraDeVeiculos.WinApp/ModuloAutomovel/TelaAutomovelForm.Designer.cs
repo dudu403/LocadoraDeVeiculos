@@ -47,6 +47,8 @@
             pctBoxFoto = new PictureBox();
             txtKm = new TextBox();
             label8 = new Label();
+            label9 = new Label();
+            txtPlaca = new TextBox();
             ((System.ComponentModel.ISupportInitialize)numCapacidadeTanque).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBoxFoto).BeginInit();
             SuspendLayout();
@@ -82,7 +84,7 @@
             cmbGrpAutomovel.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbGrpAutomovel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbGrpAutomovel.FormattingEnabled = true;
-            cmbGrpAutomovel.Location = new Point(274, 217);
+            cmbGrpAutomovel.Location = new Point(274, 210);
             cmbGrpAutomovel.Name = "cmbGrpAutomovel";
             cmbGrpAutomovel.Size = new Size(422, 28);
             cmbGrpAutomovel.TabIndex = 100;
@@ -91,7 +93,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(96, 219);
+            label7.Location = new Point(96, 212);
             label7.Name = "label7";
             label7.Size = new Size(159, 21);
             label7.TabIndex = 99;
@@ -101,7 +103,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(189, 270);
+            label4.Location = new Point(189, 257);
             label4.Name = "label4";
             label4.Size = new Size(66, 21);
             label4.TabIndex = 106;
@@ -110,7 +112,7 @@
             // txtModelo
             // 
             txtModelo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtModelo.Location = new Point(274, 267);
+            txtModelo.Location = new Point(274, 254);
             txtModelo.Name = "txtModelo";
             txtModelo.Size = new Size(422, 29);
             txtModelo.TabIndex = 105;
@@ -119,7 +121,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(199, 317);
+            label3.Location = new Point(199, 302);
             label3.Name = "label3";
             label3.Size = new Size(56, 21);
             label3.TabIndex = 104;
@@ -128,7 +130,7 @@
             // txtMarca
             // 
             txtMarca.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtMarca.Location = new Point(274, 314);
+            txtMarca.Location = new Point(274, 299);
             txtMarca.Name = "txtMarca";
             txtMarca.Size = new Size(422, 29);
             txtMarca.TabIndex = 103;
@@ -137,7 +139,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(217, 363);
+            label2.Location = new Point(217, 347);
             label2.Name = "label2";
             label2.Size = new Size(38, 21);
             label2.TabIndex = 102;
@@ -146,7 +148,7 @@
             // txtCor
             // 
             txtCor.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtCor.Location = new Point(274, 360);
+            txtCor.Location = new Point(274, 344);
             txtCor.Name = "txtCor";
             txtCor.Size = new Size(422, 29);
             txtCor.TabIndex = 101;
@@ -155,7 +157,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(19, 464);
+            label5.Location = new Point(19, 479);
             label5.Name = "label5";
             label5.Size = new Size(237, 21);
             label5.TabIndex = 108;
@@ -166,7 +168,7 @@
             cmbTipoCombustivel.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbTipoCombustivel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbTipoCombustivel.FormattingEnabled = true;
-            cmbTipoCombustivel.Location = new Point(274, 411);
+            cmbTipoCombustivel.Location = new Point(274, 436);
             cmbTipoCombustivel.Name = "cmbTipoCombustivel";
             cmbTipoCombustivel.Size = new Size(208, 28);
             cmbTipoCombustivel.TabIndex = 110;
@@ -175,7 +177,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(99, 413);
+            label6.Location = new Point(99, 438);
             label6.Name = "label6";
             label6.Size = new Size(156, 21);
             label6.TabIndex = 109;
@@ -184,7 +186,7 @@
             // numCapacidadeTanque
             // 
             numCapacidadeTanque.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            numCapacidadeTanque.Location = new Point(274, 464);
+            numCapacidadeTanque.Location = new Point(274, 479);
             numCapacidadeTanque.Maximum = new decimal(new int[] { 300, 0, 0, 0 });
             numCapacidadeTanque.Name = "numCapacidadeTanque";
             numCapacidadeTanque.Size = new Size(208, 29);
@@ -250,11 +252,31 @@
             label8.TabIndex = 114;
             label8.Text = "Quilometragem:";
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label9.Location = new Point(206, 394);
+            label9.Name = "label9";
+            label9.Size = new Size(49, 21);
+            label9.TabIndex = 117;
+            label9.Text = "Placa:";
+            // 
+            // txtPlaca
+            // 
+            txtPlaca.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPlaca.Location = new Point(274, 391);
+            txtPlaca.Name = "txtPlaca";
+            txtPlaca.Size = new Size(422, 29);
+            txtPlaca.TabIndex = 116;
+            // 
             // TelaAutomovelForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(734, 592);
+            Controls.Add(label9);
+            Controls.Add(txtPlaca);
             Controls.Add(txtKm);
             Controls.Add(label8);
             Controls.Add(pctBoxFoto);
@@ -304,5 +326,7 @@
         private PictureBox pctBoxFoto;
         private TextBox txtKm;
         private Label label8;
+        private Label label9;
+        private TextBox txtPlaca;
     }
 }

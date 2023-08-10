@@ -1,16 +1,19 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloCliente;
+using LocadoraDeVeiculos.Dominio.ModuloCondutor;
 
 namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 {
     public class ServicoCliente
     {
         private IRepositorioCliente repositorioCliente;
+        private IRepositorioCondutor repositorioCondutor;
         private IValidadorCliente validadorCliente;
 
-        public ServicoCliente(IRepositorioCliente repositorioCliente, IValidadorCliente validadorCliente)
+        public ServicoCliente(IRepositorioCliente repositorioCliente, IValidadorCliente validadorCliente, IRepositorioCondutor repositorioCondutor)
         {
             this.repositorioCliente = repositorioCliente;
             this.validadorCliente = validadorCliente;
+            this.repositorioCondutor = repositorioCondutor;
         }
 
         public Result Inserir(Cliente cliente)
@@ -62,7 +65,9 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
             catch (Exception exc)
             {
                 string MsgErro = "Falha ao tentar editar um Cliente.";
+
                 Log.Error(MsgErro, exc);
+
                 return Result.Fail(MsgErro);
             }
         }
@@ -70,6 +75,7 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
         public Result Excluir(Cliente cliente)
         {
             Log.Debug("Tentando excluir um cliente...{@d}", cliente);
+
             try
             {
                 bool ClienteExiste = repositorioCliente.Existe(cliente);
@@ -87,23 +93,24 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloCliente
 
                 return Result.Ok();
 
-
             }
             catch (SqlException ex)
             {
                 List<string> erros = new List<string>();
-                string MsgErro;
 
-                if (ex.Message.Contains("FK_TBCondutor_TBCliente"))
-                    MsgErro = "Este cliente está relacionado a um condutor e não pode ser excluido";
-                else
-                    MsgErro = "Falha ao tentar excluir um Cliente";
+                string MsgErro = "Falha ao tentar excluir um Cliente";
 
                 erros.Add(MsgErro);
 
                 Log.Error(ex, MsgErro + "{ClienteId}", cliente.id);
-                return Result.Fail(MsgErro);
+
+                return Result.Fail("");
             }
+        }
+
+        public bool VerificarSeTemCondutor(Cliente cliente)
+        {
+            return repositorioCondutor.SelecionarTodos().Any(x => x.cliente == cliente);
         }
 
         private List<string> ValidarCliente(Cliente cliente)

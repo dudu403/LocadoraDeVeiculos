@@ -1,7 +1,6 @@
 ﻿using FluentResults;
 using LocadoraDeVeiculos.Dominio.ModuloAutomovel;
 using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
-using System.IO;
 using System.Text.RegularExpressions;
 
 namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
@@ -29,11 +28,12 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
             if (image != null)
                 automovel.foto = ConverterEmBinario(pctBoxFoto.Image);
 
-            automovel.quilometragem = Convert.ToDouble(txtKm.Text);
+            automovel.quilometragem = Convert.ToDecimal(txtKm.Text);
             automovel.grupoAutomovel = (GrupoAutomovel)cmbGrpAutomovel.SelectedItem;
             automovel.modelo = txtModelo.Text;
             automovel.marca = txtMarca.Text;
             automovel.cor = txtCor.Text;
+            automovel.placa = txtPlaca.Text;
             automovel.tipoCombustivel = (TipoCombustivelEnum)cmbTipoCombustivel.SelectedItem;
             automovel.capacidadeTanqueLitros = Convert.ToDecimal(numCapacidadeTanque.Value);
 
@@ -52,29 +52,35 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
             txtModelo.Text = automovelSelecionado.modelo;
             txtMarca.Text = automovelSelecionado.marca;
             txtCor.Text = automovelSelecionado.cor;
+            txtPlaca.Text = automovelSelecionado.placa;
             cmbTipoCombustivel.SelectedItem = automovel.tipoCombustivel;
             numCapacidadeTanque.Value = automovelSelecionado.capacidadeTanqueLitros;
         }
 
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            this.automovel = ObterAutomovel();
+
+            Result resultado = onGravarRegistro(automovel);
+
+            if (resultado.IsFailed)
+            {
+                string erro = resultado.Errors[0].Message;
+
+                TelaPrincipalForm.Tela.AtualizarRodape(erro);
+
+                DialogResult = DialogResult.None;
+            }
+        }
+
         private void CarregarTiposCombustiveis()
         {
-            cmbTipoCombustivel.Items.Clear();
-
-            cmbTipoCombustivel.Items.Add(TipoCombustivelEnum.Nenhum);
-            cmbTipoCombustivel.Items.Add(TipoCombustivelEnum.Gasolina);
-            cmbTipoCombustivel.Items.Add(TipoCombustivelEnum.Alcool);
-            cmbTipoCombustivel.Items.Add(TipoCombustivelEnum.Disel);
-            cmbTipoCombustivel.Items.Add(TipoCombustivelEnum.Gás);
+            cmbTipoCombustivel.DataSource = Enum.GetValues<TipoCombustivelEnum>();
         }
 
         private void CarregarGruposAutomoveis(List<GrupoAutomovel> gruposAutomoveis)
         {
-            cmbGrpAutomovel.Items.Clear();
-
-            foreach (GrupoAutomovel grupo in gruposAutomoveis)
-            {
-                cmbGrpAutomovel.Items.Add(grupo);
-            }
+            cmbGrpAutomovel.DataSource = gruposAutomoveis;
         }
 
         private Bitmap RedimensionarImagem(OpenFileDialog file)
@@ -126,22 +132,6 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAutomovel
             }
 
             DialogResult = DialogResult.None;
-        }
-
-        private void btnGravar_Click(object sender, EventArgs e)
-        {
-            this.automovel = ObterAutomovel();
-
-            Result resultado = onGravarRegistro(automovel);
-
-            if (resultado.IsFailed)
-            {
-                string erro = resultado.Errors[0].Message;
-
-                TelaPrincipalForm.Tela.AtualizarRodape(erro);
-
-                DialogResult = DialogResult.None;
-            }
         }
 
         private void txtKm_KeyPress(object sender, KeyPressEventArgs e)

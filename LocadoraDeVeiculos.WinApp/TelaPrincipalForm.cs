@@ -144,7 +144,7 @@ namespace LocadoraDeVeiculos.WinApp
 
             ValidadorCliente validadorCliente = new();
 
-            ServicoCliente servicoCliente = new(repositorioCliente, validadorCliente);
+            ServicoCliente servicoCliente = new(repositorioCliente, validadorCliente, repositorioCondutor);
 
             controladores.Add("ControladorCliente", new ControladorCliente(repositorioCliente, servicoCliente, repositorioCondutor));
 

@@ -14,7 +14,7 @@ namespace LocadoraDeVeiculos.Infra.Orm.ModuloFuncionario
 
             builder.Property(d => d.dataAdmissao).IsRequired().HasColumnType("datetime");
 
-            builder.Property(d => d.salario).IsRequired().HasConversion<decimal>();
+            builder.Property(d => d.salario).IsRequired().HasConversion<decimal>().HasPrecision(5,2);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
     public class ControladorCliente : ControladorBase
     {
         private IRepositorioCliente repositorioCliente;
+
         private IRepositorioCondutor repositorioCondutor;
 
         private TabelaClienteControl tabelaCliente;
@@ -80,7 +81,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloCliente
 
                 return;
             }
-            if (repositorioCondutor.SelecionarTodos().Any(x => x.cliente == cliente))
+            if (servicoCliente.VerificarSeTemCondutor(cliente))
             {
                 MessageBox.Show("Você não pode excluir um Cliente relacionado a um Condutor.",
                 "Exclusão de clientes",

@@ -10,15 +10,15 @@
 
             RuleFor(x => x.tipoPlano)
               .NotEmpty()
-              .NotNull();
-              //.Must((x, tipoPlano) => !x.grupoAutomovel.tiposPlano.Contains(tipoPlano))
-              //.WithMessage("Esse tipo de plano já está cadastrado para este grupo de automovel.");
+              .NotNull()
+              .Must((x, tipoPlano) => !x.grupoAutomovel.planosCobranca.Any(p => p.tipoPlano == tipoPlano))
+              .WithMessage("Esse tipo de plano já está cadastrado para este grupo de automovel.");
 
             When(x => x.tipoPlano == TipoPlanoEnum.Cobrança_Km_Livre, () => {
 
                 RuleFor(x => x.precoDiaria)
-                 .NotEmpty()
-                 .NotNull();
+                .NotEmpty()
+                .NotNull();
 
                 RuleFor(x => x.precoPorKm)
                 .Empty();
@@ -33,8 +33,8 @@
             When(x => x.tipoPlano == TipoPlanoEnum.Cobrança_Controlada, () => {
 
                 RuleFor(x => x.precoDiaria)
-                 .NotEmpty()
-                 .NotNull();
+                .NotEmpty()
+                .NotNull();
 
                 RuleFor(x => x.precoPorKm)
                 .Empty();
@@ -44,25 +44,25 @@
                 .NotNull();
 
                 RuleFor(x => x.kmDisponiveis)
-                    .NotEmpty()
-                    .NotNull();
+                .NotEmpty()
+                .NotNull();
             }); 
 
             When(x => x.tipoPlano == TipoPlanoEnum.Cobrança_Diária, () => {
 
                 RuleFor(x => x.precoDiaria)
-                 .NotEmpty()
-                 .NotNull();
+                .NotEmpty()
+                .NotNull();
 
                 RuleFor(x => x.precoPorKm)
                 .NotEmpty()
                 .NotNull();
 
                 RuleFor(x => x.kmDisponiveis)
-               .Empty();
+                .Empty();
 
                 RuleFor(x => x.precoPorKmExtrapolado)
-               .Empty();
+                .Empty();
             });
         }
     }

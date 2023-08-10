@@ -1,6 +1,4 @@
-﻿using LocadoraDeVeiculos.Dominio.Compartilhado.Validators;
-using LocadoraDeVeiculos.Dominio.ModuloCliente;
-using LocadoraDeVeiculos.Dominio.ModuloCupomEParceiro;
+﻿using LocadoraDeVeiculos.Dominio.ModuloCliente;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
 {
@@ -13,7 +11,6 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
         public string email { get; set; }
         public string cpf { get; set; }
         public string cnh { get; set; }
-
 
         public Condutor() 
         {
@@ -30,6 +27,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloCondutor
             this.cpf = cpf;
             this.cnh = cnh;
         }
+
         public override void AtualizarInformacoes(Condutor registroAtualizado)
         {
             cliente = registroAtualizado.cliente;

@@ -1,5 +1,4 @@
 ﻿using LocadoraDeVeiculos.Dominio.ModuloGrupoAutomovel;
-using System.CodeDom;
 
 namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
 {
@@ -8,8 +7,9 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
         public TipoCombustivelEnum tipoCombustivel { get; set; }
         public decimal capacidadeTanqueLitros { get; set; }
         public GrupoAutomovel grupoAutomovel { get; set; }
-        public double quilometragem { get; set; }
+        public decimal quilometragem { get; set; }
         public string modelo { get; set; }
+        public string placa { get; set; }
         public string marca { get; set; }
         public byte[] foto { get; set; }
         public string cor { get; set; }
@@ -21,9 +21,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
 
         public override void AtualizarInformacoes(Automovel registroAtualizado)
         {
-            tipoCombustivel = registroAtualizado.tipoCombustivel;
-            capacidadeTanqueLitros = registroAtualizado.capacidadeTanqueLitros;
-            grupoAutomovel = registroAtualizado.grupoAutomovel;
+
         }
     }
 }
