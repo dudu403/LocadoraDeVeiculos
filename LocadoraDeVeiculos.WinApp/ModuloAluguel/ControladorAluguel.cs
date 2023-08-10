@@ -121,6 +121,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 MessageBoxIcon.Exclamation);
                 return;
             }
+            Aluguel aulguel = new();
 
             TelaAluguelForm tela = new(configuracaoPreco, repositorioFuncionario.SelecionarTodos(), repositorioCliente.SelecionarTodos(),
                                            repositorioGrupoAutomovel.SelecionarTodos(), repositorioCupom.SelecionarTodos(),
@@ -128,12 +129,14 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
             tela.onGravarRegistro += servicoAluguel.Inserir;
 
-            tela.ConfigurarTela(new Aluguel());
+            tela.ConfigurarTela(aulguel);
 
             DialogResult resultado = tela.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
+                GerarPdfAluguelEEnviarEmail(aulguel);
+
                 CarregarAlugueis();
             }
         }
@@ -167,6 +170,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
             if (resultado == DialogResult.OK)
             {
+                GerarPdfAluguelEEnviarEmail(aluguelSelecionado);
+
                 CarregarAlugueis();
             }
         }
@@ -256,6 +261,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
             if (resultado == DialogResult.OK)
             {
+                GerarPdfAluguelEEnviarEmail(aluguelSelecionado);
+
                 CarregarAlugueis();
             }
 
@@ -336,7 +343,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             }
         }
 
-        private void GerarPdfAluguel(Aluguel aluguel)
+        private void GerarPdfAluguelEEnviarEmail(Aluguel aluguel)
         {
             PdfWriter pathPdf = new(Path.GetTempFileName());
             PdfDocument pdf = new(pathPdf);
@@ -481,6 +488,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             doc.Add(new Paragraph(""));
             doc.Add(new LineSeparator(new SolidLine(1f)));
             doc.Close();
+
+            EnviarEmailComPdf(aluguel, pathPdf.ToString());
         }
     }
 }

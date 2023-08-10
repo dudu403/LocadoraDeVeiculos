@@ -32,7 +32,7 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAluguel
 
         public Aluguel()
         {
-
+            taxas = new();
         }
 
         public override void AtualizarInformacoes(Aluguel registroAtualizado)

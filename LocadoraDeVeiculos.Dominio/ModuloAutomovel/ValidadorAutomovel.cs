@@ -36,6 +36,11 @@ namespace LocadoraDeVeiculos.Dominio.ModuloAutomovel
                 .MinimumLength(3)
                 .PodeApenasLetras();
 
+            RuleFor(x => x.cor)
+                .NotEmpty()
+                .NotNull()
+                .VerificaFormatoPlaca();
+
             RuleFor(x => x.tipoCombustivel)
                 .NotEmpty()
                 .NotNull();

@@ -415,16 +415,19 @@
             // lblDataDevolucao
             // 
             lblDataDevolucao.AutoSize = true;
+            lblDataDevolucao.Enabled = false;
             lblDataDevolucao.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             lblDataDevolucao.Location = new Point(520, 281);
             lblDataDevolucao.Name = "lblDataDevolucao";
             lblDataDevolucao.Size = new Size(109, 15);
             lblDataDevolucao.TabIndex = 152;
             lblDataDevolucao.Text = "Data da Devolução:";
+            lblDataDevolucao.Visible = false;
             // 
             // txtDataDevolucao
             // 
             txtDataDevolucao.CalendarFont = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            txtDataDevolucao.Enabled = false;
             txtDataDevolucao.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txtDataDevolucao.Format = DateTimePickerFormat.Short;
             txtDataDevolucao.Location = new Point(653, 273);
@@ -432,6 +435,7 @@
             txtDataDevolucao.Size = new Size(200, 25);
             txtDataDevolucao.TabIndex = 151;
             txtDataDevolucao.Value = new DateTime(2023, 8, 1, 22, 0, 14, 0);
+            txtDataDevolucao.Visible = false;
             // 
             // lblValorFinal
             // 

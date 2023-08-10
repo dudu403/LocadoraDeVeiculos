@@ -98,11 +98,11 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             aluguel.cliente = (Cliente)cmbCliente.SelectedItem;
             aluguel.condutor = (Condutor)cmbCondutor.SelectedItem;
-            aluguel.kmInicial = Convert.ToDecimal(txtKmAutomovel);
+            aluguel.kmInicial = Convert.ToDecimal(txtKmAutomovel.Text);
             aluguel.automovel = (Automovel)cmbAutomovel.SelectedItem;
             aluguel.funcionario = (Funcionario)cmbFuncionario.SelectedItem;
             aluguel.planoCobranca = (PlanoCobranca)cmbPCobranca.SelectedItem;
-            aluguel.grupoAutomovel = (GrupoAutomovel)cmbAutomovel.SelectedItem;
+            aluguel.grupoAutomovel = (GrupoAutomovel)cmbGAutomovel.SelectedItem;
 
             foreach (TaxaEServico tx in listBoxTaxasIniciais.CheckedItems)
             {
@@ -168,17 +168,17 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Diária)
             {
-                int timeSpam = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
+                int time = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
 
                 decimal valorComKm = Convert.ToDecimal(aluguel.planoCobranca.precoPorKm * aluguel.kmPercorrido);
 
                 decimal valorgasolina = 0;
 
-                return (timeSpam * aluguel.planoCobranca.precoDiaria) + valorComKm - aluguel.cupom.valor + valorgasolina;
+                return (time * aluguel.planoCobranca.precoDiaria) + valorComKm - aluguel.cupom.valor + valorgasolina;
             }
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Controlada)
             {
-                int timeSpam = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
+                int time = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
 
                 decimal valorExtrapolado = 0;
 
@@ -189,15 +189,15 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
                 decimal valorgasolina = 0;
 
-                return (timeSpam * aluguel.planoCobranca.precoDiaria) + valorExtrapolado - aluguel.cupom.valor + valorgasolina;
+                return (time * aluguel.planoCobranca.precoDiaria) + valorExtrapolado - aluguel.cupom.valor + valorgasolina;
             }
             if (aluguel.planoCobranca.tipoPlano == TipoPlanoEnum.Cobrança_Km_Livre)
             {
-                int timeSpam = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
+                int time = Convert.ToInt32(aluguel.dataPrevistaDevolucao - aluguel.dataLocacao);
 
                 decimal valorgasolina = 0;
 
-                return (timeSpam * aluguel.planoCobranca.precoDiaria) - aluguel.cupom.valor + valorgasolina;
+                return (time * aluguel.planoCobranca.precoDiaria) - aluguel.cupom.valor + valorgasolina;
             }
 
             return 0;

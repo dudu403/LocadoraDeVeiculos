@@ -4,11 +4,43 @@
     {
         public ValidadorAluguel()
         {
-            //RuleFor(x => x.Nome)
-            //    .NotEmpty()
-            //    .NotNull()
-            //    .MinimumLength(3)
-            //    .NaoPodeCaracteresEspeciais();
+            RuleFor(x => x.funcionario)
+                .NotEmpty()
+                .NotNull();
+
+            RuleFor(x => x.cliente)
+                .NotEmpty()
+                .NotNull();
+
+            RuleFor(x => x.condutor)
+               .NotEmpty()
+               .NotNull();
+
+            RuleFor(x => x.grupoAutomovel)
+                .NotEmpty()
+                .NotNull();
+
+            RuleFor(x => x.automovel)
+               .NotEmpty()
+               .NotNull();
+
+            RuleFor(x => x.planoCobranca)
+                .NotEmpty()
+                .NotNull();
+
+            RuleFor(x => x.dataLocacao)
+                .NotEmpty()
+                .NotNull()
+                .GreaterThan(DateTime.Today);
+
+            RuleFor(x => x.dataPrevistaDevolucao)
+                .NotEmpty()
+                .NotNull()
+                .GreaterThan(DateTime.Today.AddDays(1));
+
+            RuleFor(x => x.nivelTanque)
+                .NotEmpty()
+                .NotNull();
         }
     }
 }
