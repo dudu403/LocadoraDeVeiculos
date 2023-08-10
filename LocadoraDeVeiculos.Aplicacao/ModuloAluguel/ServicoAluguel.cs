@@ -21,8 +21,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloAluguel
 
             if (erros.Count() > 0)
             {
-                repositorioAluguel.Excluir(aluguel);
-
                 return Result.Fail(erros);
             }
             try
@@ -51,8 +49,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloAluguel
 
             if (erros.Count() > 0)
             {
-                repositorioAluguel.Excluir(aluguel);
-
                 return Result.Fail(erros);
             }
             try
@@ -116,8 +112,6 @@ namespace LocadoraDeVeiculos.Aplicacao.ModuloAluguel
 
             if (erros.Count() > 0)
             {
-                repositorioAluguel.Excluir(aluguel);
-
                 return Result.Fail(erros);
             }
             try

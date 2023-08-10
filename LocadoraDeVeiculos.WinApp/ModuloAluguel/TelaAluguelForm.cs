@@ -110,6 +110,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
 
             aluguel.valorTotalPrevisto = CalcularValorTotal();
 
+            aluguel.dataLocacao = txtDataLocacao.Value;
+            aluguel.dataPrevistaDevolucao = txtDataPrevista.Value;
+
             return aluguel;
         }
 

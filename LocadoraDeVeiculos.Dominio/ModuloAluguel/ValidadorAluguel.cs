@@ -29,18 +29,12 @@
                 .NotNull();
 
             RuleFor(x => x.dataLocacao)
-                .NotEmpty()
-                .NotNull()
                 .GreaterThan(DateTime.Today);
 
             RuleFor(x => x.dataPrevistaDevolucao)
                 .NotEmpty()
                 .NotNull()
                 .GreaterThan(x => x.dataLocacao);
-
-            RuleFor(x => x.nivelTanque)
-                .NotEmpty()
-                .NotNull();
         }
     }
 }
