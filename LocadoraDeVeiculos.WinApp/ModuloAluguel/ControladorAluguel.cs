@@ -349,7 +349,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             PdfDocument pdf = new(pathPdf);
             Document doc = new(pdf);
 
-            Paragraph header = new Paragraph("Bugless Squad - Locadora de Veículos")
+            Paragraph titulo = new Paragraph("Bugless Squad - Locadora de Veículos")
                 .SetTextAlignment(TextAlignment.CENTER)
                 .SetFontSize(21);
 
@@ -358,7 +358,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
                 .SetFontSize(18)
                 .SetBold();
 
-            doc.Add(header);
+            doc.Add(titulo);
             doc.Add(subheader);
 
             doc.Add(new LineSeparator(new SolidLine(1f)));

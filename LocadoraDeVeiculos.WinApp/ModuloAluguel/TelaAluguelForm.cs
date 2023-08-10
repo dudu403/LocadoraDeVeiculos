@@ -65,7 +65,9 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             this.aluguel = aluguelSelecionado;
 
-            txtCupom.Text = aluguel.cupom.ToString();
+            if(aluguel.cupom != null)
+                txtCupom.Text = aluguel.cupom.ToString();
+
             txtKmAutomovel.Text = aluguel.automovel.quilometragem.ToString();
             cmbCliente.SelectedItem = aluguel.cliente;
             txtDataLocacao.Value = aluguel.dataLocacao;
@@ -77,6 +79,7 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
             cmbGAutomovel.SelectedItem = aluguel.grupoAutomovel;
             txtDataPrevista.Value = aluguel.dataPrevistaDevolucao;
 
+            aObterDevolucaoAluguel();
             ConfigurarListaComCheck();
             CarregarListaTaxasExtras();
         }
@@ -245,7 +248,8 @@ namespace LocadoraDeVeiculos.WinApp.ModuloAluguel
         {
             if (cmbAutomovel.SelectedItem != null)
             {
-                aluguel.automovel = (Automovel)cmbAutomovel.SelectedItem;
+                //if(cmbAutomovel.SelectedItem != Vazio)
+                    aluguel.automovel = (Automovel)cmbAutomovel.SelectedItem;
 
                 txtKmAutomovel.Text = aluguel.automovel.quilometragem.ToString();
             }
